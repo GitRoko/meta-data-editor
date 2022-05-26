@@ -1,4 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true
+  publicPath: '/meta-data-editor/',
+  transpileDependencies: [
+    'vuetify'
+  ]
 })
