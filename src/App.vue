@@ -29,15 +29,6 @@
 
       <v-list flat>
         <v-list-item-group color="primary">
-          <!-- <v-list-item @click="readFile">
-            <v-list-item-icon>
-              <v-icon>mdi-folder-file</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>Open File</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item> -->
 
           <v-list-item @click="openDirectory">
             <v-list-item-icon>
@@ -45,9 +36,6 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <!-- <v-btn @click="readFile" text>
-                {{ item.text }}
-              </v-btn> -->
               <v-list-item-title>Open Directory</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -101,21 +89,8 @@
 
     <v-main>
       <!-- <v-main class="grey lighten-2"> -->
-      <v-container>
-        <v-row>
-          <v-sheet color="white" elevation="0" height="100%" width="100%">
-            <v-col cols="12">
-              <v-textarea
-                v-model="textAreaValue"
-                auto-grow
-                solo
-                name="text"
-                label="Solo textarea"
-              ></v-textarea>
-            </v-col>
-          </v-sheet>
-        </v-row>
-      </v-container>
+      <ContentData v-if="activeFileData" v-bind:init_data="activeFileData" />
+      
     </v-main>
   </v-app>
 </template>
@@ -126,8 +101,14 @@ import {
   writeFile,
   readDirectory,
 } from "./features/useFileSistemAPI";
+import ContentData from "./components/ContentData.vue";
 
 export default {
+  name: "App",
+  components: {
+    ContentData,
+  },
+
   data: () => ({
     drawer: null,
     fab: false, //scrollTop
@@ -149,11 +130,6 @@ export default {
     toTop() {
       this.$vuetify.goTo(0);
     },
-    // readFile() {
-    //   openFile()
-    //     .then((response) => (this.fileData = response))
-    //     .then((data) => (this.textAreaValue = data));
-    // },
     saveFile() {
       if (this.activeFileData !== "") {
         writeFile(this.activeFile.fileHandle, this.textAreaValue);

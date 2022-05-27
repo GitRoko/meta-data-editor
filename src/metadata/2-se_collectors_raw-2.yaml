@@ -1,4 +1,5 @@
-status:
+# description title static
+static:
   json_type: string
   td_type: varchar
   mandatory: true
