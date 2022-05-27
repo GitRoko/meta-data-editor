@@ -1,17 +1,8 @@
 <template>
   <v-app id="inspire">
-    <!-- <v-system-bar app>
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar> -->
 
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="drawer === false" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer />
       <v-toolbar-title v-if="this.activeFile !== null">{{
         this.activeFile.fileName
@@ -22,15 +13,17 @@
       <v-spacer />
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" fixed temporary>
+    <v-navigation-drawer app v-model="drawer" height="100%" hide-overlay>
       <!--  -->
-      <v-list>
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title class="text-h6"> Menu </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+      <v-sheet color="primary" elevation="3" dark>
+        <v-list>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="text-h6"> Menu </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-sheet>
 
       <v-divider></v-divider>
 
@@ -107,7 +100,7 @@
     </v-btn>
 
     <v-main>
-    <!-- <v-main class="grey lighten-2"> -->
+      <!-- <v-main class="grey lighten-2"> -->
       <v-container>
         <v-row>
           <v-sheet color="white" elevation="0" height="100%" width="100%">
