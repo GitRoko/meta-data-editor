@@ -1,4 +1,4 @@
-# meta-data-editor
+# [meta-data-editor](https://gitroko.github.io/meta-data-editor/)
 
 ## Project setup
 ```
@@ -21,10 +21,10 @@ npm run lint
 ```
 
 ### Compiles, minifies for production and deploy to gh-pages
-[metadata editor](https://cli.vuejs.org/config/).
+[metadata editor](https://gitroko.github.io/meta-data-editor/)
 ```
 npm run deploy
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://gitroko.github.io/meta-data-editor/).
+See [Configuration Reference](https://cli.vuejs.org/config/).
