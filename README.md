@@ -20,5 +20,11 @@ npm run build
 npm run lint
 ```
 
+### Compiles, minifies for production and deploy to gh-pages
+[metadata editor](https://cli.vuejs.org/config/).
+```
+npm run deploy
+```
+
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [Configuration Reference](https://gitroko.github.io/meta-data-editor/).
