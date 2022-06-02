@@ -3,7 +3,7 @@
     <v-row>
       <v-sheet color="white" elevation="0" height="100%" width="100%">
         <v-col cols="12">
-          <h2>{{ title.split(" ").filter(item => item !== "#" && item !== "description").join(" ") }}</h2>
+          <h2 v-if="title">{{ title.split(" ").filter(item => item !== "#" && item !== "description").join(" ") }}</h2>
           <DataTable :incomingDataTable="dataTable" />
         </v-col>
       </v-sheet>
