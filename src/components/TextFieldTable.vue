@@ -2,7 +2,7 @@
   <v-text-field
     class="field_name__textField mt-7"
     v-model="textValue"
-    label="Field"
+    :label="label"
     outlined
     dense
   ></v-text-field>
@@ -10,19 +10,24 @@
 
 <script>
 export default {
-  name: "TableTextField",
+  name: "TextFieldTable",
   props: {
-    incomingValue: String,
+    incomingValue: null,
+    textFieldLabel: String,
   },
   data() {
     return {
       textValue: "",
+      label: "",
     };
   },
   created() {
-    this.textValue = this.incomingValue;
+    this.textValue = (typeof this.incomingValue === 'string')
+      ? this.incomingValue
+      : JSON.stringify(this.incomingValue);
+
+    this.label = this.textFieldLabel;
   },
-  methods: {},
 };
 </script>
 

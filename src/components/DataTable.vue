@@ -12,31 +12,45 @@
   >
     <template v-slot:[`item.field_name`]="{ item }">
       <td class="field_name field_name__td">
-        <TableTextField :incomingValue="item.field_name" />
+        <TextFieldTable
+        :textFieldLabel="'Field'"
+        :incomingValue="item.field_name" 
+        />
       </td>
     </template>
     <template v-slot:[`item.json_type`]="{ item }">
       <td>
-        <SelectDataTable :incomingValue="item.json_type" />
-        </td>
+        <SelectTypeTable :incomingValue="item.json_type" />
+      </td>
     </template>
     <template v-slot:[`item.mandatory`]="{ item }">
       <td>
         <CheckboxTable :incomingValue="item.mandatory" />
-        </td>
+      </td>
     </template>
     <template v-slot:expanded-item="{ item, headers }">
       <td :colspan="headers.length">
         <table class="expanded__table">
           <tr class="expanded__row d-flex justify-space-around align-center">
             <td>
-              {{ item.td_type }}
+              <DependentSelectTable
+                :selectName="'TD type'"
+                :incomingItems="getSelectItems(item.json_type, 'td_type')"
+                :incomingItemValue="item.td_type"
+              />
             </td>
             <td>
-              {{ item.pydantic_type }}
+              <DependentSelectTable
+                :selectName="'Pydantic type'"
+                :incomingItems="getSelectItems(item.json_type, 'pydantic_type')"
+                :incomingItemValue="item.pydantic_type"
+              />
             </td>
             <td>
-              {{ item.example }}
+              <TextFieldTable 
+              :textFieldLabel="'Example'"
+              :incomingValue="item.example" 
+              />
             </td>
           </tr>
         </table>
@@ -47,16 +61,19 @@
 </template>
 
 <script>
-import TableTextField from "../components/TableTextField.vue";
-import SelectDataTable from "../components/SelectDataTable.vue";
-import CheckboxTable from "../components/CheckboxTable.vue";
+import TextFieldTable from "../components/TextFieldTable.vue";
+import SelectTypeTable from "./SelectTypeTable.vue";
+import CheckboxTable from "./CheckboxTable.vue";
+import DependentSelectTable from "./DependentSelectTable.vue";
+import {typeRules} from "../features/rules";
 
 export default {
   name: "DataTable",
   components: {
-    TableTextField,
-    SelectDataTable,
+    TextFieldTable,
+    SelectTypeTable,
     CheckboxTable,
+    DependentSelectTable,
   },
   props: {
     incomingDataTable: Array,
@@ -87,7 +104,11 @@ export default {
       ],
     };
   },
-  methods: {},
+  methods: {
+    getSelectItems(mainValue, nameValue) {
+      return typeRules[nameValue][mainValue];
+    },
+  },
 };
 </script>
 
@@ -100,13 +121,7 @@ export default {
   height: 100%;
 }
 .expanded__row {
-   width: 100%;
+  width: 100%;
   height: 100%;
 }
-/* .v-data-table > .v-data-table__wrapper tbody tr.v-data-table__expanded__content {
-  box-shadow: unset !important;
-}
-.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr:not(:last-child) > td:not(.v-data-table__mobile-row), .theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr:not(:last-child) > th:not(.v-data-table__mobile-row) {
-  border-bottom: thin solid rgba(0, 0, 0, 0.12) !important;
-} */
 </style>

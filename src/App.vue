@@ -2,7 +2,7 @@
   <v-app id="inspire">
 
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon v-if="drawer === false" @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon  @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer />
       <v-toolbar-title v-if="this.activeFile !== null">{{
         this.activeFile.fileName

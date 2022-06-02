@@ -1,6 +1,6 @@
 <template>
   <v-select
-    v-model="sevectValue"
+    v-model="selectValue"
     :items="items"
     label="Type"
     outlined
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "SelectDataTable",
+  name: "SelectTypeTable",
   props: {
     incomingValue: String,
   },
@@ -21,7 +21,7 @@ export default {
     };
   },
   created() {
-    this.sevectValue = this.incomingValue;
+    this.selectValue = this.incomingValue;
   },
   methods: {},
 };
