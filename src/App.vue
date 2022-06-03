@@ -61,10 +61,6 @@
             :key="i"
             @click="getActiveFile(item.fileName)"
           >
-            <v-list-item-icon>
-              <v-icon v-text="item.icon"></v-icon>
-            </v-list-item-icon>
-
             <v-list-item-content>
               <v-list-item-title v-text="item.fileName"></v-list-item-title>
             </v-list-item-content>
@@ -88,9 +84,7 @@
     </v-btn>
 
     <v-main>
-      <!-- <v-main class="grey lighten-2"> -->
       <ContentData v-if="activeFileData" v-bind:init_data="activeFileData" />
-      
     </v-main>
   </v-app>
 </template>
@@ -112,7 +106,6 @@ export default {
   data: () => ({
     drawer: null,
     fab: false, //scrollTop
-    // fileData: null,
     textAreaValue: "",
     dataDirectory: [],
     activeFileData: null,
@@ -130,23 +123,25 @@ export default {
     toTop() {
       this.$vuetify.goTo(0);
     },
+
     saveFile() {
       if (this.activeFileData !== "") {
         writeFile(this.activeFile.fileHandle, this.textAreaValue);
       }
     },
+
     openDirectory() {
       readDirectory()
         .then((data) => (this.dataDirectory = data))
         .then((data) => {
           const item = data.map((item) => {
-            return { fileName: item.fileName, icon: "mdi-file" };
+            return { fileName: item.fileName };
           });
 
           this.itemsFiles = item;
         });
     },
-    getFileData() {},
+
     getActiveFile(fileName) {
       this.activeFile = this.dataDirectory.find(
         (item) => item.fileName === fileName

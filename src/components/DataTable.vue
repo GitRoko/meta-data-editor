@@ -3,6 +3,8 @@
     disable-filtering
     disable-pagination
     disable-sort
+    hide-default-header
+    hide-default-footer
     :headers="headersMainRow"
     :items="incomingDataTable"
     :expanded.sync="expanded"
