@@ -12,6 +12,7 @@
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
     "vuetify": "^2.6.0",
+    "vuex": "^3.6.2",
     "yaml": "^2.1.0"
   },
   "devDependencies": {
@@ -41,7 +42,9 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "vue/valid-v-slot": ["error"]
+      "vue/valid-v-slot": [
+        "error"
+      ]
     }
   },
   "browserslist": [

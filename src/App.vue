@@ -14,7 +14,6 @@
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" height="100%" hide-overlay>
-      <!--  -->
       <v-sheet color="primary" elevation="3" dark>
         <v-list>
           <v-list-item>
@@ -57,7 +56,7 @@
       <v-list nav dense>
         <v-list-item-group v-model="selectedItem" color="primary">
           <v-list-item
-            v-for="(item, i) in itemsFiles"
+            v-for="(item, i) in allFiles"
             :key="i"
             @click="getActiveFile(item.fileName)"
           >
@@ -93,9 +92,10 @@
 import {
   openFile,
   writeFile,
-  readDirectory,
+  // readDirectory,
 } from "./features/useFileSistemAPI";
 import ContentData from "./components/ContentData.vue";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -107,12 +107,15 @@ export default {
     drawer: null,
     fab: false, //scrollTop
     textAreaValue: "",
-    dataDirectory: [],
+    // dataDirectory: [],
     activeFileData: null,
     activeFile: null,
     selectedItem: 0, //fileList selected
-    itemsFiles: [], // fileList items
+    // itemsFiles: [], // fileList items
   }),
+  computed: {
+    ...mapGetters(["allFiles"]),
+  },
 
   methods: {
     onScroll(e) {
@@ -129,21 +132,10 @@ export default {
         writeFile(this.activeFile.fileHandle, this.textAreaValue);
       }
     },
-
-    openDirectory() {
-      readDirectory()
-        .then((data) => (this.dataDirectory = data))
-        .then((data) => {
-          const item = data.map((item) => {
-            return { fileName: item.fileName };
-          });
-
-          this.itemsFiles = item;
-        });
-    },
+    ...mapActions(["openDirectory"]),
 
     getActiveFile(fileName) {
-      this.activeFile = this.dataDirectory.find(
+      this.activeFile = this.allFiles.find(
         (item) => item.fileName === fileName
       );
       openFile(this.activeFile.fileHandle)
