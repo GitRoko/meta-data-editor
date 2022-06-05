@@ -1,20 +1,18 @@
 <template>
   <v-app id="inspire">
-
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon  @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer />
-      <v-toolbar-title v-if="this.activeFile !== null">{{
-        this.activeFile.fileName
+      <v-toolbar-title v-if="getCurrentFile !== null">{{
+        getCurrentFile.fileName
       }}</v-toolbar-title>
-      <v-toolbar-title v-if="this.activeFile === null"
+      <v-toolbar-title v-if="getCurrentFile === null"
         >MetaData editor</v-toolbar-title
       >
       <v-spacer />
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" height="100%" hide-overlay>
-      <!--  -->
       <v-sheet color="primary" elevation="3" dark>
         <v-list>
           <v-list-item>
@@ -29,7 +27,6 @@
 
       <v-list flat>
         <v-list-item-group color="primary">
-
           <v-list-item @click="openDirectory">
             <v-list-item-icon>
               <v-icon>mdi-folder</v-icon>
@@ -57,7 +54,7 @@
       <v-list nav dense>
         <v-list-item-group v-model="selectedItem" color="primary">
           <v-list-item
-            v-for="(item, i) in itemsFiles"
+            v-for="(item, i) in allFiles"
             :key="i"
             @click="getActiveFile(item.fileName)"
           >
@@ -84,18 +81,17 @@
     </v-btn>
 
     <v-main>
-      <ContentData v-if="activeFileData" v-bind:init_data="activeFileData" />
+      <ContentData
+        v-if="getCurrentFileData"
+        v-bind:init_data="getCurrentFileData"
+      />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import {
-  openFile,
-  writeFile,
-  readDirectory,
-} from "./features/useFileSistemAPI";
 import ContentData from "./components/ContentData.vue";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "App",
@@ -106,13 +102,12 @@ export default {
   data: () => ({
     drawer: null,
     fab: false, //scrollTop
-    textAreaValue: "",
-    dataDirectory: [],
-    activeFileData: null,
-    activeFile: null,
     selectedItem: 0, //fileList selected
-    itemsFiles: [], // fileList items
   }),
+
+  computed: {
+    ...mapGetters(["allFiles", "getCurrentFile", "getCurrentFileData"]),
+  },
 
   methods: {
     onScroll(e) {
@@ -124,31 +119,17 @@ export default {
       this.$vuetify.goTo(0);
     },
 
-    saveFile() {
-      if (this.activeFileData !== "") {
-        writeFile(this.activeFile.fileHandle, this.textAreaValue);
-      }
-    },
-
-    openDirectory() {
-      readDirectory()
-        .then((data) => (this.dataDirectory = data))
-        .then((data) => {
-          const item = data.map((item) => {
-            return { fileName: item.fileName };
-          });
-
-          this.itemsFiles = item;
-        });
-    },
+    ...mapActions(["openDirectory", "getActiveFileData", "saveFile"]),
+    ...mapMutations(["updateActiveFile"]),
 
     getActiveFile(fileName) {
-      this.activeFile = this.dataDirectory.find(
+      // можно перенести в store?
+      const activeFile = this.allFiles.find(
         (item) => item.fileName === fileName
       );
-      openFile(this.activeFile.fileHandle)
-        .then((response) => (this.activeFileData = response))
-        .then((data) => (this.textAreaValue = data));
+
+      this.updateActiveFile(activeFile);
+      this.getActiveFileData();
     },
   },
 };

@@ -15,8 +15,8 @@
     <template v-slot:[`item.field_name`]="{ item }">
       <td class="field_name field_name__td">
         <TextFieldTable
-        :textFieldLabel="'Field'"
-        :incomingValue="item.field_name" 
+          :textFieldLabel="'Field'"
+          :incomingValue="item.field_name"
         />
       </td>
     </template>
@@ -49,9 +49,9 @@
               />
             </td>
             <td>
-              <TextFieldTable 
-              :textFieldLabel="'Example'"
-              :incomingValue="item.example" 
+              <TextFieldTable
+                :textFieldLabel="'Example'"
+                :incomingValue="item.example"
               />
             </td>
           </tr>
@@ -67,7 +67,7 @@ import TextFieldTable from "../components/TextFieldTable.vue";
 import SelectTypeTable from "./SelectTypeTable.vue";
 import CheckboxTable from "./CheckboxTable.vue";
 import DependentSelectTable from "./DependentSelectTable.vue";
-import {typeRules} from "../features/rules";
+import { typeRules } from "../features/rules";
 
 export default {
   name: "DataTable",

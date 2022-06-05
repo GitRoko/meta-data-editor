@@ -27,8 +27,9 @@ export default {
   created() {
     this.items = this.incomingItems;
 
-    this.selectValue = (this.items.includes(this.incomingItemValue)) 
-      ? this.incomingItemValue : this.items[0];
+    this.selectValue = this.items.includes(this.incomingItemValue)
+      ? this.incomingItemValue
+      : this.items[0];
 
     this.selectLabel = this.selectName;
   },
