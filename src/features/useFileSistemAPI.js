@@ -1,4 +1,4 @@
-export async function openFile(handle = false) {
+export async function readFile(handle = false) {
   let fileHandle;
   let file;
 

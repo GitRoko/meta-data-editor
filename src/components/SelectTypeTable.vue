@@ -1,6 +1,6 @@
 <template>
   <v-select
-    v-model="selectValue"
+    v-model="value"
     :items="items"
     label="Type"
     outlined
@@ -18,10 +18,11 @@ export default {
   data() {
     return {
       items: ["string", "number", "array", "object", "boolean"],
+      value: "",
     };
   },
   created() {
-    this.selectValue = this.incomingValue;
+    this.value = this.incomingValue;
   },
   methods: {},
 };
