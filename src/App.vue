@@ -82,8 +82,7 @@
 
     <v-main>
       <ContentData
-        v-if="getCurrentFileData"
-        v-bind:init_data="getCurrentFileData"
+        :title="getTitle"
       />
     </v-main>
   </v-app>
@@ -106,7 +105,7 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(["allFiles", "getCurrentFile", "getCurrentFileData"]),
+    ...mapGetters(["allFiles", "getCurrentFile", "getCurrentFileData", "getTitle", "getPreparedDataTable"]),
   },
 
   methods: {

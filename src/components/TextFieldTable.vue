@@ -9,11 +9,14 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "TextFieldTable",
   props: {
-    incomingValue: null,
+    incomingValue: String,
     textFieldLabel: String,
+    field: String,
   },
   data() {
     return {
@@ -27,6 +30,32 @@ export default {
       : JSON.stringify(this.incomingValue);
 
     this.label = this.textFieldLabel;
+  },
+  watch: {
+    textValue(newValue, oldValue) {
+      this.changeTextField(newValue, oldValue);
+        this.$forceUpdate()
+
+    },
+  },
+  methods: {
+    ...mapGetters(["getPreparedDataTable"]),
+    ...mapMutations(["updatePreparedDataTable"]),
+    changeTextField(newValue, oldValue) {
+        const data = this.getPreparedDataTable();
+  
+        const newData = data.map(item => {
+
+          if (item[this.field] === oldValue) {
+            item[this.field] = newValue;
+          }
+
+          return item;
+        });
+
+        this.updatePreparedDataTable(newData);
+        this.$forceUpdate();
+    },
   },
 };
 </script>

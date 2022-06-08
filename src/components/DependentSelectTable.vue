@@ -1,7 +1,7 @@
 <template>
   <v-select
     v-model="selectValue"
-    :items="items"
+    :items="incomingItems"
     :label="selectLabel"
     outlined
     dense
@@ -10,17 +10,21 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "DependentSelectTable",
   props: {
     incomingItems: Array,
     incomingItemValue: String,
     selectName: String,
+    field: String,
+    fieldTitle: String,
   },
   data() {
     return {
-      items: [],
-      selectValue: "",
+      // items: [],
+      // selectValue: "",
       selectLabel: "",
     };
   },
@@ -33,7 +37,30 @@ export default {
 
     this.selectLabel = this.selectName;
   },
-  methods: {},
+  watch: {
+    selectValue(newValue, oldValue) {
+      this.changeSelectValue(newValue, oldValue);
+    },
+  },
+  methods: {
+    ...mapGetters(["getPreparedDataTable"]),
+    ...mapMutations(["updatePreparedDataTable"]),
+
+    changeSelectValue(newValue) {
+      const data = this.getPreparedDataTable();
+
+      const newData = data.map((item) => {
+
+        if (item.field_name === this.field) {
+            item[this.fieldTitle] = newValue;
+        }
+
+        return item;
+      });
+
+      this.updatePreparedDataTable(newData);
+    },
+  },
 };
 </script>
 

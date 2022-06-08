@@ -1,6 +1,6 @@
 <template>
   <v-checkbox
-    v-model="checked"
+    v-model="isChecked"
     label="Required"
     color="primary"
     hide-details
@@ -9,20 +9,48 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "CheckboxTable",
   props: {
     incomingValue: Boolean,
+    field: String,
   },
   data() {
     return {
-      checked: true,
+      isChecked: true,
     };
   },
   created() {
-    this.checked = this.incomingValue;
+    this.isChecked = this.incomingValue;
   },
-  methods: {},
+  watch: {
+    isChecked(newValue, oldValue) {
+      this.changeTextField(newValue, oldValue);
+        this.$forceUpdate()
+
+    },
+  },
+  methods: {
+    ...mapGetters(["getPreparedDataTable"]),
+    ...mapMutations(["updatePreparedDataTable"]),
+    changeTextField(newValue) {
+        const data = this.getPreparedDataTable();
+  
+        const newData = data.map(item => {
+
+          if (item.field_name === this.field) {
+            item.mandatory = newValue;
+          }
+
+          return item;
+        });
+
+        this.updatePreparedDataTable(newData);
+        this.$forceUpdate()
+    },
+  },
 };
 </script>
 

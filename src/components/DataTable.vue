@@ -3,12 +3,13 @@
     disable-filtering
     disable-pagination
     disable-sort
+    single-expand
     hide-default-header
     hide-default-footer
     :headers="headersMainRow"
-    :items="incomingDataTable"
+    :items="dataTable"
     :expanded.sync="expanded"
-    item-key="field_name"
+    item-key="id"
     show-expand
     class="dataTable elevation-1"
   >
@@ -16,18 +17,25 @@
       <td class="field_name field_name__td">
         <TextFieldTable
           :textFieldLabel="'Field'"
+          :field="'field_name'"
           :incomingValue="item.field_name"
         />
       </td>
     </template>
     <template v-slot:[`item.json_type`]="{ item }">
       <td>
-        <SelectTypeTable :incomingValue="item.json_type" />
+        <SelectTypeTable
+          :field="item.field_name"
+          :incomingValue="item.json_type"
+        />
       </td>
     </template>
     <template v-slot:[`item.mandatory`]="{ item }">
       <td>
-        <CheckboxTable :incomingValue="item.mandatory" />
+        <CheckboxTable
+          :field="item.field_name"
+          :incomingValue="item.mandatory"
+        />
       </td>
     </template>
     <template v-slot:expanded-item="{ item, headers }">
@@ -36,6 +44,8 @@
           <tr class="expanded__row d-flex justify-space-around align-center">
             <td>
               <DependentSelectTable
+                :field="item.field_name"
+                :fieldTitle="'td_type'"
                 :selectName="'TD type'"
                 :incomingItems="getSelectItems(item.json_type, 'td_type')"
                 :incomingItemValue="item.td_type"
@@ -43,6 +53,8 @@
             </td>
             <td>
               <DependentSelectTable
+                :field="item.field_name"
+                :fieldTitle="'pydantic_type'"
                 :selectName="'Pydantic type'"
                 :incomingItems="getSelectItems(item.json_type, 'pydantic_type')"
                 :incomingItemValue="item.pydantic_type"
@@ -51,6 +63,7 @@
             <td>
               <TextFieldTable
                 :textFieldLabel="'Example'"
+                :field="'example'"
                 :incomingValue="item.example"
               />
             </td>
@@ -78,10 +91,11 @@ export default {
     DependentSelectTable,
   },
   props: {
-    incomingDataTable: Array,
+    initialData: Array,
   },
   created() {
-    this.dataTable = this.incomingDataTable;
+    this.dataTable = this.initialData;
+    this.items = this.dataTable;
   },
   data() {
     return {
@@ -105,6 +119,14 @@ export default {
         { text: "", value: "data-table-expand" },
       ],
     };
+  },
+  // watch: {
+  //   initialData(newValue) {
+  //     console.log(newValue)
+  //     this.items = newValue
+  //   }
+  // },
+  computed: {
   },
   methods: {
     getSelectItems(mainValue, nameValue) {
