@@ -14,7 +14,7 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "TextFieldTable",
   props: {
-    incomingValue: String,
+    incomingValue: [String, Number, Boolean, Array, Object],
     textFieldLabel: String,
     field: String,
   },
@@ -45,7 +45,9 @@ export default {
         const data = this.getPreparedDataTable();
   
         const newData = data.map(item => {
-
+          // console.log("item[this.field] = ", item[this.field]);
+          // console.log("oldValue = ", oldValue);
+          // console.log("newValue = ", newValue);
           if (item[this.field] === oldValue) {
             item[this.field] = newValue;
           }

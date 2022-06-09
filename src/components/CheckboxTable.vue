@@ -1,7 +1,7 @@
 <template>
   <v-checkbox
     v-model="isChecked"
-    label="Required"
+    :label="labelName"
     color="primary"
     hide-details
     class="field_name__checkbox mt-0"
@@ -16,14 +16,18 @@ export default {
   props: {
     incomingValue: Boolean,
     field: String,
+    fieldTitle: String,
+    labelName: String,
   },
   data() {
     return {
       isChecked: true,
+      label: "",
     };
   },
   created() {
     this.isChecked = this.incomingValue;
+    this.label = this.labelName;
   },
   watch: {
     isChecked(newValue, oldValue) {
@@ -39,9 +43,9 @@ export default {
         const data = this.getPreparedDataTable();
   
         const newData = data.map(item => {
-
+          console.log("item = ", item)
           if (item.field_name === this.field) {
-            item.mandatory = newValue;
+            item[this.fieldTitle] = newValue;
           }
 
           return item;

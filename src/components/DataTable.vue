@@ -7,7 +7,7 @@
     hide-default-header
     hide-default-footer
     :headers="headersMainRow"
-    :items="dataTable"
+    :items="items"
     :expanded.sync="expanded"
     item-key="id"
     show-expand
@@ -25,6 +25,7 @@
     <template v-slot:[`item.json_type`]="{ item }">
       <td>
         <SelectTypeTable
+          :rowId="item.id"
           :field="item.field_name"
           :incomingValue="item.json_type"
         />
@@ -33,30 +34,32 @@
     <template v-slot:[`item.mandatory`]="{ item }">
       <td>
         <CheckboxTable
+        :labelName="'Required'"
+        :fieldTitle="'mandatory'"
           :field="item.field_name"
           :incomingValue="item.mandatory"
         />
       </td>
     </template>
     <template v-slot:expanded-item="{ item, headers }">
-      <td :colspan="headers.length">
+      <td :colspan="headers.length + 2">
         <table class="expanded__table">
           <tr class="expanded__row d-flex justify-space-around align-center">
             <td>
               <DependentSelectTable
+                :rowId="item.id"
                 :field="item.field_name"
                 :fieldTitle="'td_type'"
                 :selectName="'TD type'"
-                :incomingItems="getSelectItems(item.json_type, 'td_type')"
                 :incomingItemValue="item.td_type"
               />
             </td>
             <td>
               <DependentSelectTable
+                :rowId="item.id"
                 :field="item.field_name"
                 :fieldTitle="'pydantic_type'"
                 :selectName="'Pydantic type'"
-                :incomingItems="getSelectItems(item.json_type, 'pydantic_type')"
                 :incomingItemValue="item.pydantic_type"
               />
             </td>
@@ -65,6 +68,21 @@
                 :textFieldLabel="'Example'"
                 :field="'example'"
                 :incomingValue="item.example"
+              />
+            </td>
+            <td>
+              <TextFieldTable
+                :textFieldLabel="'Description'"
+                :field="'description'"
+                :incomingValue="item.description"
+              />
+            </td>
+            <td>
+              <CheckboxTable
+              :labelName="'Pii'"
+                :field="item.field_name"
+                :fieldTitle="'pii'"
+                :incomingValue="item.pii"
               />
             </td>
           </tr>
@@ -94,13 +112,12 @@ export default {
     initialData: Array,
   },
   created() {
-    this.dataTable = this.initialData;
-    this.items = this.dataTable;
+    this.items = this.initialData;
   },
   data() {
     return {
       dataTable: [],
-      items: [],
+      items: this.initialData,
       expanded: [],
       headersMainRow: [
         {
@@ -120,14 +137,13 @@ export default {
       ],
     };
   },
-  // watch: {
-  //   initialData(newValue) {
-  //     console.log(newValue)
-  //     this.items = newValue
-  //   }
-  // },
-  computed: {
+  watch: {
+    initialData(newValue) {
+      console.log(newValue);
+      this.items = newValue;
+    },
   },
+  computed: {},
   methods: {
     getSelectItems(mainValue, nameValue) {
       return typeRules[nameValue][mainValue];

@@ -17,11 +17,12 @@ export default {
   props: {
     incomingValue: String,
     field: String,
+    rowId: Number,
   },
   data() {
     return {
       items: ["string", "number", "array", "object", "boolean"],
-      selectValue: "",
+      selectValue: this.$store.getters.getPreparedDataTable[this.rowId][this.json_type],
     };
   },
   created() {

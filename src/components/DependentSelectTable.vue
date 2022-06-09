@@ -1,7 +1,8 @@
 <template>
   <v-select
-    v-model="selectValue"
-    :items="incomingItems"
+    :value="selectValue"
+    @input="changeSelectValue"
+    :items="items"
     :label="selectLabel"
     outlined
     dense
@@ -11,6 +12,8 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import { typeRules } from "../features/rules";
+
 
 export default {
   name: "DependentSelectTable",
@@ -20,6 +23,7 @@ export default {
     selectName: String,
     field: String,
     fieldTitle: String,
+    rowId: Number,
   },
   data() {
     return {
@@ -29,13 +33,23 @@ export default {
     };
   },
   created() {
-    this.items = this.incomingItems;
-
     this.selectValue = this.items.includes(this.incomingItemValue)
       ? this.incomingItemValue
       : this.items[0];
 
     this.selectLabel = this.selectName;
+  },
+  computed: {
+    jsonType() {
+      const table = this.$store.state.currentFileData.preparedDataTable;
+      if (table) {
+         return table[this.rowId].json_type;
+      }
+      return '';
+    },
+    items() {
+      return typeRules[this.fieldTitle][this.jsonType];
+    }
   },
   watch: {
     selectValue(newValue, oldValue) {
