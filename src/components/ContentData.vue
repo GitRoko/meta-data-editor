@@ -9,7 +9,7 @@
               class="field_name__textField mt-7"
               :value="textTitle || title"
               @input="updateTextTitle"
-              label="Title"
+              label="Description"
               outlined
               dense
             ></v-text-field>

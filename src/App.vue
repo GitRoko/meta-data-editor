@@ -59,7 +59,7 @@
             @click="getActiveFile(item.fileName)"
           >
             <v-list-item-content>
-              <v-list-item-title v-text="item.fileName"></v-list-item-title>
+              <v-list-item-title v-text="item.fileName.split('.')[0]"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>

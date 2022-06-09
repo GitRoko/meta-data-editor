@@ -42,7 +42,7 @@
       </td>
     </template>
     <template v-slot:expanded-item="{ item, headers }">
-      <td :colspan="headers.length + 2">
+      <td :colspan="headers.length">
         <table class="expanded__table">
           <tr class="expanded__row d-flex justify-space-around align-center">
             <td>
@@ -81,7 +81,7 @@
             </td>
             <td>
               <CheckboxTable
-                :labelName="'Pii'"
+                :labelName="'PII'"
                 :field="item.field_name"
                 :fieldTitle="'pii'"
                 :incomingValue="item.pii"
@@ -137,7 +137,7 @@ export default {
           value: "json_type",
         },
         { text: "Required", filterable: false, value: "mandatory" },
-        { text: "", value: "data-table-expand" },
+        { text: "", align: "center", value: "data-table-expand" },
       ],
     };
   },

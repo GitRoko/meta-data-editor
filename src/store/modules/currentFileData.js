@@ -80,19 +80,13 @@ export default {
               },
             };
           });
-          // console.log("newData1 = ", newData);
-          // console.log("newData2 = ", YAML.stringify(newData));
-          // return YAML.stringify(newData);
+
           return newData;
         };
+
         let yamlData = newCurrentData();
         const doc = new Document(yamlData);
         doc.commentBefore = ` ${state.title}`;
-
-        // const newData = `${state.title}
-        // ${newCurrentData()}`;
-
-        console.log("doc = ", doc);
 
         await writeFile(state.currentFile.fileHandle, String(doc));
       }
