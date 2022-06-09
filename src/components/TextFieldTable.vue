@@ -14,9 +14,10 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "TextFieldTable",
   props: {
-    incomingValue: [String, Number, Boolean, Array, Object],
+    incomingValue: String,
     textFieldLabel: String,
     field: String,
+    rowId: Number,
   },
   data() {
     return {
@@ -25,41 +26,48 @@ export default {
     };
   },
   created() {
-    this.textValue = (typeof this.incomingValue === 'string')
-      ? this.incomingValue
-      : JSON.stringify(this.incomingValue);
+    this.textValue =
+      typeof this.incomingValue === "string"
+        ? this.incomingValue
+        : JSON.stringify(this.incomingValue);
 
     this.label = this.textFieldLabel;
   },
   watch: {
     textValue(newValue, oldValue) {
       this.changeTextField(newValue, oldValue);
-        this.$forceUpdate()
-
+      // this.$forceUpdate();
     },
+  },
+  computed: {
   },
   methods: {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
     changeTextField(newValue, oldValue) {
-        const data = this.getPreparedDataTable();
-  
-        const newData = data.map(item => {
-          // console.log("item[this.field] = ", item[this.field]);
-          // console.log("oldValue = ", oldValue);
-          // console.log("newValue = ", newValue);
-          if (item[this.field] === oldValue) {
-            item[this.field] = newValue;
-          }
+      const data = this.getPreparedDataTable();
 
-          return item;
-        });
+      const newData = data.map((item) => {
+        // console.log("item[this.field] = ", item[this.field]);
+        // console.log("oldValue = ",  oldValue);
+        // console.log("newValue = ",  newValue);
+        // console.log("this.jsonType = ", this.jsonType);
+        // console.log("parseToType(this.jsonType, newValue) = ", parseToType(this.jsonType, newValue));
 
-        this.updatePreparedDataTable(newData);
-        this.$forceUpdate();
+        if (item[this.field] === oldValue) {
+
+          item[this.field] =  newValue;
+        }
+
+        return item;
+      });
+
+      this.updatePreparedDataTable(newData);
+      this.$forceUpdate();
     },
   },
 };
+
 </script>
 
 <style scoped>

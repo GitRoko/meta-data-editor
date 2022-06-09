@@ -43,7 +43,7 @@ export default {
         const data = this.getPreparedDataTable();
   
         const newData = data.map(item => {
-          console.log("item = ", item)
+          // console.log("item = ", item)
           if (item.field_name === this.field) {
             item[this.fieldTitle] = newValue;
           }

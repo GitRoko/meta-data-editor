@@ -57,6 +57,6 @@ export default {
 
 <style scoped>
 .field_name__selectField {
-  width: 250px;
+  width: 200px;
 }
 </style>

@@ -19,7 +19,7 @@ export default {
       let newTitle = "";
       
       if (isHaveTitle !== undefined) {
-        newTitle = isHaveTitle.replace("# description ", "");
+        newTitle = isHaveTitle.replace("# ", "");
         // console.log("newTitle = ", newTitle);
       }
       await commit("updateTitle", newTitle);
@@ -87,7 +87,7 @@ export default {
         };
         let yamlData = newCurrentData();
         const doc = new Document(yamlData);
-        doc.commentBefore = ` description ${state.title}`;
+        doc.commentBefore = ` ${state.title}`;
 
         // const newData = `${state.title}
         // ${newCurrentData()}`;

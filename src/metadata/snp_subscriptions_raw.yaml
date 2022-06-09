@@ -1,8 +1,9 @@
-# Subscriptions 
+# Subscriptions new
+
 id:
   json_type: number
+  mandatory: false
   td_type: bigint
-  mandatory: true
   pydantic_type: StrictInt
   example: 111
   description: subscription id
@@ -13,8 +14,8 @@ id:
     to_str: false
 email:
   json_type: string
-  td_type: varchar
   mandatory: false
+  td_type: varchar
   pydantic_type: StrictStr
   example: someText
   description: receiver email
@@ -24,8 +25,8 @@ email:
     sample: emails
 uuid:
   json_type: string
-  td_type: varchar
   mandatory: true
+  td_type: varchar
   pydantic_type: StrictStr
   example: someText
   description: receiver uuid
@@ -34,47 +35,47 @@ uuid:
     type: uuid
 topics:
   json_type: array
-  td_type: varchar
   mandatory: false
+  td_type: varchar
   pydantic_type: List
   example:
-  - someText
-  description: list of topics 
+    - someText
+  description: list of topics
   pii: false
   faker:
     type: enum
     values:
-    - null
-    - []
-    - - 00000000-0000-0000-0000-000000000001
-    - - 00000000-0000-0000-0000-000000000002
-      - 00000000-0000-0000-0000-000000000003
-    - - 00000000-0000-0000-0000-000000000004
-      - 00000000-0000-0000-0000-000000000005
-      - 00000000-0000-0000-0000-000000000006
+      - null
+      - []
+      - - 00000000-0000-0000-0000-000000000001
+      - - 00000000-0000-0000-0000-000000000002
+        - 00000000-0000-0000-0000-000000000003
+      - - 00000000-0000-0000-0000-000000000004
+        - 00000000-0000-0000-0000-000000000005
+        - 00000000-0000-0000-0000-000000000006
 created_at:
   json_type: string
-  td_type: varchar
   mandatory: true
+  td_type: varchar
   pydantic_type: StrictStr
-  example: '2020-02-02 20:20:20'
+  example: 2020-02-02 20:20:20
   description: creation timestamp
   pii: false
   faker:
     type: date
-    format: '%Y-%m-%d %H:%M:%S'
+    format: "%Y-%m-%d %H:%M:%S"
     min_year: 2020
     max_year: 2021
 updated_at:
   json_type: string
-  td_type: varchar
   mandatory: true
+  td_type: varchar
   pydantic_type: StrictStr
-  example: '2020-02-02 20:20:20'
+  example: 2020-02-02 20:20:20
   description: last update timestamp
-  pii: false
+  pii: true
   faker:
     type: date
-    format: '%Y-%m-%d %H:%M:%S'
+    format: "%Y-%m-%d %H:%M:%S"
     min_year: 2021
     max_year: 2022

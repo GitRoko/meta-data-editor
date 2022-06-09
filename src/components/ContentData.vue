@@ -5,6 +5,7 @@
         <v-col cols="12">
           <h2>
             <v-text-field
+            v-if="getPreparedDataTable"
               class="field_name__textField mt-7"
               :value="textTitle || title"
               @input="updateTextTitle"

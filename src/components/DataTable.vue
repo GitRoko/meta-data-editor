@@ -3,7 +3,6 @@
     disable-filtering
     disable-pagination
     disable-sort
-    single-expand
     hide-default-header
     hide-default-footer
     :headers="headersMainRow"
@@ -16,6 +15,7 @@
     <template v-slot:[`item.field_name`]="{ item }">
       <td class="field_name field_name__td">
         <TextFieldTable
+          :rowId="item.id"
           :textFieldLabel="'Field'"
           :field="'field_name'"
           :incomingValue="item.field_name"
@@ -23,7 +23,7 @@
       </td>
     </template>
     <template v-slot:[`item.json_type`]="{ item }">
-      <td>
+      <td class="field_name field_name__td">
         <SelectTypeTable
           :rowId="item.id"
           :field="item.field_name"
@@ -34,8 +34,8 @@
     <template v-slot:[`item.mandatory`]="{ item }">
       <td>
         <CheckboxTable
-        :labelName="'Required'"
-        :fieldTitle="'mandatory'"
+          :labelName="'Required'"
+          :fieldTitle="'mandatory'"
           :field="item.field_name"
           :incomingValue="item.mandatory"
         />
@@ -64,7 +64,8 @@
               />
             </td>
             <td>
-              <TextFieldTable
+              <ExempleTextField
+                :rowId="item.id"
                 :textFieldLabel="'Example'"
                 :field="'example'"
                 :incomingValue="item.example"
@@ -72,6 +73,7 @@
             </td>
             <td>
               <TextFieldTable
+                :rowId="item.id"
                 :textFieldLabel="'Description'"
                 :field="'description'"
                 :incomingValue="item.description"
@@ -79,7 +81,7 @@
             </td>
             <td>
               <CheckboxTable
-              :labelName="'Pii'"
+                :labelName="'Pii'"
                 :field="item.field_name"
                 :fieldTitle="'pii'"
                 :incomingValue="item.pii"
@@ -95,6 +97,7 @@
 
 <script>
 import TextFieldTable from "../components/TextFieldTable.vue";
+import ExempleTextField from "../components/ExempleTextField.vue";
 import SelectTypeTable from "./SelectTypeTable.vue";
 import CheckboxTable from "./CheckboxTable.vue";
 import DependentSelectTable from "./DependentSelectTable.vue";
@@ -107,6 +110,7 @@ export default {
     SelectTypeTable,
     CheckboxTable,
     DependentSelectTable,
+    ExempleTextField,
   },
   props: {
     initialData: Array,
@@ -138,10 +142,10 @@ export default {
     };
   },
   watch: {
-    initialData(newValue) {
-      console.log(newValue);
-      this.items = newValue;
-    },
+    // initialData(newValue) {
+    //   // console.log(newValue);
+    //   this.items = newValue;
+    // },
   },
   computed: {},
   methods: {
