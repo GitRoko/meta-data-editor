@@ -36,7 +36,9 @@ export default {
   watch: {
     textValue(newValue, oldValue) {
       this.changeTextField(newValue, oldValue);
-      // this.$forceUpdate();
+    },
+        incomingValue(newV) {
+      this.textValue = newV;
     },
   },
   computed: {

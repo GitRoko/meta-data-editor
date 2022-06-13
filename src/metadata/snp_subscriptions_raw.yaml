@@ -1,13 +1,13 @@
-# Subscriptions n
+# Subscriptions
 
 id:
   json_type: number
-  mandatory: false
+  mandatory: true
   td_type: bigint
   pydantic_type: StrictInt
-  example: 111
+  example: 11111
   description: subscription id
-  pii: false
+  pii: true
   faker:
     type: integer
     unique: true

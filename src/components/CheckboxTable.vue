@@ -18,6 +18,7 @@ export default {
     field: String,
     fieldTitle: String,
     labelName: String,
+    rowId: Number,
   },
   data() {
     return {
@@ -32,8 +33,10 @@ export default {
   watch: {
     isChecked(newValue, oldValue) {
       this.changeTextField(newValue, oldValue);
-        this.$forceUpdate()
 
+    },
+    incomingValue(newV) {
+      this.isChecked = newV;
     },
   },
   methods: {
@@ -44,7 +47,7 @@ export default {
   
         const newData = data.map(item => {
           // console.log("item = ", item)
-          if (item.field_name === this.field) {
+          if (item.rowId === this.rowId) {
             item[this.fieldTitle] = newValue;
           }
 

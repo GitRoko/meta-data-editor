@@ -6,26 +6,28 @@
     hide-default-header
     hide-default-footer
     :headers="headersMainRow"
-    :items="items"
+    :items="itemsRow"
     :expanded.sync="expanded"
-    item-key="id"
+    item-key="rowId"
     show-expand
     class="dataTable elevation-1"
   >
     <template v-slot:[`item.field_name`]="{ item }">
+
       <td class="field_name field_name__td">
         <TextFieldTable
-          :rowId="item.id"
+          :rowId="item.rowId"
           :textFieldLabel="'Field'"
           :field="'field_name'"
           :incomingValue="item.field_name"
         />
       </td>
+
     </template>
     <template v-slot:[`item.json_type`]="{ item }">
       <td class="field_name field_name__td">
         <SelectTypeTable
-          :rowId="item.id"
+          :rowId="item.rowId"
           :field="item.field_name"
           :incomingValue="item.json_type"
         />
@@ -34,9 +36,9 @@
     <template v-slot:[`item.mandatory`]="{ item }">
       <td>
         <CheckboxTable
+          :rowId="item.rowId"
           :labelName="'Required'"
           :fieldTitle="'mandatory'"
-          :field="item.field_name"
           :incomingValue="item.mandatory"
         />
       </td>
@@ -47,7 +49,7 @@
           <tr class="expanded__row d-flex justify-space-around align-center">
             <td>
               <DependentSelectTable
-                :rowId="item.id"
+                :rowId="item.rowId"
                 :field="item.field_name"
                 :fieldTitle="'td_type'"
                 :selectName="'TD type'"
@@ -56,7 +58,7 @@
             </td>
             <td>
               <DependentSelectTable
-                :rowId="item.id"
+                :rowId="item.rowId"
                 :field="item.field_name"
                 :fieldTitle="'pydantic_type'"
                 :selectName="'Pydantic type'"
@@ -65,7 +67,7 @@
             </td>
             <td>
               <ExempleTextField
-                :rowId="item.id"
+                :rowId="item.rowId"
                 :textFieldLabel="'Example'"
                 :field="'example'"
                 :incomingValue="item.example"
@@ -73,7 +75,7 @@
             </td>
             <td>
               <TextFieldTable
-                :rowId="item.id"
+                :rowId="item.rowId"
                 :textFieldLabel="'Description'"
                 :field="'description'"
                 :incomingValue="item.description"
@@ -81,6 +83,7 @@
             </td>
             <td>
               <CheckboxTable
+                :rowId="item.rowId"
                 :labelName="'PII'"
                 :field="item.field_name"
                 :fieldTitle="'pii'"
@@ -101,7 +104,7 @@ import ExempleTextField from "../components/ExempleTextField.vue";
 import SelectTypeTable from "./SelectTypeTable.vue";
 import CheckboxTable from "./CheckboxTable.vue";
 import DependentSelectTable from "./DependentSelectTable.vue";
-import { typeRules } from "../features/rules";
+// import { typeRules } from "../features/rules";
 
 export default {
   name: "DataTable",
@@ -116,12 +119,12 @@ export default {
     initialData: Array,
   },
   created() {
-    this.items = this.initialData;
+    this.itemsRow = this.initialData;
   },
   data() {
     return {
       dataTable: [],
-      items: this.initialData,
+      itemsRow: this.initialData,
       expanded: [],
       headersMainRow: [
         {
@@ -142,15 +145,26 @@ export default {
     };
   },
   watch: {
-    // initialData(newValue) {
-    //   // console.log(newValue);
-    //   this.items = newValue;
-    // },
+    initialData(newV) {
+      // console.log("newV", newV);
+      // console.log("oldV", oldV);
+      this.itemsRow = newV;
+        // this.ForcesUpdateComponent();
+    },
   },
-  computed: {},
+  computed: {
+    // itemsRow() {
+    //   return this.$store.state.currentFileData.preparedDataTable;
+    // }
+  },
   methods: {
-    getSelectItems(mainValue, nameValue) {
-      return typeRules[nameValue][mainValue];
+    // getSelectItems(mainValue, nameValue) {
+    //   return typeRules[nameValue][mainValue];
+    // },
+    ForcesUpdateComponent() {
+      // your code
+      this.$forceUpdate();
+      // your code
     },
   },
 };

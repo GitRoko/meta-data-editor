@@ -36,6 +36,11 @@ export default {
   props: {
     title: String,
   },
+  data() {
+    return {
+      hasNewData: false,
+    }
+  },
   computed: {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapState({
@@ -47,6 +52,7 @@ export default {
       // console.log("e = ", e);
       this.$store.commit("updateTitle", e);
     },
+
   },
 };
 </script>

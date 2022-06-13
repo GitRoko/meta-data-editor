@@ -32,7 +32,7 @@ export default {
 
         Object.keys(innerData).forEach((item, index) => {
           newData.push({
-            id: index,
+            rowId: index,
             field_name: item,
             json_type: innerData[item].json_type,
             mandatory: innerData[item].mandatory,

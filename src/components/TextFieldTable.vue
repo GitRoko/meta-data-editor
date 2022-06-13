@@ -1,7 +1,8 @@
 <template>
   <v-text-field
     class="field_name__textField mt-7"
-    v-model="textValue"
+    :value="textValue"
+    @input="changeTextField"
     :label="label"
     outlined
     dense
@@ -34,9 +35,11 @@ export default {
     this.label = this.textFieldLabel;
   },
   watch: {
-    textValue(newValue, oldValue) {
-      this.changeTextField(newValue, oldValue);
-      // this.$forceUpdate();
+    textValue(newValue) {
+      this.changeTextField(newValue);
+    },
+    incomingValue(newV) {
+      this.textValue = newV;
     },
   },
   computed: {
@@ -44,26 +47,19 @@ export default {
   methods: {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
-    changeTextField(newValue, oldValue) {
+    changeTextField(newValue) {
       const data = this.getPreparedDataTable();
 
       const newData = data.map((item) => {
-        // console.log("item[this.field] = ", item[this.field]);
-        // console.log("oldValue = ",  oldValue);
-        // console.log("newValue = ",  newValue);
-        // console.log("this.jsonType = ", this.jsonType);
-        // console.log("parseToType(this.jsonType, newValue) = ", parseToType(this.jsonType, newValue));
 
-        if (item[this.field] === oldValue) {
-
-          item[this.field] =  newValue;
+        if (item.rowId === this.rowId) {
+          item[this.field] = newValue;
         }
 
         return item;
       });
 
       this.updatePreparedDataTable(newData);
-      this.$forceUpdate();
     },
   },
 };

@@ -1,6 +1,7 @@
 <template>
   <v-select
-    v-model="selectValue"
+    :value="selectValue"
+    @input="changeSelectValue"
     :items="items"
     label="Type"
     outlined
@@ -22,7 +23,7 @@ export default {
   data() {
     return {
       items: ["string", "number", "array", "object", "boolean"],
-      selectValue: this.$store.getters.getPreparedDataTable[this.rowId][this.json_type],
+      selectValue: this.incomingValue,
     };
   },
   created() {
@@ -31,6 +32,10 @@ export default {
   watch: {
     selectValue(newValue, oldValue) {
       this.changeSelectValue(newValue, oldValue);
+
+    },
+    incomingValue(newV) {
+      this.selectValue = newV;
     },
   },
   methods: {
@@ -42,7 +47,7 @@ export default {
 
       const newData = data.map((item) => {
 
-        if (item.field_name === this.field) {
+        if (item.rowId === this.rowId) {
             item.json_type = newValue;
         }
 
@@ -50,6 +55,8 @@ export default {
       });
 
       this.updatePreparedDataTable(newData);
+      this.$forceUpdate();
+
     },
   },
 };
