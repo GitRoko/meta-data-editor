@@ -1,6 +1,7 @@
 <template>
   <v-select
-    v-model="value"
+    :value="selectValue"
+    @input="changeSelectValue"
     :items="items"
     label="Type"
     outlined
@@ -10,26 +11,59 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "SelectTypeTable",
   props: {
     incomingValue: String,
+    field: String,
+    rowId: Number,
   },
   data() {
     return {
       items: ["string", "number", "array", "object", "boolean"],
-      value: "",
+      selectValue: this.incomingValue,
     };
   },
   created() {
-    this.value = this.incomingValue;
+    this.selectValue = this.incomingValue;
   },
-  methods: {},
+  watch: {
+    selectValue(newValue, oldValue) {
+      this.changeSelectValue(newValue, oldValue);
+
+    },
+    incomingValue(newV) {
+      this.selectValue = newV;
+    },
+  },
+  methods: {
+    ...mapGetters(["getPreparedDataTable"]),
+    ...mapMutations(["updatePreparedDataTable"]),
+
+    changeSelectValue(newValue) {
+      const data = this.getPreparedDataTable();
+
+      const newData = data.map((item) => {
+
+        if (item.rowId === this.rowId) {
+            item.json_type = newValue;
+        }
+
+        return item;
+      });
+
+      this.updatePreparedDataTable(newData);
+      this.$forceUpdate();
+
+    },
+  },
 };
 </script>
 
 <style scoped>
 .field_name__selectField {
-  width: 250px;
+  width: 200px;
 }
 </style>

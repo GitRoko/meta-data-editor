@@ -59,7 +59,7 @@
             @click="getActiveFile(item.fileName)"
           >
             <v-list-item-content>
-              <v-list-item-title v-text="item.fileName"></v-list-item-title>
+              <v-list-item-title v-text="item.fileName.split('.')[0]"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -82,8 +82,7 @@
 
     <v-main>
       <ContentData
-        v-if="getCurrentFileData"
-        v-bind:init_data="getCurrentFileData"
+        :title="getTitle"
       />
     </v-main>
   </v-app>
@@ -106,7 +105,7 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(["allFiles", "getCurrentFile", "getCurrentFileData"]),
+    ...mapGetters(["allFiles", "getCurrentFile", "getCurrentFileData", "getTitle", "getPreparedDataTable"]),
   },
 
   methods: {

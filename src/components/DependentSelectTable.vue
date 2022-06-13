@@ -1,6 +1,7 @@
 <template>
   <v-select
-    v-model="selectValue"
+    :value="selectValue"
+    @input="changeSelectValue"
     :items="items"
     :label="selectLabel"
     outlined
@@ -10,30 +11,70 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+import { typeRules } from "../features/rules";
+
+
 export default {
   name: "DependentSelectTable",
   props: {
     incomingItems: Array,
     incomingItemValue: String,
     selectName: String,
+    field: String,
+    fieldTitle: String,
+    rowId: Number,
   },
   data() {
     return {
-      items: [],
-      selectValue: "",
+      // items: [],
+      // selectValue: "",
       selectLabel: "",
     };
   },
   created() {
-    this.items = this.incomingItems;
-
     this.selectValue = this.items.includes(this.incomingItemValue)
       ? this.incomingItemValue
       : this.items[0];
 
     this.selectLabel = this.selectName;
   },
-  methods: {},
+  computed: {
+    jsonType() {
+      const table = this.$store.state.currentFileData.preparedDataTable;
+      if (table) {
+         return table[this.rowId].json_type;
+      }
+      return '';
+    },
+    items() {
+      return typeRules[this.fieldTitle][this.jsonType];
+    }
+  },
+  watch: {
+    selectValue(newValue, oldValue) {
+      this.changeSelectValue(newValue, oldValue);
+    },
+  },
+  methods: {
+    ...mapGetters(["getPreparedDataTable"]),
+    ...mapMutations(["updatePreparedDataTable"]),
+
+    changeSelectValue(newValue) {
+      const data = this.getPreparedDataTable();
+
+      const newData = data.map((item) => {
+
+        if (item.field_name === this.field) {
+            item[this.fieldTitle] = newValue;
+        }
+
+        return item;
+      });
+
+      this.updatePreparedDataTable(newData);
+    },
+  },
 };
 </script>
 
