@@ -130,6 +130,24 @@ export default {
     getCurrentFile(state) {
       return state.currentFile;
     },
+    getCurrentFileName(state) {
+      if (state.currentFile) {
+        return state.currentFile.fileName;
+      }
+      return null;
+    },
+    getCurrentFileHadler(state) {
+      if (state.currentFile) {
+        return state.currentFile.fileHandle;
+      }
+      return null;
+    },
+    getCurrentFileDirHandler(state) {
+      if (state.currentFile) {
+        return state.currentFile.dirHandle;
+      }
+      return null;
+    },
     getDataJson(state) {
       return state.dataJson;
     },

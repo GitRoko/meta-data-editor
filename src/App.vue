@@ -27,29 +27,49 @@
 
       <v-list flat>
         <v-list-item-group color="primary">
-          <v-list-item @click="openDirectory">
+          <v-list-item @click="createFile">
             <v-list-item-icon>
-              <v-icon>mdi-folder</v-icon>
+              <v-icon>mdi-file-plus-outline</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>Open Directory</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item @click="saveFile">
-            <v-list-item-icon>
-              <v-icon>mdi-folder-file</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>Save File</v-list-item-title>
+              <v-list-item-title>New file</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-      </v-list>
+        <v-divider></v-divider>
 
-      <v-divider></v-divider>
+        <v-list-item @click="openDirectory">
+          <v-list-item-icon>
+            <v-icon>mdi-folder-outline</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Open directory</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item @click="saveFile">
+          <v-list-item-icon>
+            <v-icon>mdi-file-code-outline</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Save file</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item @click="deleteFile">
+          <v-list-item-icon>
+            <v-icon>mdi-file-remove-outline</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Delete file</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+      </v-list>
 
       <v-list nav dense>
         <v-list-item-group v-model="selectedItem" color="primary">
@@ -59,7 +79,9 @@
             @click="getActiveFile(item.fileName)"
           >
             <v-list-item-content>
-              <v-list-item-title v-text="item.fileName.split('.')[0]"></v-list-item-title>
+              <v-list-item-title
+                v-text="item.fileName.split('.')[0]"
+              ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -82,8 +104,8 @@
 
     <v-main>
       <ContentData
-        :title="getTitle"
-      />
+      v-if="hasActiveFile"
+      :title="getTitle" />
     </v-main>
   </v-app>
 </template>
@@ -102,10 +124,20 @@ export default {
     drawer: null,
     fab: false, //scrollTop
     selectedItem: 0, //fileList selected
+    hasActiveFile: false,
   }),
 
   computed: {
-    ...mapGetters(["allFiles", "getCurrentFile", "getCurrentFileData", "getTitle", "getPreparedDataTable"]),
+    ...mapGetters([
+      "allFiles",
+      "getCurrentFile",
+      "getCurrentFileData",
+      "getTitle",
+      "getPreparedDataTable",
+      "getCurrentFileName",
+      "getCurrentFileHadler",
+      "getCurrentFileDirHandler",
+    ]),
   },
 
   methods: {
@@ -119,7 +151,7 @@ export default {
     },
 
     ...mapActions(["openDirectory", "getActiveFileData", "saveFile"]),
-    ...mapMutations(["updateActiveFile"]),
+    ...mapMutations(["updateActiveFile", "updateFiles", "updateActiveFileData", "updateTitle"]),
 
     getActiveFile(fileName) {
       // можно перенести в store?
@@ -129,7 +161,33 @@ export default {
 
       this.updateActiveFile(activeFile);
       this.getActiveFileData();
+      this.hasActiveFile = true;
     },
+    async deleteFile() {
+      const directoryHandle = this.getCurrentFileDirHandler;
+      // console.log(directoryHandle);
+      const file_name = this.getCurrentFileName;
+      // console.log(file_name);
+
+      await directoryHandle.removeEntry(file_name);
+
+      const newAllFiles = [];
+
+      await this.allFiles.forEach((item) => {
+        if (item.fileName !== file_name) {
+          newAllFiles.push(item);
+        }
+      });
+      // console.log(newAllFiles);
+
+      this.updateFiles(newAllFiles);
+      this.hasActiveFile = false;
+      this.updateActiveFile(null);
+      this.updateActiveFileData(null);
+      this.updateTitle("");
+      // await this.openDirectory();
+    },
+    createFile() {},
   },
 };
 </script>

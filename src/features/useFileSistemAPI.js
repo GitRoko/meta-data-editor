@@ -14,6 +14,10 @@ export async function readFile(handle = false) {
   return contents;
 }
 
+export async function removeFile(fileHandle) {
+  await fileHandle.remove();
+}
+
 export async function writeFile(fileHandle, contents) {
   const writable = await fileHandle.createWritable();
   await writable.write(contents);
@@ -31,6 +35,7 @@ export async function readDirectory() {
     return {
       fileName: file.name,
       fileHandle,
+      dirHandle,
     };
   };
 
