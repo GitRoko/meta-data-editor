@@ -23,12 +23,12 @@ export default {
     selectName: String,
     field: String,
     fieldTitle: String,
-    rowId: Number,
+    rowId: String,
   },
   data() {
     return {
       // items: [],
-      // selectValue: "",
+      selectValue: "",
       selectLabel: "",
     };
   },
@@ -43,7 +43,8 @@ export default {
     jsonType() {
       const table = this.$store.state.currentFileData.preparedDataTable;
       if (table) {
-         return table[this.rowId].json_type;
+        return table.find(item => item.rowId === this.rowId).json_type;
+        //  return table[this.rowId].json_type;
       }
       return '';
     },

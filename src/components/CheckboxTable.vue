@@ -1,5 +1,6 @@
 <template>
   <v-checkbox
+    @click.native.stop
     v-model="isChecked"
     :label="labelName"
     color="primary"
@@ -18,7 +19,7 @@ export default {
     field: String,
     fieldTitle: String,
     labelName: String,
-    rowId: Number,
+    rowId: String,
   },
   data() {
     return {
@@ -64,5 +65,6 @@ export default {
 <style scoped>
 .field_name__checkbox {
   width: 100px;
+  
 }
 </style>

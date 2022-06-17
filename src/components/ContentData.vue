@@ -5,7 +5,7 @@
         <v-col cols="12">
           <h2>
             <v-text-field
-            v-if="getPreparedDataTable"
+              v-if="getPreparedDataTable"
               class="field_name__textField mt-7"
               :value="textTitle || title"
               @input="updateTextTitle"
@@ -14,10 +14,14 @@
               dense
             ></v-text-field>
           </h2>
-          <DataTable
+          <ExpansionPanelsData
             v-if="getPreparedDataTable"
             :initialData="getPreparedDataTable"
           />
+          <!-- <DataTable
+            v-if="getPreparedDataTable"
+            :initialData="getPreparedDataTable"
+          /> -->
         </v-col>
       </v-sheet>
     </v-row>
@@ -25,13 +29,15 @@
 </template>
 
 <script>
-import DataTable from "../components/DataTable.vue";
+// import DataTable from "../components/DataTable.vue";
 import { mapState, mapGetters } from "vuex";
+import ExpansionPanelsData from "../components/ExpansionPanelsData.vue"
 
 export default {
   name: "ContentData",
   components: {
-    DataTable,
+    // DataTable,
+    ExpansionPanelsData,
   },
   props: {
     title: String,
@@ -39,7 +45,7 @@ export default {
   data() {
     return {
       hasNewData: false,
-    }
+    };
   },
   computed: {
     ...mapGetters(["getPreparedDataTable"]),
@@ -52,7 +58,6 @@ export default {
       // console.log("e = ", e);
       this.$store.commit("updateTitle", e);
     },
-
   },
 };
 </script>

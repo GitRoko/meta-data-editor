@@ -19,7 +19,7 @@ module.exports = defineConfig({
         filename: 'meta-editor.html', // the output file name that will be created
         template: 'src/output-template.html', // this is important - a template file to use for insertion
         inlineSource: '.(js|css)$', // embed all javascript and css inline
-        inject: 'body',
+        inject: 'body', // add js inside body, not head
       }),
       new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin)
     ]

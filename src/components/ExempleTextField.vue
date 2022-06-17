@@ -17,7 +17,7 @@ export default {
     incomingValue: [String, Number, Boolean, Array, Object],
     textFieldLabel: String,
     field: String,
-    rowId: Number,
+    rowId: String,
   },
   data() {
     return {
@@ -45,14 +45,14 @@ export default {
     jsonType() {
       const table = this.$store.state.currentFileData.preparedDataTable;
       if (table) {
-        return table[this.rowId].json_type;
+        return table.find(item => item.rowId === this.rowId).json_type;
       }
       return "";
     },
     fieldName() {
       const table = this.$store.state.currentFileData.preparedDataTable;
       if (table) {
-        return table[this.rowId].field_name;
+        return table.find(item => item.rowId === this.rowId).field_name;
       }
       return "";
     },
