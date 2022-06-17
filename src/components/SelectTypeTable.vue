@@ -1,5 +1,6 @@
 <template>
   <v-select
+  @click.native.stop
     :value="selectValue"
     @input="changeSelectValue"
     :items="items"
@@ -18,7 +19,7 @@ export default {
   props: {
     incomingValue: String,
     field: String,
-    rowId: Number,
+    rowId: String,
   },
   data() {
     return {

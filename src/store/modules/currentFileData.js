@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "@/features/useFileSistemAPI";
 import YAML from "yaml";
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { Document } from "yaml";
 
 export default {
@@ -30,9 +30,9 @@ export default {
         const newData = [];
         const innerData = state.dataJson;
 
-        Object.keys(innerData).forEach((item, index) => {
+        Object.keys(innerData).forEach((item) => {
           newData.push({
-            rowId: index,
+            rowId: uuidv4(),
             field_name: item,
             json_type: innerData[item].json_type,
             mandatory: innerData[item].mandatory,
@@ -112,6 +112,9 @@ export default {
     updateChangedDataTable(state, data) {
       state.changedDataTable = data;
     },
+    // updateNewItemIndex(state, data) {
+    //   state.newItemIndex = data;
+    // },
   },
 
   state: {
@@ -121,9 +124,13 @@ export default {
     dataJson: null,
     preparedDataTable: null,
     changedDataTable: null,
+    // newItemIndex: null,
   },
 
   getters: {
+    // getNewItemIndex(state) {
+    //   return state.newItemIndex;
+    // },
     getCurrentFileData(state) {
       return state.currentFileData;
     },

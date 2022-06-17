@@ -14,9 +14,9 @@ export async function readFile(handle = false) {
   return contents;
 }
 
-export async function removeFile(fileHandle) {
-  await fileHandle.remove();
-}
+// export async function removeFile(fileHandle) {
+//   await fileHandle.remove();
+// }
 
 export async function writeFile(fileHandle, contents) {
   const writable = await fileHandle.createWritable();

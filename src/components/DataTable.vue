@@ -13,7 +13,6 @@
     class="dataTable elevation-1"
   >
     <template v-slot:[`item.field_name`]="{ item }">
-
       <td class="field_name field_name__td">
         <TextFieldTable
           :rowId="item.rowId"
@@ -22,7 +21,6 @@
           :incomingValue="item.field_name"
         />
       </td>
-
     </template>
     <template v-slot:[`item.json_type`]="{ item }">
       <td class="field_name field_name__td">
@@ -43,6 +41,16 @@
         />
       </td>
     </template>
+
+    <template v-slot:[`item.data-table-actions`]="{ item }">
+      <v-btn icon color="blue" @click="addNew(item.rowId)">
+        <v-icon small> mdi-plus </v-icon>
+      </v-btn>
+      <v-btn icon color="red" @click="deleteItem(item.rowId)">
+        <v-icon small>  mdi-delete </v-icon>
+      </v-btn>
+    </template>
+
     <template v-slot:expanded-item="{ item, headers }">
       <td :colspan="headers.length">
         <table class="expanded__table">
@@ -104,7 +112,9 @@ import ExempleTextField from "../components/ExempleTextField.vue";
 import SelectTypeTable from "./SelectTypeTable.vue";
 import CheckboxTable from "./CheckboxTable.vue";
 import DependentSelectTable from "./DependentSelectTable.vue";
-// import { typeRules } from "../features/rules";
+import { v4 as uuidv4 } from "uuid";
+import { mapMutations } from "vuex";
+
 
 export default {
   name: "DataTable",
@@ -127,6 +137,7 @@ export default {
       itemsRow: this.initialData,
       expanded: [],
       headersMainRow: [
+        { text: "", align: "center", value: "data-table-expand" },
         {
           text: "Field name",
           align: "left",
@@ -140,8 +151,9 @@ export default {
           value: "json_type",
         },
         { text: "Required", filterable: false, value: "mandatory" },
-        { text: "", align: "center", value: "data-table-expand" },
+        { text: "", align: "right", value: "data-table-actions" },
       ],
+      selected: [],
     };
   },
   watch: {
@@ -149,22 +161,63 @@ export default {
       // console.log("newV", newV);
       // console.log("oldV", oldV);
       this.itemsRow = newV;
-        // this.ForcesUpdateComponent();
+      // this.ForcesUpdateComponent();
     },
   },
   computed: {
+    
     // itemsRow() {
     //   return this.$store.state.currentFileData.preparedDataTable;
     // }
   },
   methods: {
+    ...mapMutations(["updatePreparedDataTable"]),
+
     // getSelectItems(mainValue, nameValue) {
     //   return typeRules[nameValue][mainValue];
     // },
-    ForcesUpdateComponent() {
-      // your code
-      this.$forceUpdate();
-      // your code
+    addNew(id) {
+      console.log(id, this.getNewItem());
+      const newItems = [];
+       this.itemsRow.forEach((item) => {
+
+        if (item.rowId !== id) {
+          newItems.push(item);
+        } else if (item.rowId === id) {
+          newItems.push(item);
+          newItems.push(this.getNewItem());
+        }
+      });
+
+      this.updatePreparedDataTable(newItems);
+
+    },
+    deleteItem(id) {
+      // console.log(id);
+      const newItems = [];
+      this.itemsRow.forEach(item => {
+
+        if (item.rowId !== id) {
+          newItems.push(item);
+        }
+      });
+      // console.log(newItems);
+
+      this.updatePreparedDataTable(newItems);
+    },
+    getNewItem() {
+      return {
+        rowId: uuidv4(),
+        field_name: '',
+        json_type: "string",
+        mandatory: false,
+        td_type: "",
+        pydantic_type: "",
+        example: "",
+        faker: {},
+        description: "",
+        pii: false,
+      };
     },
   },
 };
