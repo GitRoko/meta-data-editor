@@ -12,6 +12,47 @@ idddd:
     type: integer
     unique: true
     to_str: false
+topicsNestedArray:
+  json_type: array
+  mandatory: false
+  td_type: varchar
+  pydantic_type: List
+  array:
+    json_type: number
+    mandatory: false
+    pydantic_type: integer
+    example:  someText
+topicsNotNestedArray:
+  json_type: array
+  mandatory: false
+  td_type: varchar
+  pydantic_type: List
+  example:
+    - someText
+topicsNestedObject:
+  json_type: object
+  mandatory: false
+  td_type: varchar
+  pydantic_type: Dict
+  object:
+    id:
+      json_type: number
+      mandatory: true
+      pydantic_type: StrictInt
+      example:  123
+    name:
+      json_type: string
+      mandatory: false
+      pydantic_type: StrictStr
+      example:  abc
+topicsNotNestedObject:
+  json_type: object
+  mandatory: false
+  td_type: varchar
+  pydantic_type: Dict
+  example:
+    id: 111
+    name: abc
 emaill:
   json_type: string
   mandatory: false

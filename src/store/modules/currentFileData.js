@@ -30,24 +30,37 @@ export default {
         const newData = [];
         const innerData = state.dataJson;
 
-        Object.keys(innerData).forEach((item) => {
-          newData.push({
+        Object.keys(innerData).forEach((innerDataKey) => {
+          let newItem = {
             rowId: uuidv4(),
-            field_name: item,
-            json_type: innerData[item].json_type,
-            mandatory: innerData[item].mandatory,
-            td_type: innerData[item].td_type,
-            pydantic_type: innerData[item].pydantic_type,
-            example: innerData[item].example,
-            faker: innerData[item].faker,
-            description: innerData[item].description,
-            pii: innerData[item].pii,
-          });
+            field_name: innerDataKey,
+          };
+
+          const innerDataItem = innerData[innerDataKey];
+
+          const newItemKeys = Object.keys(innerDataItem);
+
+          newItemKeys.forEach(key => {
+            newItem = {...newItem, [key]: innerDataItem[key]}
+          })
+          newData.push(newItem);
+          // newData.push({
+          //   rowId: uuidv4(),
+          //   field_name: item,
+          //   json_type: innerData[item].json_type,
+          //   mandatory: innerData[item].mandatory,
+          //   td_type: innerData[item].td_type,
+          //   pydantic_type: innerData[item].pydantic_type,
+          //   example: innerData[item].example,
+          //   faker: innerData[item].faker,
+          //   description: innerData[item].description,
+          //   pii: innerData[item].pii,
+          // });
         });
 
+        console.log(newData);
         return newData;
       };
-      // console.log(newData);
       await commit("updatePreparedDataTable", getData());
     },
 

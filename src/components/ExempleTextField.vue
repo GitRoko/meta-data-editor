@@ -30,6 +30,7 @@ export default {
       typeof this.incomingValue === "string"
         ? this.incomingValue
         : JSON.stringify(this.incomingValue);
+      console.log(JSON.stringify(this.incomingValue));
 
     this.label = this.textFieldLabel;
   },
@@ -38,7 +39,11 @@ export default {
       this.changeTextField(newValue, oldValue);
     },
         incomingValue(newV) {
-      this.textValue = newV;
+      // this.textValue = newV;
+      this.textValue =
+      typeof newV === "string"
+        ? newV
+        : JSON.stringify(newV);
     },
   },
   computed: {

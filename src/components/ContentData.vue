@@ -31,7 +31,7 @@
 <script>
 // import DataTable from "../components/DataTable.vue";
 import { mapState, mapGetters } from "vuex";
-import ExpansionPanelsData from "../components/ExpansionPanelsData.vue"
+import ExpansionPanelsData from "./FieldList.vue"
 
 export default {
   name: "ContentData",
