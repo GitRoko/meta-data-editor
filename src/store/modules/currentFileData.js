@@ -27,35 +27,29 @@ export default {
       await commit("updateDataJson", YAML.parse(state.currentFileData));
 
       const getData = () => {
-        const newData = [];
+        // const newData = [];
         const innerData = state.dataJson;
 
-        Object.keys(innerData).forEach((innerDataKey) => {
-          let newItem = {
-            rowId: uuidv4(),
-            field_name: innerDataKey,
-          };
+        const arr = Object.keys(innerData);
 
-          const innerDataItem = innerData[innerDataKey];
+        const func = (p) => {
+          console.log(p)
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'array' && p.hasOwnProperty('array')) {
+            p.nested = true;
+            func(p.array);
+          }
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'array' && !p.hasOwnProperty('array')) {
+            p.nested = false;
+          }
+          p.rowId = uuidv4();
+          return p;
+        };
 
-          const newItemKeys = Object.keys(innerDataItem);
+        const newData = arr.map((innerDataKey) => {
 
-          newItemKeys.forEach(key => {
-            newItem = {...newItem, [key]: innerDataItem[key]}
-          })
-          newData.push(newItem);
-          // newData.push({
-          //   rowId: uuidv4(),
-          //   field_name: item,
-          //   json_type: innerData[item].json_type,
-          //   mandatory: innerData[item].mandatory,
-          //   td_type: innerData[item].td_type,
-          //   pydantic_type: innerData[item].pydantic_type,
-          //   example: innerData[item].example,
-          //   faker: innerData[item].faker,
-          //   description: innerData[item].description,
-          //   pii: innerData[item].pii,
-          // });
+          return func({ ...innerData[innerDataKey], field_name: innerDataKey });
         });
 
         console.log(newData);
@@ -125,9 +119,29 @@ export default {
     updateChangedDataTable(state, data) {
       state.changedDataTable = data;
     },
-    // updateNewItemIndex(state, data) {
-    //   state.newItemIndex = data;
-    // },
+    updateData(state, path) {
+        const data = state.preparedDataTable;
+        const arr = path.split(":");
+        const parentItem = data.find(item => item.rowId === arr[0]);
+        let nextItem = {};
+        
+        const findItem = (item) => {
+            return item.array;
+        }
+
+        if (arr.length > 1) {
+          for (let i = 1; i <= arr.length; i++) {
+            nextItem = findItem(parentItem, arr[i]);
+          }
+        }
+
+        console.log(nextItem);
+        const newData = arr.forEach(currentPath => {
+          findItem(data.find(item => item.rowId === currentPath), currentPath);
+        })
+
+        state.preparedDataTable = newData;
+    },
   },
 
   state: {
@@ -162,6 +176,26 @@ export default {
       }
       return null;
     },
+    // getCurrentItem: (state) => (itemId) => {
+    //   let itemArray = {};
+    //   // eslint-disable-next-line no-debugger
+    //   debugger;
+    //   console.log("id = ", itemId);
+
+    //   const findItem = (item) =>  {
+
+    //     console.log("item = ", item);
+        
+    //     if (item.rowId === itemId) {
+    //       itemArray = {...itemArray, ...item.array};
+    //     } else {
+    //       findItem(item.array);
+    //     }
+    //   }
+    //   state.preparedDataTable.forEach(val => findItem(val));
+    //   console.log("itemArray = ", itemArray);
+    //   return itemArray;
+    // },
     getCurrentFileDirHandler(state) {
       if (state.currentFile) {
         return state.currentFile.dirHandle;

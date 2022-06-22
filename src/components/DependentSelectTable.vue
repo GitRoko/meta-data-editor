@@ -18,12 +18,11 @@ import { typeRules } from "../features/rules";
 export default {
   name: "DependentSelectTable",
   props: {
-    incomingItems: Array,
     incomingItemValue: String,
     selectName: String,
-    field: String,
     fieldTitle: String,
     rowId: String,
+    jsonType: String,
   },
   data() {
     return {
@@ -40,14 +39,14 @@ export default {
     this.selectLabel = this.selectName;
   },
   computed: {
-    jsonType() {
-      const table = this.$store.state.currentFileData.preparedDataTable;
-      if (table) {
-        return table.find(item => item.rowId === this.rowId).json_type;
-        //  return table[this.rowId].json_type;
-      }
-      return '';
-    },
+    // jsonType() {
+    //   const table = this.$store.state.currentFileData.preparedDataTable;
+    //   if (table) {
+    //     return table.find(item => item.rowId === this.rowId).json_type;
+    //     //  return table[this.rowId].json_type;
+    //   }
+    //   return '';
+    // },
     items() {
       return typeRules[this.fieldTitle][this.jsonType];
     }
@@ -63,12 +62,21 @@ export default {
 
     changeSelectValue(newValue) {
       const data = this.getPreparedDataTable();
+      const changeValue = (item) => {
+        if (item.rowId === this.rowId) {
+          item[this.fieldTitle] = newValue;
+        } else {
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            changeValue(item.object);
+          }
+        }
+      }
 
       const newData = data.map((item) => {
-
-        if (item.field_name === this.field) {
-            item[this.fieldTitle] = newValue;
-        }
+        changeValue(item);
 
         return item;
       });

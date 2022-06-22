@@ -16,7 +16,6 @@ export default {
   name: "CheckboxTable",
   props: {
     incomingValue: Boolean,
-    field: String,
     fieldTitle: String,
     labelName: String,
     rowId: String,
@@ -34,7 +33,6 @@ export default {
   watch: {
     isChecked(newValue, oldValue) {
       this.changeTextField(newValue, oldValue);
-
     },
     incomingValue(newV) {
       this.isChecked = newV;
@@ -44,19 +42,28 @@ export default {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
     changeTextField(newValue) {
-        const data = this.getPreparedDataTable();
-  
-        const newData = data.map(item => {
-          // console.log("item = ", item)
-          if (item.rowId === this.rowId) {
-            item[this.fieldTitle] = newValue;
+      const data = this.getPreparedDataTable();
+
+      const changeValue = (item) => {
+        if (item.rowId === this.rowId) {
+          item[this.fieldTitle] = newValue;
+        } else {
+          if (item.array) {
+            changeValue(item.array);
           }
+          if (item.object) {
+            changeValue(item.object);
+          }
+        }
+      };
 
-          return item;
-        });
+      const newData = data.map((item) => {
+        changeValue(item);
 
-        this.updatePreparedDataTable(newData);
-        this.$forceUpdate()
+        return item;
+      });
+
+      this.updatePreparedDataTable(newData);
     },
   },
 };
@@ -65,6 +72,5 @@ export default {
 <style scoped>
 .field_name__checkbox {
   width: 100px;
-  
 }
 </style>

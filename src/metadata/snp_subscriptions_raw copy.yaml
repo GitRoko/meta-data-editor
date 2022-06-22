@@ -15,44 +15,58 @@ idddd:
 topicsNestedArray:
   json_type: array
   mandatory: false
-  td_type: varchar
+  td_type: array(varchar)
   pydantic_type: List
   array:
     json_type: number
     mandatory: false
-    pydantic_type: integer
-    example:  someText
+    pydantic_type: StrictInt
+    example:  111
+topicsDoubleNestedArray:
+  json_type: array
+  mandatory: false
+  td_type: array(varchar)
+  pydantic_type: List
+  array:
+    json_type: array
+    mandatory: false
+    pydantic_type: List
+    array:
+      json_type: number
+      mandatory: false
+      pydantic_type: StrictInt
+      example:  111
 topicsNotNestedArray:
   json_type: array
   mandatory: false
-  td_type: varchar
+  td_type: array(varchar)
   pydantic_type: List
   example:
     - someText
-topicsNestedObject:
-  json_type: object
-  mandatory: false
-  td_type: varchar
-  pydantic_type: Dict
-  object:
-    id:
-      json_type: number
-      mandatory: true
-      pydantic_type: StrictInt
-      example:  123
-    name:
-      json_type: string
-      mandatory: false
-      pydantic_type: StrictStr
-      example:  abc
-topicsNotNestedObject:
-  json_type: object
-  mandatory: false
-  td_type: varchar
-  pydantic_type: Dict
-  example:
-    id: 111
-    name: abc
+# topicsNestedObject:
+#   json_type: object
+#   mandatory: false
+#   td_type: varchar
+#   pydantic_type: Dict
+#   object:
+#     id:
+#       json_type: number
+#       mandatory: true
+#       pydantic_type: StrictInt
+#       example:  123
+#     name:
+#       json_type: string
+#       mandatory: false
+#       pydantic_type: StrictStr
+#       example:  abc
+# topicsNotNestedObject:
+#   json_type: object
+#   mandatory: false
+#   td_type: varchar
+#   pydantic_type: Dict
+#   example:
+#     id: 111
+#     name: abc
 emaill:
   json_type: string
   mandatory: false
@@ -120,3 +134,5 @@ updated_at:
     format: "%Y-%m-%d %H:%M:%S"
     min_year: 2021
     max_year: 2022
+
+

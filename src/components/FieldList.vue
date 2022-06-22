@@ -1,6 +1,8 @@
 <template>
-  <v-expansion-panels focusable v-model="panel" multiple>
-    <FieldListItem v-for="item in itemsData" :key="item.rowId" :item="item" />
+  <v-expansion-panels
+    v-if="itemsData"
+   focusable v-model="panel" multiple>
+    <FieldListItem v-for="item in itemsData" :key="JSON.stringify(item)" :item="item" :path="item.rowId"/>
     <!-- <v-expansion-panel-header
         @mouseover="hoverItemPanel(item)"
         @mouseleave="unhoverItemPanel()"
@@ -197,6 +199,7 @@ import FieldListItem from "./FieldListItem.vue";
 // import AddItemMenu from "./AddItemMenu.vue";
 // import { v4 as uuidv4 } from "uuid";
 // import { mapMutations, mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 
 export default {
   name: "ExpansionPanelsData",
@@ -214,7 +217,9 @@ export default {
     initialData: Array,
   },
   created() {
-    this.itemsData = this.initialData;
+
+    // this.itemsData = this.initialData;
+    this.itemsData = this.$store.getters.getPreparedDataTable;
   },
   data() {
     return {
