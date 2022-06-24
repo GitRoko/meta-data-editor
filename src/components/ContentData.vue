@@ -1,7 +1,7 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-sheet color="white" elevation="0" height="100%" width="100%">
+  <v-container class="grey lighten-5">
+    <v-row class="justify-center">
+      <v-sheet color="grey lighten-5"  elevation="0" height="100%" width="1024">
         <v-col cols="12">
           <h2>
             <v-text-field
@@ -31,7 +31,7 @@
 <script>
 // import DataTable from "../components/DataTable.vue";
 import { mapState, mapGetters } from "vuex";
-import ExpansionPanelsData from "../components/ExpansionPanelsData.vue"
+import ExpansionPanelsData from "./FieldList.vue"
 
 export default {
   name: "ContentData",

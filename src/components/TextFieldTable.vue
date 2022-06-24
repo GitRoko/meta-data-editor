@@ -1,13 +1,12 @@
 <template>
   <v-text-field
-  @click.native.stop
+    @click.native.stop
     class="field_name__textField mt-7"
     :value="textValue"
     @input="changeTextField"
     :label="label"
     outlined
     dense
-    :rules="[rules.required]"
   ></v-text-field>
 </template>
 
@@ -26,9 +25,6 @@ export default {
     return {
       textValue: "",
       label: "",
-      rules: {
-        required: (value) => !!value || "Required",
-      },
     };
   },
   created() {
@@ -54,10 +50,23 @@ export default {
     changeTextField(newValue) {
       const data = this.getPreparedDataTable();
 
-      const newData = data.map((item) => {
+      const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item[this.field] = newValue;
+        } else {
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            item.object.forEach(item => {
+              changeValue(item);
+            })
+          }
         }
+      }
+
+      const newData = data.map((item) => {
+        changeValue(item);
 
         return item;
       });

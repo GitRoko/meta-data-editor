@@ -14,7 +14,6 @@ export default {
       const isHaveTitle = getArrayFromFileData.find((item) =>
       item.startsWith("#")
       );
-      // console.log("isHaveTitle =", isHaveTitle);
       
       let newTitle = "";
       
@@ -26,28 +25,46 @@ export default {
 
       await commit("updateDataJson", YAML.parse(state.currentFileData));
 
-      const getData = () => {
-        const newData = [];
-        const innerData = state.dataJson;
+      const getData = (obj = state.dataJson) => {
+        // const newData = [];
+        const innerData = obj;
 
-        Object.keys(innerData).forEach((item) => {
-          newData.push({
-            rowId: uuidv4(),
-            field_name: item,
-            json_type: innerData[item].json_type,
-            mandatory: innerData[item].mandatory,
-            td_type: innerData[item].td_type,
-            pydantic_type: innerData[item].pydantic_type,
-            example: innerData[item].example,
-            faker: innerData[item].faker,
-            description: innerData[item].description,
-            pii: innerData[item].pii,
-          });
+        const arr = Object.keys(innerData);
+
+        const func = (p) => {
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'array' && p.hasOwnProperty('array')) {
+            p.nested = true;
+            func(p.array);
+          }
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'array' && !p.hasOwnProperty('array')) {
+            p.nested = false;
+          }
+          
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'object' && p.hasOwnProperty('object')) {
+            p.nested = true;
+            p.object = getData(p.object);
+          }
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'object' && !p.hasOwnProperty('object')) {
+            p.nested = false;
+          }
+
+          p.rowId = uuidv4();
+
+          return p;
+        };
+
+        const newData = arr.map((innerDataKey) => {
+
+          return func({ ...innerData[innerDataKey], field_name: innerDataKey });
         });
 
+        console.log("newData = ", newData);
         return newData;
       };
-      // console.log(newData);
       await commit("updatePreparedDataTable", getData());
     },
 
@@ -112,9 +129,6 @@ export default {
     updateChangedDataTable(state, data) {
       state.changedDataTable = data;
     },
-    // updateNewItemIndex(state, data) {
-    //   state.newItemIndex = data;
-    // },
   },
 
   state: {
@@ -124,13 +138,9 @@ export default {
     dataJson: null,
     preparedDataTable: null,
     changedDataTable: null,
-    // newItemIndex: null,
   },
 
   getters: {
-    // getNewItemIndex(state) {
-    //   return state.newItemIndex;
-    // },
     getCurrentFileData(state) {
       return state.currentFileData;
     },
@@ -148,6 +158,29 @@ export default {
         return state.currentFile.fileHandle;
       }
       return null;
+    },
+    getCurrentItem: (state) => (id) => {
+      // eslint-disable-next-line no-debugger
+      // debugger;
+      const ids = id.split(':');
+      if (ids.length === 1) {
+        return  state.preparedDataTable.find(row => row.rowId === id);
+      }
+      let currentRow = {};
+      let rows = state.preparedDataTable;
+      ids.forEach(idIds => {
+        currentRow = rows.find(row => row.rowId === idIds);
+
+        if (currentRow.object) {
+          rows = currentRow.object
+        } else if (currentRow.array) {
+          rows = [currentRow.array]
+        } else {
+          rows = {};
+        }
+      });
+
+      return currentRow;
     },
     getCurrentFileDirHandler(state) {
       if (state.currentFile) {
