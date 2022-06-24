@@ -85,7 +85,9 @@ export default {
             changeValue(item.array);
           }
           if (item.object) {
-            changeValue(item.object);
+            item.object.forEach(item => {
+              changeValue(item);
+            })
           }
         }
       }

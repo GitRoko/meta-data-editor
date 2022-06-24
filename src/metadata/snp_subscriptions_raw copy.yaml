@@ -1,18 +1,18 @@
 # Subscriptions neww
 
-idddd:
-  json_type: number
-  mandatory: false
-  td_type: bigint
-  pydantic_type: StrictInt
-  example: 222
-  description: subscription idddd
-  pii: false
-  faker:
-    type: integer
-    unique: true
-    to_str: false
-topicsNestedArray:
+# idddd:
+#   json_type: number
+#   mandatory: false
+#   td_type: bigint
+#   pydantic_type: StrictInt
+#   example: 222
+#   description: subscription idddd
+#   pii: false
+#   faker:
+#     type: integer
+#     unique: true
+#     to_str: false
+nestedArray:
   json_type: array
   mandatory: false
   td_type: array(varchar)
@@ -22,117 +22,143 @@ topicsNestedArray:
     mandatory: false
     pydantic_type: StrictInt
     example:  111
-topicsDoubleNestedArray:
-  json_type: array
-  mandatory: false
-  td_type: array(varchar)
-  pydantic_type: List
-  array:
-    json_type: array
-    mandatory: false
-    pydantic_type: List
-    array:
-      json_type: number
-      mandatory: false
-      pydantic_type: StrictInt
-      example:  111
-topicsNotNestedArray:
-  json_type: array
-  mandatory: false
-  td_type: array(varchar)
-  pydantic_type: List
-  example:
-    - someText
-# topicsNestedObject:
-#   json_type: object
+# doubleNestedArray:
+#   json_type: array
 #   mandatory: false
-#   td_type: varchar
-#   pydantic_type: Dict
-#   object:
-#     id:
+#   td_type: array(varchar)
+#   pydantic_type: List
+#   array:
+#     json_type: array
+#     mandatory: false
+#     pydantic_type: List
+#     array:
 #       json_type: number
-#       mandatory: true
-#       pydantic_type: StrictInt
-#       example:  123
-#     name:
-#       json_type: string
 #       mandatory: false
-#       pydantic_type: StrictStr
-#       example:  abc
-# topicsNotNestedObject:
-#   json_type: object
+#       pydantic_type: StrictInt
+#       example:  111
+# topicsNotNestedArray:
+#   json_type: array
+#   mandatory: false
+#   td_type: array(varchar)
+#   pydantic_type: List
+#   example:
+#     - someText
+topicsNestedObject:
+  json_type: object
+  mandatory: false
+  td_type: varchar
+  pydantic_type: Dict
+  object:
+    id:
+      json_type: number
+      mandatory: true
+      pydantic_type: StrictInt
+      example:  123
+    name:
+      json_type: string
+      mandatory: false
+      pydantic_type: StrictStr
+      example:  abc
+doubleNestedObject:
+  json_type: object
+  mandatory: false
+  td_type: varchar
+  pydantic_type: Dict
+  object:
+    id:
+      json_type: number
+      mandatory: true
+      pydantic_type: StrictInt
+      example:  123
+    name:
+      json_type: object
+      mandatory: false
+      pydantic_type: Dict
+      object:
+        firstName:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example:  abc
+        lastName:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example:  abc
+topicsNotNestedObject:
+  json_type: object
+  mandatory: false
+  td_type: varchar
+  pydantic_type: Dict
+  example:
+    id: 111
+    name: abc
+# emaill:
+#   json_type: string
 #   mandatory: false
 #   td_type: varchar
-#   pydantic_type: Dict
+#   pydantic_type: StrictStr
+#   example: someText
+#   description: receiver email
+#   pii: true
+#   faker:
+#     type: sample
+#     sample: emails
+# uuid:
+#   json_type: string
+#   mandatory: true
+#   td_type: varchar
+#   pydantic_type: StrictStr
+#   example: someText
+#   description: receiver uuid
+#   pii: false
+#   faker:
+#     type: uuid
+# topics:
+#   json_type: array
+#   mandatory: false
+#   td_type: varchar
+#   pydantic_type: List
 #   example:
-#     id: 111
-#     name: abc
-emaill:
-  json_type: string
-  mandatory: false
-  td_type: varchar
-  pydantic_type: StrictStr
-  example: someText
-  description: receiver email
-  pii: true
-  faker:
-    type: sample
-    sample: emails
-uuid:
-  json_type: string
-  mandatory: true
-  td_type: varchar
-  pydantic_type: StrictStr
-  example: someText
-  description: receiver uuid
-  pii: false
-  faker:
-    type: uuid
-topics:
-  json_type: array
-  mandatory: false
-  td_type: varchar
-  pydantic_type: List
-  example:
-    - someText
-  description: list of topics
-  pii: false
-  faker:
-    type: enum
-    values:
-      - null
-      - []
-      - - 00000000-0000-0000-0000-000000000001
-      - - 00000000-0000-0000-0000-000000000002
-        - 00000000-0000-0000-0000-000000000003
-      - - 00000000-0000-0000-0000-000000000004
-        - 00000000-0000-0000-0000-000000000005
-        - 00000000-0000-0000-0000-000000000006
-created_at:
-  json_type: string
-  mandatory: true
-  td_type: varchar
-  pydantic_type: StrictStr
-  example: 2020-02-02 20:20:20
-  description: creation timestamp
-  pii: false
-  faker:
-    type: date
-    format: "%Y-%m-%d %H:%M:%S"
-    min_year: 2020
-    max_year: 2021
-updated_at:
-  json_type: string
-  mandatory: true
-  td_type: varchar
-  pydantic_type: StrictStr
-  example: 2020-02-02 20:20:20
-  description: last update timestamp
-  pii: true
-  faker:
-    type: date
-    format: "%Y-%m-%d %H:%M:%S"
-    min_year: 2021
-    max_year: 2022
+#     - someText
+#   description: list of topics
+#   pii: false
+#   faker:
+#     type: enum
+#     values:
+#       - null
+#       - []
+#       - - 00000000-0000-0000-0000-000000000001
+#       - - 00000000-0000-0000-0000-000000000002
+#         - 00000000-0000-0000-0000-000000000003
+#       - - 00000000-0000-0000-0000-000000000004
+#         - 00000000-0000-0000-0000-000000000005
+#         - 00000000-0000-0000-0000-000000000006
+# created_at:
+#   json_type: string
+#   mandatory: true
+#   td_type: varchar
+#   pydantic_type: StrictStr
+#   example: 2020-02-02 20:20:20
+#   description: creation timestamp
+#   pii: false
+#   faker:
+#     type: date
+#     format: "%Y-%m-%d %H:%M:%S"
+#     min_year: 2020
+#     max_year: 2021
+# updated_at:
+#   json_type: string
+#   mandatory: true
+#   td_type: varchar
+#   pydantic_type: StrictStr
+#   example: 2020-02-02 20:20:20
+#   description: last update timestamp
+#   pii: true
+#   faker:
+#     type: date
+#     format: "%Y-%m-%d %H:%M:%S"
+#     min_year: 2021
+#     max_year: 2022
 
 

@@ -4,7 +4,7 @@
       <!-- <v-btn v-model="fab" small color="white" fab>
         <v-icon v-if="fab" color="grey darken-1"> mdi-close </v-icon>
         <v-icon v-else color="grey darken-1"> mdi-plus-minus </v-icon> -->
-      <v-btn v-model="fab" small color="blue darken-2" dark fab>
+      <v-btn v-model="fab" small color="blue darken-2" dark fab class="buttonSize">
         <v-icon v-if="fab"> mdi-close </v-icon>
         <v-icon v-else> mdi-plus-minus </v-icon>
       </v-btn>
@@ -38,10 +38,10 @@ export default {
       this.$emit("removeItem");
     },
     appendItemBefore() {
-      this.$emit("addItemBefore", 'before');
+      this.$emit("addItemBefore");
     },
     appendItemAfter() {
-      this.$emit("addItemAfter", 'after');
+      this.$emit("addItemAfter");
     },
   },
 };
@@ -51,10 +51,21 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(-40%, 30%);
+  transform: translate(-90%, 30%);
 }
-
+.buttonSize {
+  
+}
+.v-btn--fab.v-size--small {
+width: 25px;
+  height: 25px;
+}
 .v-btn--floating {
   position: relative;
+}
+.v-btn--icon.v-size--small .v-icon, .v-btn--fab.v-size--small .v-icon {
+  height: 18px;
+    font-size: 16px;
+    width: 18px;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <v-expansion-panels
+  <v-expansion-panels 
     v-if="itemsData"
    focusable v-model="panel" multiple>
-    <FieldListItem v-for="item in itemsData" :key="JSON.stringify(item)" :item="item" :path="item.rowId"/>
+    <FieldListItem v-for="item in itemsData" :key="item.rowId" :item="item" :path="item.rowId"/>
     <!-- <v-expansion-panel-header
         @mouseover="hoverItemPanel(item)"
         @mouseleave="unhoverItemPanel()"
@@ -304,4 +304,5 @@ export default {
 .action-btn {
   margin-left: auto;
 }
+
 </style>

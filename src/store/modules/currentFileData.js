@@ -14,7 +14,6 @@ export default {
       const isHaveTitle = getArrayFromFileData.find((item) =>
       item.startsWith("#")
       );
-      // console.log("isHaveTitle =", isHaveTitle);
       
       let newTitle = "";
       
@@ -26,14 +25,13 @@ export default {
 
       await commit("updateDataJson", YAML.parse(state.currentFileData));
 
-      const getData = () => {
+      const getData = (obj = state.dataJson) => {
         // const newData = [];
-        const innerData = state.dataJson;
+        const innerData = obj;
 
         const arr = Object.keys(innerData);
 
         const func = (p) => {
-          console.log(p)
           // eslint-disable-next-line no-prototype-builtins
           if (p.json_type === 'array' && p.hasOwnProperty('array')) {
             p.nested = true;
@@ -43,7 +41,19 @@ export default {
           if (p.json_type === 'array' && !p.hasOwnProperty('array')) {
             p.nested = false;
           }
+          
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'object' && p.hasOwnProperty('object')) {
+            p.nested = true;
+            p.object = getData(p.object);
+          }
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.json_type === 'object' && !p.hasOwnProperty('object')) {
+            p.nested = false;
+          }
+
           p.rowId = uuidv4();
+
           return p;
         };
 
@@ -52,7 +62,7 @@ export default {
           return func({ ...innerData[innerDataKey], field_name: innerDataKey });
         });
 
-        console.log(newData);
+        console.log("newData = ", newData);
         return newData;
       };
       await commit("updatePreparedDataTable", getData());
@@ -119,29 +129,6 @@ export default {
     updateChangedDataTable(state, data) {
       state.changedDataTable = data;
     },
-    updateData(state, path) {
-        const data = state.preparedDataTable;
-        const arr = path.split(":");
-        const parentItem = data.find(item => item.rowId === arr[0]);
-        let nextItem = {};
-        
-        const findItem = (item) => {
-            return item.array;
-        }
-
-        if (arr.length > 1) {
-          for (let i = 1; i <= arr.length; i++) {
-            nextItem = findItem(parentItem, arr[i]);
-          }
-        }
-
-        console.log(nextItem);
-        const newData = arr.forEach(currentPath => {
-          findItem(data.find(item => item.rowId === currentPath), currentPath);
-        })
-
-        state.preparedDataTable = newData;
-    },
   },
 
   state: {
@@ -151,13 +138,9 @@ export default {
     dataJson: null,
     preparedDataTable: null,
     changedDataTable: null,
-    // newItemIndex: null,
   },
 
   getters: {
-    // getNewItemIndex(state) {
-    //   return state.newItemIndex;
-    // },
     getCurrentFileData(state) {
       return state.currentFileData;
     },
@@ -176,26 +159,29 @@ export default {
       }
       return null;
     },
-    // getCurrentItem: (state) => (itemId) => {
-    //   let itemArray = {};
-    //   // eslint-disable-next-line no-debugger
-    //   debugger;
-    //   console.log("id = ", itemId);
+    getCurrentItem: (state) => (id) => {
+      // eslint-disable-next-line no-debugger
+      // debugger;
+      const ids = id.split(':');
+      if (ids.length === 1) {
+        return  state.preparedDataTable.find(row => row.rowId === id);
+      }
+      let currentRow = {};
+      let rows = state.preparedDataTable;
+      ids.forEach(idIds => {
+        currentRow = rows.find(row => row.rowId === idIds);
 
-    //   const findItem = (item) =>  {
+        if (currentRow.object) {
+          rows = currentRow.object
+        } else if (currentRow.array) {
+          rows = [currentRow.array]
+        } else {
+          rows = {};
+        }
+      });
 
-    //     console.log("item = ", item);
-        
-    //     if (item.rowId === itemId) {
-    //       itemArray = {...itemArray, ...item.array};
-    //     } else {
-    //       findItem(item.array);
-    //     }
-    //   }
-    //   state.preparedDataTable.forEach(val => findItem(val));
-    //   console.log("itemArray = ", itemArray);
-    //   return itemArray;
-    // },
+      return currentRow;
+    },
     getCurrentFileDirHandler(state) {
       if (state.currentFile) {
         return state.currentFile.dirHandle;

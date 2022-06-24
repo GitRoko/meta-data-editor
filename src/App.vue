@@ -102,7 +102,7 @@
       <v-icon>mdi-apple-keyboard-control</v-icon>
     </v-btn>
 
-    <v-main>
+    <v-main class="grey lighten-5">
       <ContentData v-if="hasActiveFile" :title="getTitle" />
     </v-main>
   </v-app>

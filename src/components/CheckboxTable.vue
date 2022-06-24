@@ -19,6 +19,7 @@ export default {
     fieldTitle: String,
     labelName: String,
     rowId: String,
+    path: String
   },
   data() {
     return {
@@ -52,7 +53,11 @@ export default {
             changeValue(item.array);
           }
           if (item.object) {
-            changeValue(item.object);
+            // eslint-disable-next-line no-debugger
+            // debugger;
+            item.object.forEach(item => {
+              changeValue(item);
+            })
           }
         }
       };

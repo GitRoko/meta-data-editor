@@ -13,6 +13,7 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import { getExample } from "../features/helperFunctions.js";
 // import { v4 as uuidv4 } from "uuid";
 
 export default {
@@ -49,19 +50,26 @@ export default {
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.json_type = newValue;
-          if (item.json_type === "array") {
+          if (item.json_type === "array" || item.json_type === "object") {
             item.nested = false;
 
             if (item.array) {
+              item.example = ['Some string'];
               delete item.array;
+            }
+            if (item.object) {
+              item.example = { id: 123 };
+              delete item.object;
             }
           } else {
             delete item.nested;
 
             if (item.array) {
+              item.example = `${getExample(item.json_type)}`
               delete item.array;
             }
             if (item.object) {
+              item.example = `${getExample(item.json_type)}`
               delete item.object;
             }
           }
@@ -70,7 +78,9 @@ export default {
             changeValue(item.array);
           }
           if (item.object) {
-            changeValue(item.object);
+            item.object.forEach(item => {
+              changeValue(item);
+            })
           }
         }
       };

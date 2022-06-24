@@ -58,7 +58,9 @@ export default {
             changeValue(item.array);
           }
           if (item.object) {
-            changeValue(item.object);
+            item.object.forEach(item => {
+              changeValue(item);
+            })
           }
         }
       }
@@ -68,13 +70,6 @@ export default {
 
         return item;
       });
-      // const newData = data.map((item) => {
-      //   if (item.rowId === this.rowId) {
-      //     item[this.field] = newValue;
-      //   }
-
-      //   return item;
-      // });
 
       this.updatePreparedDataTable(newData);
     },

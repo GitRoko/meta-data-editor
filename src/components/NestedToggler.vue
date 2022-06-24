@@ -43,7 +43,11 @@ export default {
         if (item.rowId === this.rowId) {
           item.nested = newValue;
 
-          if (newValue === true && item.array === undefined) {
+          if (
+            newValue === true &&
+            item.json_type === "array" &&
+            item.array === undefined
+          ) {
             item.array = {
               json_type: "string",
               mandatory: false,
@@ -51,13 +55,47 @@ export default {
               example: "Some string",
               rowId: uuidv4(),
             };
+            delete item.example;
             // item.rowId = uuidv4()
             // const parentItem = this.path.split(":")[0];
             // data.find((item) => item.rowId === parentItem).rowId = uuidv4();
           }
 
-          if (newValue === false && item.array) {
+          if (
+            newValue === true &&
+            item.json_type === "object" &&
+            item.object === undefined
+          ) {
+            item.object = [
+              {
+                field_name: 'id',
+                json_type: "number",
+                mandatory: true,
+                pydantic_type: "StrictInt",
+                example: 123,
+                rowId: uuidv4(),
+              }
+            ];
+            delete item.example;
+            // item.rowId = uuidv4()
+            // const parentItem = this.path.split(":")[0];
+            // data.find((item) => item.rowId === parentItem).rowId = uuidv4();
+          }
+          if (newValue === false && item.json_type === "array" && item.array) {
             delete item.array;
+            item.example = ['Some string'];
+            // item.rowId = uuidv4()
+
+            // const parentItem = this.path.split(":")[0];
+            // data.find((item) => item.rowId === parentItem).rowId = uuidv4();
+          }
+          if (
+            newValue === false &&
+            item.json_type === "object" &&
+            item.object
+          ) {
+            delete item.object;
+            item.example = { id: 123, name: "abc" };
             // item.rowId = uuidv4()
 
             // const parentItem = this.path.split(":")[0];
@@ -68,7 +106,9 @@ export default {
             changeValue(item.array);
           }
           if (item.object) {
-            changeValue(item.object);
+            item.object.forEach(item => {
+              changeValue(item);
+            })
           }
         }
       };
