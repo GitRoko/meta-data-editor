@@ -55,8 +55,8 @@
               :path="path"
             />
           </v-col>
-          <v-col cols="1" align-self="center" class="text-center" dense>
-            <AddItemMenu
+         <!-- <v-col cols="1" align-self="center" class="text-center" dense>
+             <AddItemMenu
               v-if="!parentTypeArray"
               @click.native.stop
               :rowId="item.rowId"
@@ -65,16 +65,18 @@
               @addItemBefore="openDialogAddItem(item.rowId, 'before', path)"
               @addItemAfter="openDialogAddItem(item.rowId, 'after', path)"
             />
-          </v-col>
-          <!-- <v-col cols="1" align-self="center" class="text-center" dense>
+          </v-col> -->
+          <v-col cols="1" align-self="center" class="text-center" dense>
             <AddItemMenu
               v-if="hoveredItemPanel && !parentTypeArray"
               @click.native.stop
               :rowId="item.rowId"
               :path="path"
-              @removeItem="deleteItem(item.rowId)"
+              @removeItem="deleteItem(item.rowId, path)"
+              @addItemBefore="openDialogAddItem(item.rowId, 'before', path)"
+              @addItemAfter="openDialogAddItem(item.rowId, 'after', path)"
             />
-          </v-col> -->
+          </v-col>
         </v-row>
       </v-container>
     </v-expansion-panel-header>
@@ -383,11 +385,23 @@ export default {
             }
 
             if (item.object) {
-              item.object = item.object.filter((item) => item.rowId !== id);
 
-              if (item.object.length === 0) {
+              let isHaveCurrentItem = item.object.find(
+                (item) => item.rowId === id
+              );
+
+              if (isHaveCurrentItem) {
+
+                item.object = item.object.filter((item) => item.rowId !== id);
+
+                if (item.object.length === 0) {
                 delete item.object;
                 item.nested = false;
+              }
+              } else {
+                item.object.forEach((item) => {
+                  changeItem(item);
+                });
               }
             }
           }
