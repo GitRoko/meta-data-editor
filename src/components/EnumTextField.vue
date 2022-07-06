@@ -38,7 +38,7 @@ export default {
   },
   watch: {
     textValue(newValue, oldValue) {
-      console.log("watch newValue = ", newValue);
+      // console.log("watch newValue = ", newValue);
 
       this.changeTextField(newValue, oldValue);
     },
@@ -52,9 +52,9 @@ export default {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
     changeTextField(newValue) {
-      console.log("newValue = ", newValue);
+      // console.log("newValue = ", newValue);
       const data = this.getPreparedDataTable();
-      console.log("data = ", data);
+      // console.log("data = ", data);
       let preparedValue;
         // eslint-disable-next-line no-debugger
         // debugger;

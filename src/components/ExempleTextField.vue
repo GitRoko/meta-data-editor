@@ -69,14 +69,22 @@ export default {
     changeTextField(newValue) {
       const data = this.getPreparedDataTable();
         // console.log("data = ", data);
-
+let preparedValue;
+        // eslint-disable-next-line no-debugger
+        // debugger;
+            try {
+                JSON.parse(newValue);
+                preparedValue = JSON.parse(newValue);
+              } catch {
+                preparedValue = newValue;
+              }
         // console.log("data1 = ", data[this.rowId][this.field]);
         // data[this.rowId][this.field] = newValue;
         // console.log("data2 = ", data[this.rowId][this.field]);
         const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           if (this.jsonType !== "string") {
-            item[this.field] = JSON.parse(newValue);
+            item[this.field] = preparedValue;
           } else {
             item[this.field] = newValue;
           }

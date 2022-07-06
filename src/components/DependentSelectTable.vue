@@ -6,7 +6,7 @@
     :label="selectLabel"
     outlined
     dense
-    class="field_name__selectField mt-7"
+    class="field_name__selectField mt-7 justify-center"
   ></v-select>
 </template>
 
@@ -95,5 +95,6 @@ export default {
 <style scoped>
 .field_name__selectField {
   width: 150px;
+  margin: auto;
 }
 </style>

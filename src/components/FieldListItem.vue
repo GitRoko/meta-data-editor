@@ -80,7 +80,7 @@
     <v-expansion-panel-content class="py-0">
       <v-container class="py-0">
         <v-row dense class="py-0">
-          <v-col v-if="item.td_type !== undefined" cols="2" dense>
+          <v-col v-if="item.td_type !== undefined" cols="2" dense align-self="center">
             <DependentSelectTable
               :rowId="item.rowId"
               :jsonType="item.json_type"
@@ -89,7 +89,7 @@
               :incomingItemValue="item.td_type"
             />
           </v-col>
-          <v-col v-if="item.pydantic_type !== undefined" cols="3" dense>
+          <v-col v-if="item.pydantic_type !== undefined" cols="3" dense >
             <DependentSelectTable
               :rowId="item.rowId"
               :jsonType="item.json_type"

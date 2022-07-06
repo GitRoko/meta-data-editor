@@ -55,8 +55,8 @@ export default {
   },
   watch: {
     selectValue(newValue, oldValue) {
-      console.log('newValue = ', newValue, 'oldValue = ', oldValue);
-      console.log('fakerDefaultValue = ', fakerDefaultValue);
+      // console.log('newValue = ', newValue, 'oldValue = ', oldValue);
+      // console.log('fakerDefaultValue = ', fakerDefaultValue);
       this.changeSelectValue(newValue, oldValue);
     },
     incomingItemValue(newValue, oldValue) {
@@ -73,7 +73,7 @@ export default {
 
     changeSelectValue(newValue, oldValue) {
       const data = this.getPreparedDataTable();
-      console.log(newValue, oldValue);
+      // console.log(newValue, oldValue);
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
@@ -82,12 +82,12 @@ export default {
             // item[this.fieldName] = newValue;
           let newKeys = Object.keys(fakerDefaultValue[newValue]);
           let keys = Object.keys(item);
-              console.log(item);
+              // console.log(item);
           keys.forEach(key => {
             if (key !== 'rowId' && key !== 'type') {
-              console.log(item);
+              // console.log(item);
               delete item[key]
-              console.log(item);
+              // console.log(item);
             }
           });
              newKeys.forEach(key => {
