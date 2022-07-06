@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "@/features/useFileSistemAPI";
 import YAML from "yaml";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { Document } from "yaml";
 
 export default {
@@ -12,11 +12,11 @@ export default {
       const getArrayFromFileData = state.currentFileData.split("\n");
 
       const isHaveTitle = getArrayFromFileData.find((item) =>
-      item.startsWith("#")
+        item.startsWith("#")
       );
-      
+
       let newTitle = "";
-      
+
       if (isHaveTitle !== undefined) {
         newTitle = isHaveTitle.replace("# ", "");
         // console.log("newTitle = ", newTitle);
@@ -34,27 +34,27 @@ export default {
 
         const func = (p) => {
           // eslint-disable-next-line no-prototype-builtins
-          if (p.json_type === 'array' && p.hasOwnProperty('array')) {
+          if (p.json_type === "array" && p.hasOwnProperty("array")) {
             p.nested = true;
             func(p.array);
           }
           // eslint-disable-next-line no-prototype-builtins
-          if (p.json_type === 'array' && !p.hasOwnProperty('array')) {
+          if (p.json_type === "array" && !p.hasOwnProperty("array")) {
             p.nested = false;
           }
 
           // eslint-disable-next-line no-prototype-builtins
-          if (p.hasOwnProperty('faker')) {
+          if (p.hasOwnProperty("faker")) {
             func(p.faker);
           }
-          
+
           // eslint-disable-next-line no-prototype-builtins
-          if (p.json_type === 'object' && p.hasOwnProperty('object')) {
+          if (p.json_type === "object" && p.hasOwnProperty("object")) {
             p.nested = true;
             p.object = getData(p.object);
           }
           // eslint-disable-next-line no-prototype-builtins
-          if (p.json_type === 'object' && !p.hasOwnProperty('object')) {
+          if (p.json_type === "object" && !p.hasOwnProperty("object")) {
             p.nested = false;
           }
 
@@ -64,7 +64,6 @@ export default {
         };
 
         const newData = arr.map((innerDataKey) => {
-
           return func({ ...innerData[innerDataKey], field_name: innerDataKey });
         });
 
@@ -125,10 +124,9 @@ export default {
       const fileData = YAML.parse(contents);
       const fields = Object.keys(fileData);
       // console.log('fields = ', fields);
-      
-      return fields;
-    }
 
+      return fields;
+    },
   },
 
   mutations: {
@@ -183,24 +181,44 @@ export default {
     getCurrentItem: (state) => (id) => {
       // eslint-disable-next-line no-debugger
       // debugger;
-      const ids = id.split(':');
+      const ids = id.split(":");
       if (ids.length === 1) {
-        return  state.preparedDataTable.find(row => row.rowId === id);
+        return state.preparedDataTable.find((row) => row.rowId === id);
       }
       let currentRow = {};
       let rows = state.preparedDataTable;
-      ids.forEach(idIds => {
-        currentRow = rows.find(row => row.rowId === idIds);
+      ids.forEach((idIds) => {
+        currentRow = rows.find((row) => row.rowId === idIds);
 
         if (currentRow.object) {
-          rows = currentRow.object
+          rows = currentRow.object;
         } else if (currentRow.array) {
-          rows = [currentRow.array]
-        } else if (currentRow.faker) {
-          rows = [currentRow.faker]
+          rows = [currentRow.array];
         } else {
           rows = {};
         }
+      });
+
+      return currentRow;
+    },
+    getCurrentFakerItem: (state) => (id) => {
+      // eslint-disable-next-line no-debugger
+      // debugger;
+      const ids = id.split(":");
+      if (ids.length === 1) {
+        return state.preparedDataTable.find((row) => row.rowId === id);
+      }
+      let currentRow = {};
+      let rows = state.preparedDataTable;
+      ids.forEach((idIds) => {
+        currentRow = rows.find((row) => row.rowId === idIds);
+
+        if (currentRow.faker) {
+          rows = [currentRow.faker];
+        } else {
+          rows = {};
+        }
+        
       });
 
       return currentRow;
@@ -223,6 +241,5 @@ export default {
     getTitle(state) {
       return state.title;
     },
-
   },
 };

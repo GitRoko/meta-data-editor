@@ -11,11 +11,11 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { typeRules, fakerDefaultValue } from "../features/rules";
+import { typeRules } from "../features/rules";
 
 
 export default {
-  name: "FakerSelectType",
+  name: "FakerSampleSelect",
   props: {
     incomingItemValue: String,
     selectName: String,
@@ -23,6 +23,7 @@ export default {
     rowId: String,
     jsonType: String,
     fieldName: String,
+    path: String,
   },
   data() {
     return {
@@ -39,7 +40,7 @@ export default {
   computed: {
 
     items() {
-      return typeRules[this.fieldTitle][this.jsonType];
+      return typeRules.faker.sample;
     }
   },
   watch: {
@@ -59,24 +60,12 @@ export default {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
 
-    changeSelectValue(newValue, oldValue) {
+    changeSelectValue(newValue) {
       const data = this.getPreparedDataTable();
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
-          if (newValue !== oldValue && oldValue !== '') {
-           
-          let newKeys = Object.keys(fakerDefaultValue[newValue]);
-          let keys = Object.keys(item);
-          keys.forEach(key => {
-            if (key !== 'rowId' && key !== 'type') {
-              delete item[key]
-            }
-          });
-             newKeys.forEach(key => {
-              item[key] = fakerDefaultValue[newValue][key]            
-            });
-          } 
+          item.sample = newValue;
          
         } else {
           if (item.faker) {
