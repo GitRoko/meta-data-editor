@@ -42,7 +42,8 @@ export default {
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.nested = newValue;
-
+          // eslint-disable-next-line no-debugger
+          // debugger;
           if (
             newValue === true &&
             item.json_type === "array" &&
@@ -56,9 +57,6 @@ export default {
               rowId: uuidv4(),
             };
             delete item.example;
-            // item.rowId = uuidv4()
-            // const parentItem = this.path.split(":")[0];
-            // data.find((item) => item.rowId === parentItem).rowId = uuidv4();
           }
 
           if (
@@ -68,26 +66,21 @@ export default {
           ) {
             item.object = [
               {
-                field_name: 'id',
+                field_name: "id",
                 json_type: "number",
                 mandatory: true,
                 pydantic_type: "StrictInt",
                 example: 123,
                 rowId: uuidv4(),
-              }
+              },
             ];
             delete item.example;
-            // item.rowId = uuidv4()
-            // const parentItem = this.path.split(":")[0];
-            // data.find((item) => item.rowId === parentItem).rowId = uuidv4();
+           
           }
           if (newValue === false && item.json_type === "array" && item.array) {
             delete item.array;
-            item.example = ['Some string'];
-            // item.rowId = uuidv4()
-
-            // const parentItem = this.path.split(":")[0];
-            // data.find((item) => item.rowId === parentItem).rowId = uuidv4();
+            item.example = ["Some string"];
+           
           }
           if (
             newValue === false &&
@@ -96,19 +89,16 @@ export default {
           ) {
             delete item.object;
             item.example = { id: 123, name: "abc" };
-            // item.rowId = uuidv4()
-
-            // const parentItem = this.path.split(":")[0];
-            // data.find((item) => item.rowId === parentItem).rowId = uuidv4();
+           
           }
         } else {
           if (item.array) {
             changeValue(item.array);
           }
           if (item.object) {
-            item.object.forEach(item => {
+            item.object.forEach((item) => {
               changeValue(item);
-            })
+            });
           }
         }
       };
@@ -119,7 +109,7 @@ export default {
       });
 
       this.updatePreparedDataTable(newData);
-      // this.$forceUpdate();
+      this.$forceUpdate();
     },
   },
 };

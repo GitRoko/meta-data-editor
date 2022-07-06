@@ -14,7 +14,9 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import { getExample } from "../features/helperFunctions.js";
-// import { v4 as uuidv4 } from "uuid";
+import { fakerDefaultValue, typeRules } from "../features/rules";
+
+import { v4 as uuidv4 } from "uuid";
 
 export default {
   name: "SelectTypeTable",
@@ -47,9 +49,26 @@ export default {
 
     changeSelectValue(newValue) {
       const data = this.getPreparedDataTable();
+     
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
+          // eslint-disable-next-line no-debugger
+          // debugger;
           item.json_type = newValue;
+          const parentId = this.path.split(':')[0] || this.path;
+          const currentItem = this.$store.getters.getCurrentItem(parentId);
+          const currentTypeFaker = typeRules.faker[newValue];
+           if (currentItem) {
+            console.log(fakerDefaultValue[currentTypeFaker[0]], newValue);
+             const newFaker ={ ...fakerDefaultValue[currentTypeFaker[0]]};
+                //  newFaker.rowId = currentItem.faker.rowId;
+                 newFaker.rowId = uuidv4();
+                 delete currentItem.faker;
+                 currentItem.faker = {...newFaker};
+           }
+
+
+
           if (item.json_type === "array" || item.json_type === "object") {
             item.nested = false;
 

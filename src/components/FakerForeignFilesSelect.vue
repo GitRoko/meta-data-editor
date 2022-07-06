@@ -12,44 +12,43 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { typeRules } from "../features/rules";
+// import { typeRules } from "../features/rules";
 
 
 export default {
-  name: "DependentSelectTable",
+  name: "FakerForeignFilesSelect",
   props: {
     incomingItemValue: String,
     selectName: String,
-    fieldTitle: String,
     rowId: String,
     jsonType: String,
+    fieldName: String,
   },
   data() {
     return {
-      // items: [],
+      items: [],
       selectValue: "",
       selectLabel: "",
     };
   },
   created() {
+    this.items = this.getItems();
     this.selectValue = this.items.includes(this.incomingItemValue)
       ? this.incomingItemValue
-      : this.items[0];
+      : '';
 
     this.selectLabel = this.selectName;
   },
   computed: {
-    // jsonType() {
-    //   const table = this.$store.state.currentFileData.preparedDataTable;
-    //   if (table) {
-    //     return table.find(item => item.rowId === this.rowId).json_type;
-    //     //  return table[this.rowId].json_type;
-    //   }
-    //   return '';
-    // },
-    items() {
-      return typeRules[this.fieldTitle][this.jsonType];
-    }
+    
+    // items() {
+    //   const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
+    //   const data = this.$store.getters.allFiles;
+    //   const list = data.map(item => item.fileName.split('.')[0]);
+    //   // console.log(list);
+
+    //   return list.filter(item => item !== currentfile);
+    // }
   },
   watch: {
     selectValue(newValue, oldValue) {
@@ -64,19 +63,19 @@ export default {
       const data = this.getPreparedDataTable();
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
-          item[this.fieldTitle] = newValue;
+          item.dataset = newValue;
         } else {
-          if (item.array) {
-            changeValue(item.array);
-          }
+          // if (item.array) {
+          //   changeValue(item.array);
+          // }
           if (item.faker) {
             changeValue(item.faker);
           }
-          if (item.object) {
-            item.object.forEach(item => {
-              changeValue(item);
-            })
-          }
+          // if (item.object) {
+          //   item.object.forEach(item => {
+          //     changeValue(item);
+          //   })
+          // }
         }
       }
 
@@ -88,12 +87,20 @@ export default {
 
       this.updatePreparedDataTable(newData);
     },
+    getItems() {
+      const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
+      const data = this.$store.getters.allFiles;
+      const list = data.map(item => item.fileName.split('.')[0]);
+      // console.log(list);
+
+      return list.filter(item => item !== currentfile);
+    }
   },
 };
 </script>
 
 <style scoped>
-.field_name__selectField {
-  width: 150px;
-}
+/* .field_name__selectField {
+  width: 250px;
+} */
 </style>
