@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panel class="my-2 rounded-lg">
+  <v-expansion-panel class="my-2 rounded-lg" :class="bgColor" :style="bgColor">
     <v-expansion-panel-header
       class="my-0 py-0 rounded-lg"
       @mouseover="hoverItemPanel(item)"
@@ -11,7 +11,6 @@
           <v-col v-if="item.field_name !== undefined" cols="4" dense>
             <TextFieldTable
               v-if="item.field_name"
-              :key="item.field_name"
               :rowId="item.rowId"
               :textFieldLabel="'Field'"
               :field="'field_name'"
@@ -20,7 +19,6 @@
           </v-col>
           <v-col v-if="item.json_type !== undefined" cols="3" dense>
             <SelectTypeTable
-              :key="item.json_type"
               :path="path"
               :rowId="item.rowId"
               :incomingValue="item.json_type"
@@ -33,7 +31,6 @@
             dense
           >
             <CheckboxTable
-              :key="item.mandatory"
               :rowId="item.rowId"
               :labelName="'Required'"
               :fieldTitle="'mandatory'"
@@ -49,13 +46,12 @@
             dense
           >
             <NestedToggler
-              :key="item.nested"
               :incomingValue="item.nested"
               :rowId="item.rowId"
               :path="path"
             />
           </v-col>
-         <!-- <v-col cols="1" align-self="center" class="text-center" dense>
+          <!-- <v-col cols="1" align-self="center" class="text-center" dense>
              <AddItemMenu
               v-if="!parentTypeArray"
               @click.native.stop
@@ -81,9 +77,9 @@
       </v-container>
     </v-expansion-panel-header>
 
-    <v-expansion-panel-content>
-      <v-container>
-        <v-row dense>
+    <v-expansion-panel-content class="py-0">
+      <v-container class="py-0">
+        <v-row dense class="py-0">
           <v-col v-if="item.td_type !== undefined" cols="2" dense>
             <DependentSelectTable
               :rowId="item.rowId"
@@ -93,7 +89,7 @@
               :incomingItemValue="item.td_type"
             />
           </v-col>
-          <v-col v-if="item.pydantic_type !== undefined" cols="2" dense>
+          <v-col v-if="item.pydantic_type !== undefined" cols="3" dense>
             <DependentSelectTable
               :rowId="item.rowId"
               :jsonType="item.json_type"
@@ -134,6 +130,13 @@
           </v-col>
         </v-row>
       </v-container>
+      <template v-if="item.faker !== undefined">
+        <FakerItem 
+        :rowId="item.rowId"
+        :item="item.faker"
+        :path="path"
+        :jsonType="item.json_type" />
+      </template>
     </v-expansion-panel-content>
     <template>
       <div v-if="item.array !== undefined" class="ml-6">
@@ -153,7 +156,7 @@
             v-for="itemObject in item.object"
             :key="itemObject.rowId"
             :item="itemObject"
-            :path="`${path}:${itemObject.rowId}`"
+            :path="path + ':' + itemObject.rowId"
           />
         </v-expansion-panels>
       </div>
@@ -213,6 +216,7 @@ import SelectTypeTable from "./SelectTypeTable.vue";
 import CheckboxTable from "./CheckboxTable.vue";
 import DependentSelectTable from "./DependentSelectTable.vue";
 import NestedToggler from "./NestedToggler.vue";
+import FakerItem from "./FakerItem.vue";
 
 import AddItemMenu from "./AddItemMenu.vue";
 import { v4 as uuidv4 } from "uuid";
@@ -228,6 +232,7 @@ export default {
     ExempleTextField,
     NestedToggler,
     AddItemMenu,
+    FakerItem,
   },
   props: {
     parentTypeArray: Boolean,
@@ -240,7 +245,7 @@ export default {
   data() {
     return {
       panel: [],
-
+      // color: 'red lighten-1',
       hoveredItemPanel: false,
       componentKey: 0,
       dialog: false,
@@ -257,16 +262,13 @@ export default {
     item() {
       return this.$store.getters.getCurrentItem(this.path);
     },
-    // nestedItem() {
-    //   return this.item.array;
-    // }
+    bgColor() {
+      // return `red lighten-5`;
+      return `backgound-color:hsla(0, 100%, 40%, 0.2)`;
+    },
+    
   },
-  watch: {
-    // item(v) {
-    //   // console.log("update! = ", this.item, v);
-    //   this.$forceUpdate();
-    // },
-  },
+  watch: {},
   methods: {
     ...mapMutations(["updatePreparedDataTable"]),
 
@@ -313,7 +315,10 @@ export default {
                   changeItem(item);
                 });
               } else {
-                newItem = this.getNewItemObject(this.dialogText, this.selectValue);
+                newItem = this.getNewItemObject(
+                  this.dialogText,
+                  this.selectValue
+                );
 
                 if (index === 0 && this.appendPlace === "before") {
                   return item.object.splice(0, 0, newItem);
@@ -385,19 +390,17 @@ export default {
             }
 
             if (item.object) {
-
               let isHaveCurrentItem = item.object.find(
                 (item) => item.rowId === id
               );
 
               if (isHaveCurrentItem) {
-
                 item.object = item.object.filter((item) => item.rowId !== id);
 
                 if (item.object.length === 0) {
-                delete item.object;
-                item.nested = false;
-              }
+                  delete item.object;
+                  item.nested = false;
+                }
               } else {
                 item.object.forEach((item) => {
                   changeItem(item);

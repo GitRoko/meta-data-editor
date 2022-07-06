@@ -1,10 +1,14 @@
 export async function readFile(handle = false) {
+  // eslint-disable-next-line no-debugger
+  // debugger;
+  console.log('handlefromReadFile = ', handle);
   let fileHandle;
   let file;
-
   if (handle) {
     file = await handle.getFile();
+    console.log('FILE fromReadFile = ', file);
   } else {
+    console.log('ELSE!!!!!!!!! = ');
     [fileHandle] = await window.showOpenFilePicker();
     file = await fileHandle.getFile();
   }

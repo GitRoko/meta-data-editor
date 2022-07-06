@@ -23,6 +23,18 @@ email:
   faker:
     type: sample
     sample: emails
+code:
+  json_type: string
+  mandatory: false
+  td_type: varchar
+  pydantic_type: StrictStr
+  example: someText
+  description: password
+  pii: true
+  faker:
+    type: code
+    upper: false
+    length: 16
 uuid:
   json_type: string
   mandatory: true
@@ -53,6 +65,19 @@ topics:
       - - 00000000-0000-0000-0000-000000000004
         - 00000000-0000-0000-0000-000000000005
         - 00000000-0000-0000-0000-000000000006
+topics_array:
+  json_type: array
+  mandatory: false
+  td_type: varchar
+  pydantic_type: List
+  example:
+    - someText
+  description: list of topics
+  pii: false
+  faker:
+    type: array
+    occurrence_min: 1
+    occurrence_max: 2
 created_at:
   json_type: string
   mandatory: true

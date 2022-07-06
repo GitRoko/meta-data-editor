@@ -30,6 +30,7 @@ export default {
         const innerData = obj;
 
         const arr = Object.keys(innerData);
+        // console.log('arr = ', arr);
 
         const func = (p) => {
           // eslint-disable-next-line no-prototype-builtins
@@ -40,6 +41,11 @@ export default {
           // eslint-disable-next-line no-prototype-builtins
           if (p.json_type === 'array' && !p.hasOwnProperty('array')) {
             p.nested = false;
+          }
+
+          // eslint-disable-next-line no-prototype-builtins
+          if (p.hasOwnProperty('faker')) {
+            func(p.faker);
           }
           
           // eslint-disable-next-line no-prototype-builtins
@@ -108,6 +114,21 @@ export default {
         await writeFile(state.currentFile.fileHandle, String(doc));
       }
     },
+
+    async getFileFields(_, handle) {
+      // eslint-disable-next-line no-debugger
+      // debugger;
+      // console.log(handle);
+      let file = await handle.fileHandle.getFile();
+      const contents = await file.text();
+      // const response = await readFile(handle);
+      const fileData = YAML.parse(contents);
+      const fields = Object.keys(fileData);
+      // console.log('fields = ', fields);
+      
+      return fields;
+    }
+
   },
 
   mutations: {
@@ -175,6 +196,8 @@ export default {
           rows = currentRow.object
         } else if (currentRow.array) {
           rows = [currentRow.array]
+        } else if (currentRow.faker) {
+          rows = [currentRow.faker]
         } else {
           rows = {};
         }
@@ -200,5 +223,6 @@ export default {
     getTitle(state) {
       return state.title;
     },
+
   },
 };
