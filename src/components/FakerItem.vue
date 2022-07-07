@@ -67,7 +67,16 @@
       </v-col>
       <v-col v-if="itemFaker.type === 'code'" dense align-self="center">
         <v-row>
-          <v-col cols="2" dense class="ml-2" align-self="center">
+           <v-col cols="3" dense class="ml-6" align-self="center">
+            <FakerNumberTextField
+              :rowId="itemFaker.rowId"
+              :textFieldLabel="'Length'"
+              :field="'length'"
+              :incomingValue="itemFaker.length"
+            />
+          </v-col>
+
+          <v-col cols="3" dense class="ml-0 justify-left" align-self="center">
             <FakerCheckbox
               :rowId="itemFaker.rowId"
               :labelName="'Uppercase'"
@@ -76,14 +85,7 @@
               :fieldName="'upper'"
             />
           </v-col>
-
-          <v-col cols="4" dense class="ml-2" align-self="center">
-            <FakerRangeSlider
-              :rowId="itemFaker.rowId"
-              :fieldTitle="'length'"
-              :incomingValue="itemFaker.length"
-            />
-          </v-col>
+         
         </v-row>
       </v-col>
       <v-col v-if="itemFaker.type === 'foreign'" dense align-self="center">
@@ -175,7 +177,6 @@
 // import { typeRules } from "../features/rules";
 import FakerSelectType from "./FakerSelectType.vue";
 import FakerCheckbox from "./FakerCheckbox.vue";
-import FakerRangeSlider from "./FakerRangeSlider.vue";
 import FakerEnumList from "./FakerEnumList.vue";
 import FakerForeignFilesSelect from "./FakerForeignFilesSelect.vue";
 import FakerForeignFieldSelectedFile from "./FakerForeignFieldSelectedFile.vue";
@@ -189,7 +190,6 @@ export default {
     FakerSelectType,
     FakerSampleSelect,
     FakerCheckbox,
-    FakerRangeSlider,
     FakerEnumList,
     FakerForeignFilesSelect,
     FakerForeignFieldSelectedFile,

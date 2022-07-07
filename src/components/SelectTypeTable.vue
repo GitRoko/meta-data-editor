@@ -52,22 +52,17 @@ export default {
      
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
-          // eslint-disable-next-line no-debugger
-          // debugger;
           item.json_type = newValue;
           const parentId = this.path.split(':')[0] || this.path;
           const currentItem = this.$store.getters.getCurrentItem(parentId);
           const currentTypeFaker = typeRules.faker[newValue];
+          
            if (currentItem) {
-            console.log(fakerDefaultValue[currentTypeFaker[0]], newValue);
              const newFaker ={ ...fakerDefaultValue[currentTypeFaker[0]]};
-                //  newFaker.rowId = currentItem.faker.rowId;
                  newFaker.rowId = uuidv4();
                  delete currentItem.faker;
                  currentItem.faker = {...newFaker};
            }
-
-
 
           if (item.json_type === "array" || item.json_type === "object") {
             item.nested = false;
