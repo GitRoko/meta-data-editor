@@ -18,12 +18,13 @@
         class="ml-2"
         align-self="center"
       >
-        <FakerSelectType
+        <FakerSampleSelect
           :rowId="itemFaker.rowId"
           :jsonType="'sample'"
           :fieldTitle="'faker'"
           :fieldName="'sample'"
           :selectName="'Dataset'"
+          :path="path + ':' + itemFaker.rowId"
           :incomingItemValue="itemFaker.sample"
         />
       </v-col>
@@ -180,11 +181,13 @@ import FakerForeignFilesSelect from "./FakerForeignFilesSelect.vue";
 import FakerForeignFieldSelectedFile from "./FakerForeignFieldSelectedFile.vue";
 import FakerTextField from "./FakerTextField.vue";
 import FakerNumberTextField from "./FakerNumberTextField.vue";
+import FakerSampleSelect from "./FakerSampleSelect.vue";
 
 export default {
   name: "FakerItem",
   components: {
     FakerSelectType,
+    FakerSampleSelect,
     FakerCheckbox,
     FakerRangeSlider,
     FakerEnumList,
@@ -213,7 +216,7 @@ export default {
       return this.path + ':' + this.item.rowId;
     },
     itemFaker() {
-      const item = this.$store.getters.getCurrentItem(this.fakerPath)
+      const item = this.$store.getters.getCurrentFakerItem(this.fakerPath)
       return item;
     }
   },

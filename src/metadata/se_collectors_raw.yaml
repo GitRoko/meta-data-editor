@@ -9,16 +9,16 @@ status:
     values:
     - open
     - closed
-# id:
-#   json_type: string
-#   td_type: varchar
-#   mandatory: true
-#   pydantic_type: StrictStr
-#   example: '420006107'
-#   faker:
-#     type: integer
-#     unique: true
-#     to_str: true
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '420006107'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
 # survey_id:
 #   json_type: string
 #   td_type: varchar

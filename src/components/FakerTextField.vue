@@ -33,8 +33,8 @@ export default {
     this.label = this.textFieldLabel;
   },
   watch: {
-    textValue(newValue, oldValue) {
-      console.log("change ", oldValue, newValue);
+    textValue(newValue) {
+      // console.log("change ", oldValue, newValue);
         this.changeTextField(newValue);
     },
     incomingValue(newV) {
@@ -46,14 +46,14 @@ export default {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
     changeTextField(newValue) {
-      console.log(newValue);
+      // console.log(newValue);
       // eslint-disable-next-line no-debugger
       // debugger;
       const data = this.getPreparedDataTable();
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
-          console.log(item);
+          // console.log(item);
           item[this.field] = newValue;
         } else {
           if (item.faker) {
