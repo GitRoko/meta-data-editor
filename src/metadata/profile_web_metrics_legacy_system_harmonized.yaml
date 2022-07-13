@@ -1,0 +1,222 @@
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 91a8f1b5-a37a-40b7-86d6-3d05995ee40f
+legacy_system:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: GTM Logic
+visit_count:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '108'
+add_to_cart:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '2'
+total_revenue:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '162.4'
+total_orders:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '2'
+top_product_viewed_1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: crystal limited edition
+top_product_viewed_2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: crystal limited edition
+top_product_viewed_3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: crystal limited edition
+top_product_sku_viewed_1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: LOGIC COMPACT VAPORIZZATORE
+top_product_sku_viewed_2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: LOGIC COMPACT VAPORIZZATORE
+top_product_sku_viewed_3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: LOGIC COMPACT VAPORIZZATORE
+top_add_to_cart_1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 6x ricariche pod multipack
+top_add_to_cart_2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 6x ricariche pod multipack
+top_add_to_cart_3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 6x ricariche pod multipack
+top_add_to_cart_sku_1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: LOGIC COMPACT VAPORIZZATORE
+top_add_to_cart_sku_2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: COMPACT-MULTIPACK6-1
+top_add_to_cart_sku_3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+store_locator_per_session:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+contact_us_per_session:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+prod_page_per_session:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0.333333333'
+prod_list_per_session:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+logged_in_per_session:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+avg_page_session:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0.083333333'
+most_frequent_device:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+last_device:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+last_abandoned_cart_1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: logic compact + 2 pod + dock
+last_abandoned_cart_2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: logic compact + 2 pod + dock
+last_abandoned_cart_3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+last_abandoned_cart_sku_1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 20DA006000
+last_abandoned_cart_sku_2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: BUNDLE-COMPACT-1PACKPOD-DOCK-1
+last_abandoned_cart_sku_3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+last_web_time:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1600275876'
+last_web_time_ts:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-09-16 17:04:36'
+last_removed_from_cart:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: logic compact vaporizzatore
+last_removed_from_cart_sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: LOGIC COMPACT VAPORIZZATORE
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom

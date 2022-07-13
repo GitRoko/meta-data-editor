@@ -1,0 +1,72 @@
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 07947e82fade18bb8d33bc91fad1b297
+code_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: voucher
+campaign_label:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Adobe Test Campaign
+campaign_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CMP_IT_Ploom_Welcome
+code_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: assigned
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom
+updated_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-04-24 12:52:26'
+updated_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-04-24 12:52:26'
+id_legacy_system:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 'NULL'
+legacy_system:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+harmonization_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+country:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'

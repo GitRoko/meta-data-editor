@@ -1,0 +1,71 @@
+profile_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 07947e82fade18bb8d33bc91fad1b297
+  faker:
+    type: foreign
+    dataset: adobe_campaign_click_open_raw
+    field: profile_id
+code_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: voucher
+  faker:
+    type: enum
+    values:
+    - voucher
+    - promo
+campaign_label:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Adobe Test Campaign
+  faker:
+    type: enum
+    values:
+    - Adobe Test Campaign
+campaign_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CMP_IT_Ploom_Welcome
+  faker:
+    type: enum
+    values:
+    - CMP_IT_Ploom_Welcome
+code_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: assigned
+  faker:
+    type: enum
+    values:
+    - assigned
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+    - Winston
+updated_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 02/02/2020 20:20:20
+  faker:
+    type: date
+    format: '%d/%m/%Y %H:%M:%S'

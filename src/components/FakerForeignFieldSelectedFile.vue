@@ -78,17 +78,17 @@ export default {
           if (item.rowId === this.rowId) {
             item.field = newValue;
           } else {
-            // if (item.array) {
-            //   changeValue(item.array);
-            // }
-            if (item.faker) {
-              changeValue(item.faker);
-            }
-            // if (item.object) {
-            //   item.object.forEach(item => {
-            //     changeValue(item);
-            //   })
-            // }
+          if (item.faker) {
+            changeValue(item.faker);
+          }
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
+          }
           }
         }
         const newData = data.map((item) => {

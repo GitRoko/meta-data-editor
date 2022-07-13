@@ -1,0 +1,20 @@
+meeting_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: foreign
+    dataset: ambassador_meeting_raw
+    field: meeting_id
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '111'
+  faker:
+    type: foreign
+    dataset: ambassador_contact_raw
+    field: id_profile

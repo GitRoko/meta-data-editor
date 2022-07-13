@@ -1,0 +1,340 @@
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '114000046183'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+recipient_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+  faker:
+    type: enum
+    values:
+    - ''
+collection_mode:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: default
+  faker:
+    type: enum
+    values:
+    - default
+    - preview
+    - data_entry
+    - survey_preview
+    - edit
+response_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: completed
+  faker:
+    type: enum
+    values:
+    - completed
+    - partial
+    - overquota
+    - disqualified
+custom_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+  faker:
+    type: enum
+    values:
+    - ''
+first_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+  faker:
+    type: enum
+    values:
+    - ''
+last_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+  faker:
+    type: enum
+    values:
+    - ''
+email_address:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+  faker:
+    type: enum
+    values:
+    - ''
+ip_address:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 195.72.145.177
+  faker:
+    type: ip
+logic_path:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example: {}
+  faker:
+    type: enum
+    values:
+    - {}
+metadata:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    respondent:
+      user_agent:
+        type: number
+        value: 29
+      language:
+        type: string
+        value: en
+    contact: {}
+  faker:
+    type: object
+    values:
+      respondent:
+        type: object
+        values:
+          user_agent:
+            type: object
+            values:
+              type:
+                type: enum
+                values:
+                - number
+              value:
+                type: integer
+                unique: false
+                to_str: false
+          language:
+            type: object
+            values:
+              type:
+                type: enum
+                values:
+                - string
+              value:
+                type: enum
+                values:
+                - en
+                - es
+      contact:
+        type: enum
+        values:
+        - {}
+page_path:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+  example: []
+  faker:
+    type: enum
+    values:
+    - []
+collector_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '420006107'
+  faker:
+    type: foreign
+    dataset: se_collectors_raw
+    field: id
+survey_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '400013568'
+  faker:
+    type: foreign
+    dataset: se_surveys_raw
+    field: id
+custom_variables:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    campaign_id: it
+    profile_id: '123'
+  faker:
+    type: object
+    values:
+      campaign_id:
+        type: integer
+        unique: true
+        to_str: false
+      profile_id:
+        type: integer
+        unique: true
+        to_str: false
+edit_url:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://www.surveymonkey.com/r/?sm=o10yPccljyQZkNaA4KD833Tz_2FkmbiK6fPu0UQ_2F7ciXliuUTNy_2BBcbU6bBgIghx_2B1
+  faker:
+    type: sample
+    sample: urls
+analyze_url:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://www.surveymonkey.com/analyze/browse/iBhJDTIpG73kcQdQ5h_2FXyKBETL0EjSbapw7rRa3lEA8_3D?respondent_id=114000046183
+  faker:
+    type: sample
+    sample: urls
+total_time:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 5
+  faker:
+    type: integer
+    unique: false
+    to_str: false
+date_modified:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2022-03-18T10:54:36+00:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+date_created:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2022-03-18T10:54:31+00:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+href:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://api.surveymonkey.com/v3/surveys/400013568/responses/114000046183
+  faker:
+    type: sample
+    sample: urls
+pages:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - id: '25025535'
+    questions:
+    - id: '60091013'
+      answers:
+      - choice_id: '500951718'
+  faker:
+    type: array
+    occurrence_min: 1
+    occurrence_max: 5
+    values:
+      type: object
+      values:
+        id:
+          type: integer
+          unique: true
+          to_str: true
+        questions:
+          type: array
+          occurrence_min: 1
+          occurrence_max: 5
+          values:
+            type: object
+            values:
+              id:
+                type: integer
+                unique: true
+                to_str: true
+              answers:
+                type: array
+                occurrence_min: 1
+                occurrence_max: 5
+                values:
+                  type: object
+                  values:
+                    id:
+                      type: integer
+                      unique: false
+                      to_str: true
+quiz_results:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    score: 0
+    correct: 0
+    incorrect: 1
+    total_score: 5
+    total_questions: 1
+    partially_correct: 0
+  faker:
+    type: object
+    values:
+      score:
+        type: integer
+        unique: false
+        to_str: false
+      correct:
+        type: integer
+        unique: false
+        to_str: false
+      incorrect:
+        type: integer
+        unique: false
+        to_str: false
+      total_score:
+        type: integer
+        unique: false
+        to_str: false
+      total_questions:
+        type: integer
+        unique: false
+        to_str: false
+      partially_correct:
+        type: integer
+        unique: false
+        to_str: false

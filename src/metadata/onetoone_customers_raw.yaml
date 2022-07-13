@@ -1,0 +1,324 @@
+visitdateinfo:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2022-02-02T20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+outletcodeinfo:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Outlet_0
+    - Outlet_1
+    - Outlet_2
+    - Outlet_3
+purchased:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'yes'
+    - 'no'
+smokedproduct:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Product_0
+    - Product_1
+    - Product_2
+    - Product_3
+additionalproduct1:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Product_1
+    - Product_2
+    - Product_3
+additionalproductqty1:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '0'
+  faker:
+    type: enum
+    values:
+    - null
+    - '0'
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+email:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: foreign
+    dataset: onetrust_consents_raw
+    field: datasubjectemail
+proposedproduct:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Product_1
+    - Product_2
+    - Product_3
+    - Product_4
+idinterview:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+gender:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - M
+    - F
+    - U
+interviewtimeinfo:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2022-02-02T20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+token:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+legacysystem:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+    upper: true
+    length: 6
+typeinfo:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Info_1
+    - Info_2
+    - Info_3
+    - Info_4
+agencycodeinfo:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Info_1
+    - Info_2
+    - Info_3
+    - Info_4
+agerange:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 18-25
+    - 25-40
+    - 40-60
+    - 60+
+additionalproduct2:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Product_1
+    - Product_2
+    - Product_3
+additionalproductqty2:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '2'
+additionalproduct3:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Product_1
+    - Product_2
+    - Product_3
+additionalproductqty3:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '2'
+province:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: cities
+interested:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - 'yes'
+    - 'no'
+city:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Milano
+  faker:
+    type: sample
+    sample: cities
+mobile:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: +38099999999
+  faker:
+    type: phone
+name:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Andrea
+  faker:
+    type: sample
+    sample: firstnames
+surname:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Paesetti
+  faker:
+    type: sample
+    sample: lastnames
+idconsumer:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: 9d6db67e-7d66-425b-8a6c-f931674894a9
+  faker:
+    type: uuid
+trial:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: 'Y'
+  faker:
+    type: enum
+    values:
+      - 'Y'
+      - 'N'
+
+
+
+
+
+
+
+
+
+

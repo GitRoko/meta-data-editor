@@ -82,6 +82,15 @@ export default {
           if (item.faker) {
             changeValue(item.faker);
           }
+          if (item.array) {
+            changeValue(item.array);
+          }
+          
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
+          }
         }
       }
 

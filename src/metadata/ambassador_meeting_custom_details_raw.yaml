@@ -1,0 +1,34 @@
+meeting_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: foreign
+    dataset: ambassador_meeting_raw
+    field: meeting_id
+custom_attribute:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker: 
+    type: enum
+    values: 
+    - tasting_session_bronze
+    - tasting_session_sepia
+    - tasting_session_emerald
+custom_attribute_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker: 
+    type: enum
+    values: 
+    - disliked
+    - liked
+    - not tried

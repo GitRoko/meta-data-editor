@@ -1,0 +1,1105 @@
+id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+order_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+order_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2020
+    max_year: 2021
+created_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2020
+    max_year: 2021
+updated_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2021
+    max_year: 2022
+base_currency_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: EUR
+  faker:
+    type: enum
+    values:
+    - EUR
+    - USD
+    - CHF
+base_discount_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: -15
+  faker:
+    type: enum
+    values:
+    - 0
+    - -5
+    - -10
+    - -15
+base_discount_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+base_discount_tax_compensation_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '2.68'
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 1.55
+    - 2.68
+    - 3.95
+base_discount_tax_compensation_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+base_grand_total:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.1
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+base_shipping_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 5.5
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 2.3
+    - 5.5
+    - 7.9
+base_shipping_discount_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+base_shipping_discount_tax_compensation_amnt:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+base_shipping_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 5.5
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 2.3
+    - 5.5
+    - 7.9
+base_shipping_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+base_shipping_tax_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+base_subtotal:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+base_subtotal_incl_tax:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.1
+  faker:
+    type: enum
+    values:
+    - 10.5
+    - 20.6
+    - 30.9
+    - 40.4
+base_subtotal_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+base_tax_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 5.5
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 2.3
+    - 5.5
+    - 7.9
+base_tax_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 5.5
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 2.3
+    - 5.5
+    - 7.9
+base_to_global_rate:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 1
+base_to_order_rate:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 1
+base_total_due:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+base_total_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+base_total_invoiced_cost:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+base_total_paid:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+billing_address:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    someKey:
+      key: value
+  faker:
+    type: enum
+    values:
+    - lastname: Test
+      street:
+      - 800 Chestnut Dr.
+      - Oak Ridge, TN 37830
+      - 780 Kent Road
+      telephone: '+491122331123'
+      country_id: DE
+      address_type: billing
+      city: Test
+      customer_address_id: 12345
+      postcode: Test
+      parent_id: 3645
+      entity_id: 7323
+      firstname: Test
+      email: rostyslav.sazonov+fe1_11@gmail.com
+billing_address_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 12345
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+customer_dob:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1990-02-02'
+  faker:
+    type: date
+    format: '%Y-%m-%d'
+    min_year: 1960
+    max_year: 2000
+customer_email:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: example@example.com
+  faker:
+    type: sample
+    sample: emails
+customer_firstname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: John
+  faker:
+    type: sample
+    sample: firstnames
+customer_gender:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: F
+  faker:
+    type: enum
+    values:
+    - null
+    - M
+    - F
+    - U
+customer_group_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 12345
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+customer_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 269675
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+customer_is_guest:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+customer_lastname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Smith
+  faker:
+    type: sample
+    sample: lastnames
+customer_note_notify:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+customer_uuid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 9d6db67e-7d66-425b-8a6c-f931674894a9
+  faker:
+    type: foreign
+    dataset: cas_consumers_raw
+    field: uuid
+discount_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: -15
+  faker:
+    type: enum
+    values:
+    - 0
+    - -5
+    - -10
+    - -15
+discount_category:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: null
+  faker:
+    type: enum
+    values:
+    - null
+discount_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: -15
+  faker:
+    type: enum
+    values:
+    - 0
+    - -5
+    - -10
+    - -15
+discount_tax_compensation_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 2.68
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 1.55
+    - 2.68
+    - 3.95
+discount_tax_compensation_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+email_sent:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+entity_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 12345
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+extension_attributes:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    someKey:
+      key: value
+  faker:
+    type: enum
+    values:
+    - gift_cards_amount: 0
+      gw_card_price: '0.0000'
+      gw_items_base_price: '0.0000'
+      gw_base_price: '0.0000'
+      item_applied_taxes: []
+      payment_additional_info: []
+      gift_cards: []
+      base_gift_cards_amount: 0
+      shipping_assignments: []
+      converting_from_quote: true
+      applied_taxes: []
+      gw_price: '0.0000'
+      gw_card_base_price: '0.0000'
+      gw_items_price: '0.0000'
+      customer_uuid: 2ac1ce49-e7ce-432f-814d-102c995060d9
+global_currency_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: EUR
+  faker:
+    type: enum
+    values:
+    - EUR
+    - USD
+    - CHF
+grand_total:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 2.68
+  faker:
+    type: enum
+    values:
+    - 10.5
+    - 20.6
+    - 30.9
+    - 40.7
+increment_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '000001436'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+is_virtual:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+items:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List[Dict]
+  example:
+    someKey:
+    - key: value
+  faker:
+    type: enum
+    values:
+    - - amount_refunded: 0
+        applied_rule_ids: 22
+        base_amount_refunded: 0
+        base_discount_amount: 0
+        base_discount_invoiced: 0
+        base_discount_tax_compensation_amount: 0
+        base_discount_tax_compensation_invoiced: 0
+        base_original_price: 59.99
+        base_price: 30
+        base_price_incl_tax: 36
+        base_row_invoiced: 30
+        base_row_total: 30
+        base_row_total_incl_tax: 36
+        base_tax_amount: 6
+        base_tax_invoiced: 6
+        base_weee_tax_applied_amount: 0
+        base_weee_tax_applied_row_amnt: 0
+        base_weee_tax_disposition: 0
+        base_weee_tax_row_disposition: 0
+        created_at: '2001-01-01 01:01:01'
+        discount_amount: 0
+        discount_invoiced: 0
+        discount_percent: 0
+        discount_tax_compensation_amount: 0
+        discount_tax_compensation_invoiced: 0
+        free_shipping: 0
+        is_qty_decimal: 0
+        is_virtual: 0
+        item_id: 4401
+        name: Ploom Steel Silver
+        no_discount: 0
+        order_id: 1111
+        original_price: 59.99
+        price: 30
+        price_incl_tax: 36
+        product_id: 74
+        product_type: simple
+        qty_canceled: 0
+        qty_invoiced: 1
+        qty_ordered: 1
+        qty_refunded: 0
+        qty_returned: 0
+        qty_shipped: 0
+        quote_item_id: 8310
+        row_invoiced: 30
+        row_total: 30
+        row_total_incl_tax: 36
+        row_weight: 2
+        sku: 20BD270250
+        store_id: 1
+        tax_amount: 6
+        tax_invoiced: 6
+        tax_percent: 20
+        updated_at: '2020-02-02 20:20:20'
+        weee_tax_applied: '[]'
+        weee_tax_applied_amount: 0
+        weee_tax_applied_row_amount: 0
+        weee_tax_disposition: 0
+        weee_tax_row_disposition: 0
+        weight: 2
+order_currency_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: EUR
+  faker:
+    type: enum
+    values:
+    - EUR
+    - USD
+    - CHF
+payment:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List[Dict]
+  example:
+    someKey: someValue
+  faker:
+    type: enum
+    values:
+    - - method: jti payment
+        base_shipping_captured: 0
+        cc_ss_start_month: '0'
+        account_status: null
+        base_amount_paid: 93.59
+        amount_ordered: 93.59
+        shipping_amount: 0
+        shipping_captured: 0
+        parent_id: 3645
+        amount_paid: 93.59
+        additional_information:
+        - cc
+        - '93.59'
+        - EUR
+        - null
+        base_amount_ordered: 93.59
+        entity_id: 3645
+        cc_ss_start_year: '0'
+        base_shipping_amount: 0
+        cc_exp_year: '0'
+        cc_last4: null
+protect_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 21674ef0aae07f38ff61355c98289cf3
+  faker:
+    type: code
+    upper: false
+    length: 32
+quote_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 93001
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+shipping_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 1
+    - 2
+    - 3
+    - 8
+shipping_description:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Italy - Milano
+  faker:
+    type: sample
+    sample: cities
+shipping_discount_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+shipping_discount_tax_compensation_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+shipping_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 11.5
+    - 21.6
+    - 31.9
+shipping_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+shipping_tax_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 1.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 1.5
+    - 2.6
+    - 3.9
+state:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: processing
+  faker:
+    type: enum
+    values:
+    - processing
+    - done
+    - blocked
+    - on hold
+status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: done
+  faker:
+    type: enum
+    values:
+    - processing
+    - done
+    - blocked
+    - on hold
+status_histories:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List[Dict]
+  example:
+    someKey: someValue
+  faker:
+    type: enum
+    values:
+    - - comment: Order Placed by admin admin using Admin Panel
+        created_at: '2022-03-18 08:53:00'
+        entity_id: 5505
+        entity_name: order
+        is_customer_notified: 0
+        is_visible_on_front: 0
+        parent_id: 3639
+        status: new
+    - - comment: Order Placed by Store Administrator
+        created_at: '2022-03-18 08:53:00'
+        entity_id: 5502
+        entity_name: order
+        is_customer_notified: 0
+        is_visible_on_front: 1
+        parent_id: 3639
+        status: new
+    - - comment: null
+        created_at: '2022-03-18 08:53:00'
+        entity_id: 5499
+        entity_name: order
+        is_customer_notified: 1
+        is_visible_on_front: 0
+        parent_id: 3639
+        status: new
+store_currency_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: EUR
+  faker:
+    type: enum
+    values:
+    - EUR
+    - USD
+    - CHF
+store_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 12345
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+store_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Website Store
+  faker:
+    type: enum
+    values:
+    - Main Website
+    - Main Website Store
+    - Default Store View
+store_to_base_rate:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 1
+store_to_order_rate:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 1
+subtotal:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+subtotal_incl_tax:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 11.5
+    - 21.6
+    - 31.9
+subtotal_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+tax_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 1.5
+    - 2.6
+    - 3.9
+tax_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 1.5
+    - 2.6
+    - 3.9
+total_due:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+total_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: 20.6
+  faker:
+    type: enum
+    values:
+    - 0.0
+    - 10.5
+    - 20.6
+    - 30.9
+total_item_count:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 1
+    - 2
+    - 3
+    - 8
+total_paid:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 100
+  faker:
+    type: integer
+    unique: false
+    to_str: false
+total_qty_ordered:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 1
+    - 2
+    - 3
+    - 8
+weight:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 10
+  faker:
+    type: integer
+    unique: false
+    to_str: false
+refund:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    someKey:
+      key: value
+  faker:
+    type: enum
+    values:
+    - refund_reason: 'returned goods'
+      refund_status: COMPLETE
+      refund_currency: GBP

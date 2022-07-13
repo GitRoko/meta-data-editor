@@ -1,0 +1,66 @@
+date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+email:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: emails
+question_1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'Yes'
+    - 'No'
+    - Not sure
+question_2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'Yes'
+    - 'No'
+    - Not sure
+question_3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'Yes'
+    - 'No'
+    - Not sure
+question_4:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'Yes'
+    - 'No'
+    - Not sure

@@ -1,0 +1,193 @@
+collectionpointguid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+contactfields:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    someKey: someValue
+  faker:
+    type: object
+datasubjectguid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+profiles:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List
+  faker:
+    type: array
+    occurrence_min: 1
+    occurrence_max: 2
+  array:
+    json_type: object
+    mandatory: true
+    pydantic_type: Dict
+    faker:
+      type: object
+    object:
+      purposeid:
+        json_type: string
+        mandatory: false
+        pydantic_type: StrictStr
+        example: Ploom
+        faker:
+          type: enum
+          values:
+          - Ploom
+      profilefields:
+        json_type: object
+        mandatory: false
+        pydantic_type: Dict
+        faker:
+          type: object
+        object:
+          totaltransactions:
+            json_type: number
+            mandatory: false
+            pydantic_type: StrictInt
+            example: 123
+            faker:
+              type: integer
+              unique: false
+              to_str: false
+          firsttransaction:
+            json_type: number
+            mandatory: false
+            pydantic_type: StrictInt
+            example: 123
+            faker:
+              type: integer
+              unique: false
+              to_str: false
+          consentdate:
+            json_type: string
+            mandatory: false
+            pydantic_type: StrictStr
+            example: '2021-01-01'
+            faker:
+              type: date
+              format: "%Y-%b-%d"
+          transactionstatus:
+            json_type: string
+            mandatory: false
+            pydantic_type: StrictStr
+            example: Ploom
+            faker:
+              type: enum
+              values:
+              - ACTIVE
+          lasttransaction:
+            json_type: number
+            mandatory: false
+            pydantic_type: StrictInt
+            example: 123
+            faker:
+              type: integer
+              unique: false
+              to_str: false
+          activationdate:
+            json_type: number
+            mandatory: false
+            pydantic_type: StrictInt
+            example: 123
+            faker:
+              type: integer
+              unique: false
+              to_str: false
+          doubleoptinconsent:
+            json_type: string
+            mandatory: false
+            pydantic_type: StrictStr
+            example: N
+            faker:
+              type: enum
+              values:
+              - N
+              - Y
+      purposename:
+        json_type: string
+        mandatory: false
+        pydantic_type: StrictStr
+        example: Privacy Policy and Personal Data gathering
+        faker:
+          type: enum
+          values:
+          - Privacy Policy and Personal Data gathering
+      topics:
+        json_type: array
+        mandatory: false
+        pydantic_type: List
+        faker:
+          type: array
+          occurrence_min: 1
+          occurrence_max: 2
+        array:
+          json_type: number
+          pydantic_type: StrictInt
+          example: 111
+          faker:
+            type: integer
+            unique: false
+            to_str: false
+      custompreferences:
+        json_type: array
+        mandatory: false
+        pydantic_type: List
+        faker:
+          type: array
+collectionpointname:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Ambassador IT Collection Point
+newdatasubject:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - 'TRUE'
+    - 'FALSE'
+datasubjectemail:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: emails
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom

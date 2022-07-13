@@ -1,0 +1,92 @@
+id_consumer:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: id84023
+  faker:
+    type: foreign
+    dataset: cas_consumers_raw
+    field: uuid
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 111
+  faker:
+    type: enum
+    values:
+      - Ploom
+custom_attributes:
+  tenant:
+    ch:
+      json_type: object
+      td_type: varchar
+      mandatory: true
+      pydantic_type: Dict
+      faker:
+        type: object
+      object:
+        activity_score:
+          json_type: number
+          mandatory: true
+          pydantic_type: 'Union[StrictInt,StrictFloat]'
+          example: '1.0'
+          faker:
+            type: enum
+            values:
+              - '1.0'
+        loyalty_points:
+          json_type: number
+          mandatory: true
+          pydantic_type: 'Union[StrictInt,StrictFloat]'
+          example: '1.0'
+          faker:
+            type: enum
+            values:
+              - '1.0'
+        unsubscribe_token:
+          json_type: string
+          mandatory: true
+          pydantic_type: StrictStr
+          example: 654554r4er54r4
+          faker:
+            type: enum
+            values:
+              - 654554r4er54r4
+    des:
+      json_type: object
+      td_type: varchar
+      mandatory: true
+      pydantic_type: Dict
+      faker:
+        type: object
+      object:
+        attr1:
+          json_type: string
+          mandatory: true
+          pydantic_type: StrictStr
+          example: camel_user_123
+          faker:
+            type: enum
+            values:
+              - camel_user_123
+        attr2:
+          json_type: string
+          mandatory: true
+          pydantic_type: StrictStr
+          example: 31/12/9999
+          faker:
+            type: enum
+            values:
+              - 31/12/9999
+        attr3:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: 31/12/9999
+          faker:
+            type: enum
+            values:
+              - 31/12/9999

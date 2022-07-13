@@ -1,0 +1,114 @@
+actual_end_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-01-14 13:34:11.987'
+country:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+device_serial_number:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: SHSH
+device_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ED272
+end_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-01-28 13:33:42.497'
+end_note:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-01-14 13:34:11.970'
+harmonization_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '3'
+id_legacy_system:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2'
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: fa53662d8945299a139e1a3f5a544e77
+id_profile_legacy:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: c8e5ff58ad6c3c635684bd2172c87f68
+legacy_system:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ambassador
+preferred_stick_flavour:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+start_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-01-14 13:33:42.497'
+type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom
+device_colour:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom S Steel Silver
+trials_flavour:
+  json_type: array
+  td_type: array<string>
+  mandatory: false
+  pydantic_type: List[StrictStr]
+  example: Mint
+trials_quantity:
+  json_type: array
+  td_type: array<string>
+  mandatory: false
+  pydantic_type: List[StrictInt]
+  example: 1

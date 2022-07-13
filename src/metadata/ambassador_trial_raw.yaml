@@ -1,0 +1,265 @@
+trial_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '111'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+change_status:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: enum
+    values:
+    - 1
+    - 2
+    - 3
+ambassador_program_id:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '123'
+  faker:
+    type: foreign
+    dataset: ambassador_trial_raw
+    field: trial_id
+serial_number:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+start_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2020
+    max_year: 2021
+end_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2022
+    max_year: 2023
+actual_end_date:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2021
+    max_year: 2022
+return_date:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2021
+    max_year: 2022
+reason_not_to_purchase:
+  json_type: number
+  td_type: bigint
+  mandatory: false
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: enum
+    values:
+    - null
+    - 1
+    - 2
+    - 3
+reason_not_to_purchase_desc:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - NOT_INTERESTED
+    - REASON_UNKNOWN
+    - OTHER_REASON
+end_trial_note:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: words
+user_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+created_by:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: names
+created_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2019
+    max_year: 2020
+last_modified_by:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: names
+last_modified_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2020
+    max_year: 2021
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '111'
+  faker:
+    type: foreign
+    dataset: ambassador_contact_raw
+    field: id_profile
+trial_outcome:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Failed
+    - Done
+    - Postponed
+trial_done:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+device_sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+device_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+notes:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: words
+device_colour:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values: 
+    - Ploom S Matte Black
+    - Ploom S Soft Champagne
+    - NULL
+    - Ploom S Steel Silver
+trials_flavour:
+  json_type: array
+  td_type: varchar
+  pydantic_type: List
+  mandatory: false
+  faker:
+    type: enum
+    values:
+     - - Mint
+       - Ananas
+       - null
+trials_quantity:
+  json_type: array
+  td_type: varchar
+  pydantic_type: List
+  mandatory: false
+  faker:
+    type: enum
+    values:
+     - - 1
+       - 2
+       - null

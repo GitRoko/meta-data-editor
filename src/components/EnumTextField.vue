@@ -20,6 +20,7 @@ export default {
     textFieldLabel: String,
     jsonType: String,
     path: String,
+    rowId: String,
   },
   data() {
     return {
@@ -51,34 +52,89 @@ export default {
   methods: {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
-    changeTextField(newValue) {
-      // console.log("newValue = ", newValue);
-      const data = this.getPreparedDataTable();
-      // console.log("data = ", data);
-      let preparedValue;
-        // eslint-disable-next-line no-debugger
-        // debugger;
-            try {
-                JSON.parse(newValue);
-                preparedValue = JSON.parse(newValue);
-              } catch {
-                preparedValue = newValue;
-              }
+    // changeTextField(newValue) {
+    //   // console.log("newValue = ", newValue);
+    //   const data = this.getPreparedDataTable();
+    //   // console.log("data = ", data);
+    //   let preparedValue;
+    //     // eslint-disable-next-line no-debugger
+    //     // debugger;
+    //         try {
+    //             JSON.parse(newValue);
+    //             preparedValue = JSON.parse(newValue);
+    //           } catch {
+    //             preparedValue = newValue;
+    //           }
 
-      const newData = data.map((item) => {
-        if (item.rowId === this.path) {
+    //   const newData = data.map((item) => {
+    //     if (item.rowId === this.rowId) {
+    //       if (this.jsonType !== "string") {
+            
+    //         item.values[this.index] = preparedValue;
+    //       } else {
+    //         item.values[this.index] = newValue;
+    //       }
+    //     } else {
+    //                 if (item.faker) {
+    //         changeValue(item.faker);
+    //       }
+    //       if (item.array) {
+    //         changeValue(item.array);
+    //       }
+    //       if (item.object) {
+    //         item.object.forEach((item) => {
+    //           changeValue(item);
+    //         });
+    //       }
+    //     }
+    //     return item;
+    //   });
+
+    //   this.updatePreparedDataTable(newData);
+    //   // this.$forceUpdate();
+    // },
+    changeTextField(newValue) {
+      const data = this.getPreparedDataTable();
+      let preparedValue;
+      console.log('newValue ', newValue);
+      try {
+        JSON.parse(newValue);
+        preparedValue = JSON.parse(newValue);
+      } catch {
+        preparedValue = newValue;
+      }
+
+      const changeValue = (item) => {
+        if (item.rowId === this.rowId) {
           if (this.jsonType !== "string") {
             
-            item.faker.values[this.index] = preparedValue;
+            item.values[this.index] = preparedValue;
           } else {
-            item.faker.values[this.index] = newValue;
+            item.values[this.index] = newValue;
+          }
+        } else {
+          if (item.faker) {
+            changeValue(item.faker);
+          }
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
           }
         }
+      };
+
+      const newData = data.map((item) => {
+        changeValue(item);
+
         return item;
       });
 
       this.updatePreparedDataTable(newData);
-      // this.$forceUpdate();
+      this.$forceUpdate();
     },
   },
 };

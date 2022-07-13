@@ -1,0 +1,187 @@
+active:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'TRUE'
+brand_icon:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'FALSE'
+brand_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+campaign_activity_all_time_active:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'TRUE'
+campaign_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 0e3919ab-58f6-4db8-8008-0027635930eb
+campaign_visibility_all_time_visible:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'TRUE'
+campaign_visibility_visible_from:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+campaign_visibility_visible_to:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+categories:
+  json_type: array
+  td_type: array(varchar)
+  mandatory: true
+  pydantic_type: List
+  example: '[]'
+cost_in_points:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '3600'
+coupons:
+  json_type: array
+  td_type: array(varchar)
+  mandatory: true
+  pydantic_type: List
+  example: IT
+created_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '["54EUR"]'
+days_inactive:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-07-20 17:05:13'
+days_valid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0'
+featured:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0'
+fulfillment_tracking:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'FALSE'
+harmonization_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'FALSE'
+labels_key:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: VALID
+labels_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '16'
+levels:
+  json_type: array
+  td_type: array(varchar)
+  mandatory: true
+  pydantic_type: List
+  example: ''
+name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+point_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: OpenLoyalty
+public:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '["fc4f38fc-7d46-4151-a064-f877884fe14c", "2caafd86-a40b-45e0-ac85-ea57cb0b05ff",
+    "2803a6bd-2374-46b6-a51f-839f7c4bbe46"]'
+reward:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 54 EUR Discount
+reward_campaign_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0'
+reward_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'FALSE'
+segments:
+  json_type: array
+  td_type: array(varchar)
+  mandatory: true
+  pydantic_type: List
+  example: discount_code
+single_coupon:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 0e3919ab-58f6-4db8-8008-0027635930eb
+unlimited:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '54'
+usage_left:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '[]'
+users_who_used_this_campaign_count:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'TRUE'

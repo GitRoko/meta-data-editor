@@ -14,9 +14,9 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import { getExample } from "../features/helperFunctions.js";
-import { fakerDefaultValue, typeRules } from "../features/rules";
-
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
+import { fakerDefaultValue } from "../features/rules";
+// import { fakerDefaultValue, typeRules } from "../features/rules";
 
 export default {
   name: "SelectTypeTable",
@@ -47,22 +47,30 @@ export default {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
 
-    changeSelectValue(newValue) {
+    changeSelectValue(newValue, oldValue) {
       const data = this.getPreparedDataTable();
      
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.json_type = newValue;
-          const parentId = this.path.split(':')[0] || this.path;
-          const currentItem = this.$store.getters.getCurrentItem(parentId);
-          const currentTypeFaker = typeRules.faker[newValue];
+          //  const getNewFaker = (type, id) => {
+          //   const currentTypeFaker = typeRules.faker[type];
+          //   const newFaker = { ...fakerDefaultValue[currentTypeFaker[0]], rowId: id};
+          //   return  {...newFaker};
+          // }
+          if (newValue !== oldValue && newValue !== 'array' && newValue !== 'object') {
+            let newKeys = Object.keys(fakerDefaultValue[newValue]);
+          let keys = Object.keys(item);
+          keys.forEach(key => {
+            if (key !== 'rowId' && key !== 'type') {
+              delete item[key]
+            }
+          });
+             newKeys.forEach(key => {
+              item[key] = fakerDefaultValue[newValue][key]            
+            });
+          }
           
-           if (currentItem) {
-             const newFaker ={ ...fakerDefaultValue[currentTypeFaker[0]]};
-                 newFaker.rowId = uuidv4();
-                 delete currentItem.faker;
-                 currentItem.faker = {...newFaker};
-           }
 
           if (item.json_type === "array" || item.json_type === "object") {
             item.nested = false;

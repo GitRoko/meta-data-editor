@@ -85,7 +85,7 @@
               :rowId="item.rowId"
               :jsonType="item.json_type"
               :fieldTitle="'td_type'"
-              :selectName="'Td type'"
+              :selectLabel="'Td type'"
               :incomingItemValue="item.td_type"
             />
           </v-col>
@@ -94,7 +94,7 @@
               :rowId="item.rowId"
               :jsonType="item.json_type"
               :fieldTitle="'pydantic_type'"
-              :selectName="'Pydantic type'"
+              :selectLabel="'Pydantic type'"
               :incomingItemValue="item.pydantic_type"
             />
           </v-col>
@@ -130,11 +130,11 @@
           </v-col>
         </v-row>
       </v-container>
-      <template v-if="item.faker !== undefined">
+      <template v-if="item.faker">
         <FakerItem 
-        :rowId="item.rowId"
         :item="item.faker"
-        :path="path"
+        :rowId="item.rowId"
+        :path="path + ':' + item.faker.rowId"
         :jsonType="item.json_type" />
       </template>
     </v-expansion-panel-content>

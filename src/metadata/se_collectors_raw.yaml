@@ -27,8 +27,8 @@ survey_id:
   example: '400013568'
   faker:
     type: foreign
-    dataset: snp_subscriptions_raw
-    field: uuid
+    dataset: se_surveys_raw
+    field: id
 type:
   json_type: string
   td_type: varchar
@@ -238,7 +238,7 @@ response_limit:
   json_type: number
   td_type: varchar
   mandatory: false
-  pydantic_type: Optional[StrictInt]
+  pydantic_type: StrictInt
   example: null
   faker:
     type: enum
@@ -248,7 +248,7 @@ sender_email:
   json_type: string
   td_type: varchar
   mandatory: false
-  pydantic_type: Optional[StrictStr]
+  pydantic_type: StrictStr
   example: null
   faker:
     type: enum
@@ -258,7 +258,7 @@ close_date:
   json_type: string
   td_type: varchar
   mandatory: false
-  pydantic_type: Optional[StrictStr]
+  pydantic_type: StrictStr
   example: null
   faker:
     type: enum
@@ -282,3 +282,13 @@ href:
   faker:
     type: sample
     sample: urls
+respondent_authentication:
+  json_type: boolean
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictBool
+  example: false
+  faker:
+    type: enum
+    values:
+    - false

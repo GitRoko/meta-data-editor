@@ -66,10 +66,19 @@ export default {
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.sample = newValue;
+          console.log(item);
          
         } else {
           if (item.faker) {
             changeValue(item.faker);
+          } 
+          if (item.array) {
+            changeValue(item.array);
+          } 
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
           }
         }
       }

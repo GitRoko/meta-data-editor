@@ -1,0 +1,205 @@
+campaign_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 00000000-0000-0000-0000-000000000000
+  faker:
+    type: uuid
+campaign_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: cashback
+  faker:
+    type: enum
+    values:
+    - cashback
+campaign_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: cashback
+  faker:
+    type: enum
+    values:
+    - cashback
+can_be_used:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: true/false
+  faker:
+    type: enum
+    values:
+    - 'true'
+    - 'false'
+cashback_status_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '1'
+cashback_status_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '1'
+cashback_status_message:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '1'
+cashback_status_provider:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '1'
+cost_in_points:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '1'
+coupon_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: blank
+  faker:
+    type: enum
+    values:
+    - blank
+coupon_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 00000000-0000-0000-0000-000000000000
+  faker:
+    type: uuid
+current_points_amount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'true'
+  faker:
+    type: enum
+    values:
+    - '100'
+    - '200'
+    - '300'
+    - '500'
+customer_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 00000000-0000-0000-0000-000000000000
+  faker:
+    type: foreign
+    dataset: ol_customers_raw
+    field: customerid
+delivery_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ordered
+  faker:
+    type: enum
+    values:
+    - Ordered
+purchase_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2021
+    max_year: 2022
+purchased_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2022
+    max_year: 2023
+returned_amount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '1'
+    - '2'
+    - '5'
+reward_campaign_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 00000000-0000-0000-0000-0000000000000
+  faker:
+    type: uuid
+status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: active/inactive
+  faker:
+    type: enum
+    values:
+    - active
+    - inactive
+used:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: true/false
+  faker:
+    type: enum
+    values:
+    - 'true'
+    - 'false'

@@ -4,6 +4,8 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import { v4 as uuidv4 } from "uuid";
+import { fakerDefaultValue, typeRules } from "../features/rules";
+
 
 export default {
   name: "NestedToggler",
@@ -44,11 +46,20 @@ export default {
           item.nested = newValue;
           // eslint-disable-next-line no-debugger
           // debugger;
+          const getNewFaker = (type) => {
+            const currentTypeFaker = typeRules.faker[type];
+            const newFaker = { ...fakerDefaultValue[currentTypeFaker[0]]};
+            return  {...newFaker, rowId: uuidv4()};
+          }
+
+
           if (
             newValue === true &&
             item.json_type === "array" &&
             item.array === undefined
           ) {
+            
+            
             item.array = {
               json_type: "string",
               mandatory: false,
@@ -56,6 +67,8 @@ export default {
               example: "Some string",
               rowId: uuidv4(),
             };
+            item.array.faker = getNewFaker(item.array.json_type);
+
             delete item.example;
           }
 
@@ -74,6 +87,9 @@ export default {
                 rowId: uuidv4(),
               },
             ];
+
+            item.object[0].faker = getNewFaker(item.object[0].json_type);
+
             delete item.example;
            
           }

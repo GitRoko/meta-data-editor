@@ -1,0 +1,244 @@
+accountid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+comment:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: words
+createdat:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+customeremail:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: example@example.com
+  faker:
+    type: sample
+    sample: emails
+customerfirstname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: firstnames
+customerid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 00000000-0000-0000-0000-0000000000000
+  faker:
+    type: foreign
+    dataset: ol_customers_raw
+    field: customerid
+customerlastname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: lastnames
+customerphone:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: phone
+expiresat:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2022
+    max_year: 2023
+issuer:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - system
+pointstransferid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+posidentifier:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - ecommerce2
+posname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - eCommerce2
+state:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - active
+    - expired
+storecode:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - DEFAULT
+storecurrency:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - EUR
+    - USD
+storeid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+transactiondocumentnumber:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+transactiongrosslabels:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - - LABEL_1
+      - LABEL_2
+      - LABEL_3
+    - - LABEL_3
+      - LABEL_4
+      - LABEL_5
+    - - LABEL_6
+      - LABEL_7
+      - LABEL_8
+transactiongrossvalue:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '50'
+    - '100'
+    - '200'
+    - '300'
+transactionid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - adding
+    - removing
+value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '50'
+    - '100'
+    - '200'
+    - '300'

@@ -1,0 +1,268 @@
+updated_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2021
+    max_year: 2022
+attribute_set_id:
+  json_type: number
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictInt
+  example: '20'
+  faker:
+    type: integer
+    unique: false
+    to_str: false
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+created_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+    min_year: 2020
+    max_year: 2021
+custom_attributes:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List[Dict]
+  example:
+  - key: value
+  faker:
+    type: enum
+    values:
+    - null
+    - - attribute_code: image
+        value: /l/o/logic-compact-full-kit.jpg
+      - attribute_code: url_key
+        value: logic-compact-fullkit-slate-grey
+    - - attribute_code: description
+        value: "Logic Compact \xE8 la nostra novit\xE0 tra i vaporizzatori"
+      - attribute_code: image
+        value: /l/o/logic-compact-full-kit.jpg
+extension_attributes:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    key: value
+  faker:
+    type: enum
+    values:
+    - website_ids: []
+      category_links: []
+      promo_badge:
+        promo_badge_value: '#10b130'
+        promo_badge_label: New
+id:
+  json_type: number
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 2165
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+media_gallery_entries:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List[Dict]
+  example:
+  - key: value
+  faker:
+    type: enum
+    values:
+    - - id: 1111
+        media_type: image
+        label: Scegli una sigaretta elettronica Logic Compact blu nel negozio online
+          Logic Vapes
+        position: 2
+        disabled: false
+        types:
+        - image
+        - small_image
+        - thumbnail
+        - swatch_image
+        file: /cache/f386e25bbf62087297/l/o/logic_compact_blu_2_6.jpg
+        extension_attributes: {}
+name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom Device
+  faker:
+    type: enum
+    values:
+    - Ploom Steel Silver
+    - Ploom Soft Champagne
+    - Ploom Matte Black
+options:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List
+  example: []
+  faker:
+    type: enum
+    values:
+    - null
+    - []
+price:
+  json_type: number
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictFloat
+  example: 100.0
+  faker:
+    type: enum
+    values:
+    - null
+    - 85.5
+    - 100.0
+    - 120.0
+    - 140.0
+product_links:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List[Dict]
+  example:
+  - key: value
+  faker:
+    type: enum
+    values:
+    - - sku: logic compact vaporizzatore
+        link_type: related
+        linked_product_sku: logic compact ricariche pod
+        linked_product_type: configurable
+        position: 8
+sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 20BD091250
+  faker:
+    type: code
+    length: 10
+    upper: true
+status:
+  json_type: number
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1/2
+  faker:
+    type: enum
+    values:
+    - 1
+    - 1
+    - 1
+    - 2
+tier_prices:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List
+  example: []
+  faker:
+    type: enum
+    values:
+    - null
+    - []
+type_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: simple
+  faker:
+    type: enum
+    values:
+    - simple
+visibility:
+  json_type: number
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1/2/3/4
+  faker:
+    type: enum
+    values:
+    - 1
+    - 2
+    - 3
+    - 4
+weight:
+  json_type: number
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictInt
+  example: 10
+  faker:
+    type: integer
+    unique: false
+    to_str: false
+product_category:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: simple
+  faker:
+    type: enum
+    values:
+    - Device
+    - Flavour
+    - Accessories
+    - Bundle
+type_of_product_option:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: simple
+  faker:
+    type: enum
+    values:
+    - colour
+    - flavour
+    - size
+product_option:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: simple
+  faker:
+    type: enum
+    values:
+    - red
+    - blue
+    - vanilla
+    - chocolate
+    - small
+    - large

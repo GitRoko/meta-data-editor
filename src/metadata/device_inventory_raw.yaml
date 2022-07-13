@@ -1,0 +1,93 @@
+warrantyexpirydate:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '2021-04-20T12:39:00.07Z'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S.%fZ'
+    min_year: 2023
+    max_year: 2033
+userassignmentdate:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '2021-04-20T12:39:00.07Z'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S.%fZ'
+registrationdate:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '2022-05-27T10:23:46.726343Z'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S.%fZ'
+tenantcode:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - JTI_TEST1_TENANT
+    - JTI_TEST2_TENANT
+    - JTI_TEST3_TENANT
+deviceid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+userid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0310256b-0c0b-4616-87b1-a436523d9924'
+  faker:
+    type: foreign
+    dataset: cas_consumers_raw
+    field: uuid
+isvirtual:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - 'true'
+    - 'false'
+countrycode:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - IT
+    - DE
+    - CH
+iottenantcode:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid 

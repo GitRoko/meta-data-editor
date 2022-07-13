@@ -1,7 +1,6 @@
 <template>
   <v-select
-    :value="selectValue"
-    @input="changeSelectValue"
+    v-model="selectValue"
     :items="items"
     :label="selectLabel"
     outlined
@@ -14,12 +13,11 @@
 import { mapGetters, mapMutations } from "vuex";
 import { typeRules } from "../features/rules";
 
-
 export default {
   name: "DependentSelectTable",
   props: {
     incomingItemValue: String,
-    selectName: String,
+    selectLabel: String,
     fieldTitle: String,
     rowId: String,
     jsonType: String,
@@ -27,16 +25,14 @@ export default {
   data() {
     return {
       // items: [],
-      selectValue: "",
-      selectLabel: "",
+      selectValue: this.incomingItemValue || "",
     };
   },
   created() {
-    this.selectValue = this.items.includes(this.incomingItemValue)
-      ? this.incomingItemValue
-      : this.items[0];
-
-    this.selectLabel = this.selectName;
+    // this.selectValue = this.incomingItemValue || '';
+    // this.selectValue = this.items.includes(this.incomingItemValue)
+    //   ? this.incomingItemValue
+    //   : '';
   },
   computed: {
     // jsonType() {
@@ -48,12 +44,42 @@ export default {
     //   return '';
     // },
     items() {
-      return typeRules[this.fieldTitle][this.jsonType];
-    }
+      const newItems = typeRules[this.fieldTitle][this.jsonType];
+
+      return newItems;
+    },
   },
   watch: {
     selectValue(newValue, oldValue) {
+      // if (this.items.length === 1) {
+      //   const value = this.items[0];
+      //   this.changeSelectValue(value, oldValue);
+      // } else {
+
       this.changeSelectValue(newValue, oldValue);
+      // }
+    },
+    items() {
+      if (this.items.length === 1) {
+        this.selectValue = this.items[0];
+      } else {
+        this.selectValue = this.items.includes(this.incomingItemValue)
+      ? this.incomingItemValue
+      : '';
+      }
+      this.$forceUpdate();
+
+    },
+    incomingItemValue(newVal) {
+      if (newVal === "" && this.items.length === 1) {
+        this.selectValue = this.items[0];
+      } else if (newVal === "" && this.items.length > 1) {
+        this.selectValue = "";
+      } else {
+        this.selectValue = newVal;
+      }
+      // this.selectValue = newVal;
+      this.$forceUpdate();
     },
   },
   methods: {
@@ -73,12 +99,12 @@ export default {
             changeValue(item.faker);
           }
           if (item.object) {
-            item.object.forEach(item => {
+            item.object.forEach((item) => {
               changeValue(item);
-            })
+            });
           }
         }
-      }
+      };
 
       const newData = data.map((item) => {
         changeValue(item);

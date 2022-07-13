@@ -1,0 +1,14 @@
+# This is an artificial entity to handle all possible cases for syntetic monitoring
+
+id:
+  json_type: id
+  mandatory: true
+  td_type: bigint
+  pydantic_type: StrictInt
+  example: 111
+  description: Yet another id field
+  pii: false
+  faker:
+    type: integer
+    unique: true
+    to_str: false

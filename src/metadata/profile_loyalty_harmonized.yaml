@@ -1,0 +1,228 @@
+amount_excluded_for_level:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+anonymized:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'false'
+average_transaction_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+average_transactions_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+blocked_points:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+currency:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: EUR
+date_created:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-07-14 14:17:22'
+date_first_transaction:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-06-14 14:17:22'
+date_last_transaction:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-06-14 14:17:22'
+date_level_achievement:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2021-07-14 16:17:23'
+expired_points:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+harmonization_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: VALID
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: c61bf52947e49fc58cd6e599afa977ff
+invitation_token:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CNAWBCEGW
+labels_key:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+labels_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 'NULL'
+level:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 10.00%
+level_condition_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0.0'
+level_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: SILVER
+level_percent:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 10.00%
+locked_points:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+loyalty_card_number:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '19736226041626272242'
+next_level:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 30.00%
+next_level_condition_value:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '400.0'
+next_level_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: BLACK
+p2p_points:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+points:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '25.0'
+points_expiring_next_month:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '25.0'
+points_to_next_level:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '6'
+store_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: IT
+sum_of_currency_successfully_redeemed:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+sum_of_exchanged_points_today:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+total_earned_points:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '25.0'
+transactions_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+transactions_amount_without_delivery_costs:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+transactions_count:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+used_points:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0.0'
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: pLOOM

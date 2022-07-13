@@ -1,0 +1,331 @@
+active:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+agreement1:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+agreement2:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+agreement3:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+amountexcludedforlevel:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+anonymized:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+averagetransactionamount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+createdate:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+currency:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - USD
+    - EUR
+customerid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 00000000-0000-0000-0000-0000000000000
+  faker:
+    type: foreign
+    dataset: cas_consumers_raw
+    field: uuid
+email:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: emails
+firstname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: firstnames
+firsttransactiondate:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2020
+    max_year: 2021
+gender:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - M
+    - F
+    - U
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+invitationtoken:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+    upper: true
+    length: 9
+labelskey:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '5'
+    - '10'
+    - '15'
+labelsvalue:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '1'
+    - '2'
+    - '3'
+    - '5'
+    - '8'
+    - '13'
+lastname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: lastnames
+lasttransactiondate:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2021
+    max_year: 2022
+levelachievementdate:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2020
+    max_year: 2021
+levelid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: foreign
+    dataset: ol_levels_raw
+    field: levelid
+levelpercent:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0.10'
+    - '0.15'
+    - '0.20'
+loyaltycardnumber:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+    upper: false
+    length: 9
+storecode:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - DEFAULT
+sumofcurrencysuccessfullyredeemed:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '5'
+    - '10'
+    - '15'
+sumofexchangedpointstoday:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+transactionsamount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+transactionsamountwithoutdeliverycosts:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+transactionscount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+updatedat:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2020
+    max_year: 2021

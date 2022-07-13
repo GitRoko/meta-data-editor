@@ -1,3 +1,4 @@
+// import { readFile } from "@/features/useFileSistemAPI";
 import { readFile, writeFile } from "@/features/useFileSistemAPI";
 import YAML from "yaml";
 import { v4 as uuidv4 } from "uuid";
@@ -76,43 +77,129 @@ export default {
     async saveFile({ state }) {
       if (state.getCurrentFileData !== "") {
         const newCurrentData = () => {
-          let newData = {};
-          const newKeys = state.preparedDataTable.map(
-            (item) => item.field_name
-          );
-          // console.log("newKeys = ", newKeys);
+          const helperField = ['field_name', 'nested', 'rowId'];
 
-          newKeys.forEach((item) => {
-            // console.log("item = ", item);
-            const getItem = state.preparedDataTable.find(
-              (arrayItem) => arrayItem.field_name === item
-            );
-            // console.log("getItem = ", getItem);
-            newData = {
-              ...newData,
-              [item]: {
-                json_type: getItem.json_type,
-                mandatory: getItem.mandatory,
-                td_type: getItem.td_type,
-                pydantic_type: getItem.pydantic_type,
-                example: getItem.example,
-                description: getItem.description,
-                pii: getItem.pii,
-                faker: { ...getItem.faker },
-              },
-            };
-          });
+          const parseItem = (item) => {
+            
+            let itemKeys = Object.keys(item);
+            let newItem = {};
+
+
+            itemKeys.forEach(key => {
+              // if (helperField.includes(key)) {
+              //   delete item[key];
+              // }
+              if (key === 'faker') {
+                newItem.faker = parseItem(item.faker);
+              } else if (key === 'array') {
+
+                  newItem.array = parseItem(item.array);
+
+              } else if (key === 'object') {
+          // // eslint-disable-next-line no-debugger
+          // debugger;
+                  item.object.forEach(item => {
+                    newItem.object = {...newItem.object, [item.field_name]: parseItem(item)};
+                  });
+                
+              } else if (!helperField.includes(key)) {
+
+                newItem = {...newItem, [key]: item[key]};
+              }
+
+            })
+            
+
+              return {...newItem};
+            
+          }
+
+          const data = state.preparedDataTable;
+          let newData = {};
+
+            
+            data.forEach(item => {
+              newData[item.field_name] = parseItem(item);
+            })
+          
+
+          // newKeys.forEach((item) => {
+          //   // console.log("item = ", item);
+          //   const getItem = state.preparedDataTable.find(
+          //     (arrayItem) => arrayItem.field_name === item
+          //   );
+          //   // console.log("getItem = ", getItem);
+          //   newData = {
+          //     ...newData,
+          //     [item]: {
+          //       json_type: getItem.json_type,
+          //       mandatory: getItem.mandatory,
+          //       td_type: getItem.td_type,
+          //       pydantic_type: getItem.pydantic_type,
+          //       example: getItem.example,
+          //       description: getItem.description,
+          //       pii: getItem.pii,
+          //       faker: { ...getItem.faker },
+          //     },
+          //   };
+          // });
 
           return newData;
         };
+        
+        console.log('saveData = ', newCurrentData());
 
         let yamlData = newCurrentData();
         const doc = new Document(yamlData);
         doc.commentBefore = ` ${state.title}`;
+        
 
         await writeFile(state.currentFile.fileHandle, String(doc));
       }
     },
+    // async saveFile({ state }) {
+    //   if (state.getCurrentFileData !== "") {
+    //     const newCurrentData = () => {
+    //       let newData = {};
+    //       const newKeys = state.preparedDataTable.map(
+    //         (item) => item.field_name
+    //       );
+    //       // console.log("newKeys = ", newKeys);
+
+    //       newKeys.forEach((item) => {
+    //         // console.log("item = ", item);
+    //         const getItem = state.preparedDataTable.find(
+    //           (arrayItem) => arrayItem.field_name === item
+    //         );
+    //         // console.log("getItem = ", getItem);
+    //         newData = {
+    //           ...newData,
+    //           [item]: {
+    //             json_type: getItem.json_type,
+    //             mandatory: getItem.mandatory,
+    //             td_type: getItem.td_type,
+    //             pydantic_type: getItem.pydantic_type,
+    //             example: getItem.example,
+    //             description: getItem.description,
+    //             pii: getItem.pii,
+    //             faker: { ...getItem.faker },
+    //           },
+    //         };
+    //       });
+
+    //       return newData;
+    //     };
+        
+    //     console.log('saveData = ', newCurrentData());
+
+    //     // let yamlData = newCurrentData();
+    //     // const doc = new Document(yamlData);
+    //     // doc.commentBefore = ` ${state.title}`;
+        
+
+    //     // await writeFile(state.currentFile.fileHandle, String(doc));
+    //   }
+    // },
 
     async getFileFields(_, handle) {
       // eslint-disable-next-line no-debugger
@@ -194,6 +281,8 @@ export default {
           rows = currentRow.object;
         } else if (currentRow.array) {
           rows = [currentRow.array];
+        } else if (currentRow.faker) {
+          rows = [currentRow.faker];
         } else {
           rows = {};
         }

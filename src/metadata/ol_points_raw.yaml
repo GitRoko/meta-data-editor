@@ -1,0 +1,344 @@
+customerid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 00000000-0000-0000-0000-0000000000000
+  faker:
+    type: foreign
+    dataset: ol_customers_raw
+    field: customerid
+averagetransactionsamount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '20'
+    - '30'
+    - '50'
+    - '75'
+blockedpoints:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '0'
+    - '10'
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+createdat:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+currency:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - EUR
+    - USD
+expiredpoints:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '10'
+    - '20'
+    - '50'
+firstname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: firstnames
+invitationtoken:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+    upper: true
+    length: 9
+lastname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: lastnames
+level:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0.05'
+    - '0.03'
+    - '0.01'
+levelachievementdate:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+levelconditionvalue:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0.0'
+    - '0.1'
+    - '0.2'
+levelname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Starter Active
+    - Test Level Name
+    - Some level Name
+lockedpoints:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '5'
+    - '10'
+    - '20'
+nextlevel:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0.06'
+    - '0.07'
+    - '0.08'
+nextlevelconditionvalue:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0.3'
+    - '0.4'
+    - '0.5'
+nextlevelname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Next Active
+    - Test Level Next
+    - Some level Next
+p2ppoints:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0.0'
+points:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '10'
+  faker:
+    type: enum
+    values:
+    - '10'
+    - '20'
+    - '40'
+    - '100'
+pointsexpiringnextmonth:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '1'
+    - '5'
+    - '10'
+pointstonextlevel:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '100'
+    - '200'
+    - '500'
+    - '1000'
+storecode:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - DEFAULT
+sumofcurrencysuccessfullyredeemed:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '100'
+    - '200'
+    - '500'
+sumofexchangedpointstoday:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '0'
+    - '5'
+    - '10'
+totalearnedpoints:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+transactionsamount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '1'
+    - '5'
+    - '10'
+    - '20'
+transactionsamountwithoutdeliverycosts:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+transactionscount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+usedpoints:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '100'
+    - '200'
+    - '300'
+    - '500'

@@ -1,0 +1,134 @@
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+city:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Milano
+  faker:
+    type: sample
+    sample: cities
+contact_method:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: email,sms
+  faker:
+    type: enum
+    values:
+    - email
+    - sms
+    - direct call
+date_created:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 01-01-2021
+  faker:
+    type: date
+    format: '%d-%m-%Y'
+email:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: example@example.com
+  faker:
+    type: sample
+    sample: emails
+first_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: John
+  faker:
+    type: sample
+    sample: firstnames
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '269711'
+  faker:
+    type: foreign
+    dataset: cas_consumers_raw
+    field: uuid
+last_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Doe
+  faker:
+    type: sample
+    sample: lastnames
+over_eighteen:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Y/N
+  faker:
+    type: enum
+    values:
+    - Y
+    - Y
+    - Y
+    - N
+phone_number:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: +39 333 3333 333
+  faker:
+    type: phone
+profiling_and_personalized_contact:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Y/N
+  faker:
+    type: enum
+    values:
+    - Y
+    - Y
+    - Y
+    - N
+request_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '166'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+terms_conditions_privacy:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Y/N
+  faker:
+    type: enum
+    values:
+    - Y
+    - Y
+    - Y
+    - N
