@@ -1,8 +1,8 @@
 <template>
   <v-select
     @click.native.stop
-    :value="selectValue"
-    @input="changeSelectValue"
+    v-model="selectValue"
+
     :items="items"
     label="Type"
     outlined
@@ -15,8 +15,8 @@
 import { mapGetters, mapMutations } from "vuex";
 import { getExample } from "../features/helperFunctions.js";
 // import { v4 as uuidv4 } from "uuid";
-import { fakerDefaultValue } from "../features/rules";
-// import { fakerDefaultValue, typeRules } from "../features/rules";
+// import { fakerDefaultValue } from "../features/rules";
+import { fakerDefaultValue, typeRules } from "../features/rules";
 
 export default {
   name: "SelectTypeTable",
@@ -47,9 +47,10 @@ export default {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
 
+    // changeSelectValue(newValue) {
     changeSelectValue(newValue, oldValue) {
       const data = this.getPreparedDataTable();
-     
+
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.json_type = newValue;
@@ -58,25 +59,26 @@ export default {
           //   const newFaker = { ...fakerDefaultValue[currentTypeFaker[0]], rowId: id};
           //   return  {...newFaker};
           // }
-          if (newValue !== oldValue && newValue !== 'array' && newValue !== 'object') {
-            let newKeys = Object.keys(fakerDefaultValue[newValue]);
-          let keys = Object.keys(item);
-          keys.forEach(key => {
-            if (key !== 'rowId' && key !== 'type') {
-              delete item[key]
-            }
-          });
-             newKeys.forEach(key => {
-              item[key] = fakerDefaultValue[newValue][key]            
+          if (
+            newValue !== oldValue
+          ) {
+            let newKeys =  Object.keys(fakerDefaultValue[typeRules.faker[newValue][0]]);
+            let keys = Object.keys(item.faker);
+            keys.forEach((key) => {
+              if (key !== "rowId" && key !== "type") {
+                delete item.faker[key];
+              }
+            });
+            newKeys.forEach((key) => {
+              item.faker[key] = fakerDefaultValue[typeRules.faker[newValue][0]][key];
             });
           }
-          
 
           if (item.json_type === "array" || item.json_type === "object") {
             item.nested = false;
 
             if (item.array) {
-              item.example = ['Some string'];
+              item.example = ["Some string"];
               delete item.array;
             }
             if (item.object) {
@@ -87,11 +89,11 @@ export default {
             delete item.nested;
 
             if (item.array) {
-              item.example = `${getExample(item.json_type)}`
+              item.example = `${getExample(item.json_type)}`;
               delete item.array;
             }
             if (item.object) {
-              item.example = `${getExample(item.json_type)}`
+              item.example = `${getExample(item.json_type)}`;
               delete item.object;
             }
           }
@@ -100,9 +102,9 @@ export default {
             changeValue(item.array);
           }
           if (item.object) {
-            item.object.forEach(item => {
+            item.object.forEach((item) => {
               changeValue(item);
-            })
+            });
           }
         }
       };
