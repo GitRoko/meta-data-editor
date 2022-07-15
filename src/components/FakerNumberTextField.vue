@@ -56,8 +56,16 @@ export default {
         if (item.rowId === this.rowId) {
           item[this.field] = JSON.parse(newValue);
         } else {
-          if (item.faker) {
+                   if (item.faker) {
             changeValue(item.faker);
+          }
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
           }
         }
       }

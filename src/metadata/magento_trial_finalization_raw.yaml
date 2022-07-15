@@ -1,0 +1,60 @@
+trial_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 456
+  faker:
+    type: foreign
+    dataset: magento_trial_initialization_raw
+    field: trial_id
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ploom
+  faker:
+    type: enum
+    values:
+      - Ploom
+sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: xyz
+  faker:
+    type: code
+    length: 10
+    upper: true
+cas_consumer_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: foreign
+    dataset: cas_consumers_raw
+    field: id
+timestamp:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2022-01-01 00:00:00'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+event:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: finalisation
+  faker:
+    type: enum
+    values:
+      - finalisation
+      - cancelation

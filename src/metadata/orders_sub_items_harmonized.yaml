@@ -1,0 +1,306 @@
+amount_refunded:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+ids_applied_rule:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '22'
+base_amount_refunded:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+base_discount_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+base_discount_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+base_original_price:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '30'
+base_price:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '24.6'
+base_price_incl_tax:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '30'
+base_row_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+base_row_total:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '20.6'
+base_row_total_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '27.32'
+base_tax_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '2.72'
+base_tax_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+date_created:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-05-07 14:51:35'
+discount_amount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+discount_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+discount_percent:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '50'
+free_shipping:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+is_qty_decimal:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+is_virtual:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+id_sub_item:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '5565'
+name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 24x Ricariche pod Multipack MIX dynamic
+no_discount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+id_order:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1424'
+original_price:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '30'
+price:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '24.6'
+price_incl_tax:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '30'
+id_product:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '2378'
+product_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: bundle
+qty_canceled:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+qty_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+qty_ordered:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1'
+qty_refunded:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+qty_returned:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+qty_shipped:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+id_quote_item:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '25669'
+row_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+row_total:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '24.6'
+row_total_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '27.32'
+row_weight:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '4'
+sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: COMPACT-MULTIPACK24-MIX-1-20B3203250-20B3203250-20B3203250-20B3203250
+id_store:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1'
+tax_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '2.72'
+tax_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+date_updated:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-05-07 14:51:35'
+weight:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '4'
+id_option_bundle_options:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '218'
+bundle_options_option_qty:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1'
+bundle_options_option_selections:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1229'
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom

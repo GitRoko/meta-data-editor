@@ -1,0 +1,378 @@
+active:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+brandicon:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+brandname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Ploom
+campaignactivity:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    key: value
+  faker:
+    type: enum
+    values:
+    - activeFrom: '2022-01-01T01:01:01+01:00'
+      activeTo: '2022-01-01T01:01:01+01:00'
+    - activeFrom: '2021-01-01T01:01:01+01:00'
+      activeTo: '2021-01-01T01:01:01+01:00'
+campaignactivityalltimeactive:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+campaignid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+campaignvisibilityalltimevisible:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+campaignvisibilityvisiblefrom:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2020
+    max_year: 2021
+campaignvisibilityvisibleto:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+    min_year: 2021
+    max_year: 2022
+categories:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - - '1'
+      - '2'
+      - '3'
+    - - '3'
+      - '4'
+      - '5'
+    - - '6'
+      - '7'
+      - '8'
+costinpoints:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '5'
+    - '10'
+    - '50'
+    - '100'
+    - '150'
+coupons:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - - '1'
+      - '2'
+      - '3'
+    - - '3'
+      - '4'
+      - '5'
+    - - '6'
+      - '7'
+      - '8'
+createdate:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20+01:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S+01:00'
+daysinactive:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+daysvalid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+featured:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+fulfillmenttracking:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+labelskey:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - vinaphone_card
+labelsvalue:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '101'
+    - '102'
+    - '103'
+levels:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - []
+    - - 00000000-0000-0000-0000-000000000001
+    - - 00000000-0000-0000-0000-000000000002
+      - 00000000-0000-0000-0000-000000000003
+    - - 00000000-0000-0000-0000-000000000004
+      - 00000000-0000-0000-0000-000000000005
+      - 00000000-0000-0000-0000-000000000006
+name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'Cashback Campaign #1'
+    - 'Cashback Campaign #2'
+    - 'Cashback Campaign #3'
+pointvalue:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+public:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+reward:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - cashback
+    - points
+rewardcampaignid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+rewardvalue:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - '50'
+    - '100'
+    - '200'
+    - '300'
+segments:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - []
+    - - 00000000-0000-0000-0000-000000000001
+    - - 00000000-0000-0000-0000-000000000002
+      - 00000000-0000-0000-0000-000000000003
+    - - 00000000-0000-0000-0000-000000000004
+      - 00000000-0000-0000-0000-000000000005
+      - 00000000-0000-0000-0000-000000000006
+singlecoupon:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+unlimited:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+usageleft:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+userswhousedthiscampaigncount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true

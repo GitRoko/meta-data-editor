@@ -35,7 +35,7 @@ export default {
   watch: {
     textValue(newValue) {
       // console.log("change ", oldValue, newValue);
-        this.changeTextField(newValue);
+      this.changeTextField(newValue);
     },
     incomingValue(newV) {
       this.textValue = newV;
@@ -59,8 +59,16 @@ export default {
           if (item.faker) {
             changeValue(item.faker);
           }
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
+          }
         }
-      }
+      };
 
       const newData = data.map((item) => {
         changeValue(item);

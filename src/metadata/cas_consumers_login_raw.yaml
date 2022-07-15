@@ -1,0 +1,50 @@
+uuid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 0310256b-0c0b-4616-87b1-a436523d9924
+  faker:
+    type: uuid
+event_timestamp:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-05-07 14:42:51'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+event_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: login
+  faker:
+    type: enum
+    values:
+    - account creation
+    - login
+    - email update
+    - reset password
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+service:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ploom.it
+  faker:
+    type: enum
+    values:
+    - ploom.it

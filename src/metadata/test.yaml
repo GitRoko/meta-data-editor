@@ -1,0 +1,61 @@
+name:
+  json_type: string
+  padentic_type: StrictStr
+  example: Blah-blah-blah
+  faker:
+    type: enum
+    values:
+    - Ploom
+    - Test
+id:
+  json_type: number
+  padentic_type: StrictInt
+  example: 111
+  faker:
+    type: enum
+    values:
+    - 1
+    - 2
+    - 3
+list:
+  json_type: array
+  padentic_type: List
+
+  example:
+  - a
+  - b
+  - c
+  faker:
+    type: enum
+    values:
+    - - 1
+      - 2
+      - 3
+    - - 3
+      - 4
+      - 5
+    - - 6
+      - 7
+      - 8
+dict:
+  json_type: object
+  padentic_type: Dict
+  example:
+    a: 1
+  faker:
+    type: enum
+    values:
+    - null
+    - a: 1
+    - a: 2
+pk:
+  json_type: object
+  padentic_type: Dict
+  example:
+    a: 1
+  faker:
+    type: enum
+    values:
+    - null
+    - a: 1
+    - a: 2

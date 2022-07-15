@@ -1,0 +1,89 @@
+id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: integer
+    unique: true
+    to_str: false
+event_id:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+product_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+data:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    someKey: someValue
+  faker:
+    type: enum
+    values:
+    - attachments:
+      - url: https://productreviews-attachments.trustpilot.com/5f5f56890731515_original.png
+      attributeRatings:
+      - attributeId: attributes.default.quality
+        attributeName: Quality
+        rating: 5
+      consumer:
+        email: customer@somewhere.com
+        id: 53bffc3900006400017e5db8
+        name: Customer
+      content: This product was nice but slightly too expensive.
+      hasModerationHistory: 'TRUE'
+      language: en
+      product:
+        brand: Acme
+        cratedAt: '2017-04-20T09:34:44'
+        gtin: '1234567890'
+        id: 507f191e810c19729de860ea
+        mpn: 7TX1641
+        name: Metal Toy Car
+        productImages:
+        - type: 100pxWide
+          url: http://www.mycompanystore.com/products/images/12345.jpg
+        - type: 200pxWide
+          url: http://www.mycompanystore.com/products/images/23456.jpg
+        productUrl: http://www.mycompanystore.com/products/12345.htm
+        sku: ABC-1234
+      redirectUri: https://www.example.com/
+      referenceId: ABC-123-xyz
+      stars: '5'
+      state: published
+created_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+    min_year: 2020
+    max_year: 2021
+updated_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02T20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+    min_year: 2021
+    max_year: 2022

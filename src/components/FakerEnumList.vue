@@ -1,14 +1,15 @@
 <template>
   <v-list class="text-center pt-4">
-    <template v-for="(value, index) in values">
-      <v-list-item :key="index + getKey()">
+    <template v-if="values.length > 0">
+      <v-list-item v-for="(value, index) in values" :key="index + getKey()">
         <template v-slot>
           <v-list-item-content class="py-0">
             <EnumTextField 
             :incomingValue="value" 
             :index="index" 
             :path="path"
-            :jsonType="currentField.json_type"
+            :rowId=" rowId"
+            :jsonType="jsonType"
              />
           </v-list-item-content>
 
@@ -45,6 +46,7 @@ export default {
     incomingValue: Array,
     path: String,
     rowId: String,
+    jsonType: String,
   },
   data() {
     return {
@@ -56,8 +58,8 @@ export default {
   },
   created() {
       this.allData = this.$store.getters.getPreparedDataTable;
-      this.currentField = this.allData.find(item => item.rowId === this.path);
-      this.values = this.currentField.faker.values;
+      this.currentField = this.$store.getters.getCurrentItem(this.path);
+      this.values = this.currentField.values || [];
   },
   watch: {
     // values(newValue, oldValue) {
@@ -73,12 +75,20 @@ export default {
       updateData(newValue) {
         
         const changeValue = (item) => {
-          if (item.rowId === this.path) {
-            item.faker.values = newValue;
+          if (item.rowId === this.rowId) {
+            item.values = newValue;
           } else {
-            if (item.faker) {
-              changeValue(item.faker);
-            }
+          if (item.faker) {
+            changeValue(item.faker);
+          }
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
+          }
           }
         };
         const newData = this.allData.map((item) => {
@@ -92,7 +102,7 @@ export default {
         this.updateData(this.values);
       },
       addItem() {
-        this.values.push(getExample(this.currentField.json_type))
+        this.values.push(getExample(this.jsonType))
         this.updateData(this.values);
       },
     getKey() {

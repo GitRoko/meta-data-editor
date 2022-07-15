@@ -1,0 +1,30 @@
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+    upper: false
+    length: 32
+email:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: emails
+action:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: anonymize
+  faker:
+    type: enum
+    values:
+    - anonymize
+    - collect

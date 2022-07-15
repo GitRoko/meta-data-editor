@@ -1,0 +1,551 @@
+title:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Simple Survey
+  faker:
+    type: enum
+    values:
+    - Simple Survey
+    - Special Survey
+    - Monthly Survey
+    - Year Survey
+nickname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+  faker:
+    type: sample
+    sample: lastnames
+language:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: en
+  faker:
+    type: enum
+    values:
+    - en
+    - es
+    - de
+folder_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0'
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+category:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+  faker:
+    type: enum
+    values:
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - fun
+    - campaign
+    - internal
+    - feedback
+question_count:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+page_count:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+response_count:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 0
+  faker:
+    type: enum
+    values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 8
+    - 15
+    - 24
+    - 52
+    - 33
+    - 117
+    - 134
+    - 367
+date_created:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2022-03-18T10:51:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+date_modified:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2022-03-18T10:51:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S'
+buttons_text:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    next_button: Next
+    prev_button: Prev
+    done_button: Done
+    exit_button: ''
+  faker:
+    type: enum
+    values:
+    - next_button: Next
+      prev_button: Prev
+      done_button: Done
+      exit_button: ''
+is_owner:
+  json_type: boolean
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictBool
+  example: true
+  faker:
+    type: enum
+    values:
+    - true
+    - false
+footer:
+  json_type: boolean
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictBool
+  example: true
+  faker:
+    type: enum
+    values:
+    - true
+    - false
+custom_variables:
+  json_type: object
+  td_type: varchar
+  mandatory: true
+  pydantic_type: Dict
+  example:
+    campaign_id: campaign_id
+    profile_id: profile_id
+  faker:
+    type: enum
+    values:
+    - campaign_id: campaign_id
+      profile_id: profile_id
+href:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://api.surveymonkey.com/v3/surveys/400013568
+  faker:
+    type: sample
+    sample: urls
+analyze_url:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://www.surveymonkey.com/analyze/iBhJDTIpG73kcQdQ5h_2FXyKBETL0EjSbapw7rRa3lEA8_3D
+  faker:
+    type: sample
+    sample: urls
+edit_url:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://www.surveymonkey.com/create/?sm=iBhJDTIpG73kcQdQ5h_2FXyKBETL0EjSbapw7rRa3lEA8_3D
+  faker:
+    type: sample
+    sample: urls
+collect_url:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://www.surveymonkey.com/collect/list?sm=iBhJDTIpG73kcQdQ5h_2FXyKBETL0EjSbapw7rRa3lEA8_3D
+  faker:
+    type: sample
+    sample: urls
+summary_url:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://www.surveymonkey.com/summary/iBhJDTIpG73kcQdQ5h_2FXyKBETL0EjSbapw7rRa3lEA8_3D
+  faker:
+    type: sample
+    sample: urls
+preview:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: https://www.surveymonkey.com/r/Preview/?sm=eflWSaRzIeNKTP4E5OuDVreSAJdjaWdxsjk82DfG0UP1rmiNedKwbU2lqntWGldK
+  faker:
+    type: sample
+    sample: urls
+pages:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List
+  example:
+  - title: ''
+    description: ''
+    position: 1
+    question_count: 1
+    id: '25025535'
+    href: https://api.surveymonkey.com/v3/surveys/400013568/pages/25025535
+    questions:
+    - id: '60091013'
+      position: 1
+      visible: true
+      family: single_choice
+      subtype: vertical
+      layout:
+        bottom_spacing: 0
+        col_width: null
+        col_width_format: null
+        left_spacing: 0
+        num_chars: 50
+        num_lines: 1
+        position: new_row
+        right_spacing: 0
+        top_spacing: 0
+        width: null
+        width_format: null
+      sorting: null
+      required: null
+      validation: null
+      forced_ranking: false
+      headings:
+      - heading: What is the best company in the world?<br>
+      href: https://api.surveymonkey.com/v3/surveys/400013568/pages/25025535/questions/60091013
+      answers:
+        other:
+          position: 0
+          visible: true
+          text: Other (please specify)
+          id: '500951719'
+          num_lines: 1
+          num_chars: 50
+          is_answer_choice: true
+          apply_all_rows: false
+          error_text: Please enter a comment.
+        choices:
+        - position: 1
+          visible: true
+          text: JTI
+          quiz_options:
+            score: 0
+          id: '500951718'
+  faker:
+    type: array
+    occurrence_min: 1
+    occurrence_max: 3
+    values:
+      type: object
+      values:
+        title:
+          type: sample
+          sample: products
+        description:
+          type: sample
+          sample: products
+        position:
+          type: enum
+          values:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+        question_count:
+          type: enum
+          values:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+        id:
+          type: integer
+          unique: true
+          to_str: true
+        href:
+          type: sample
+          sample: urls
+        questions:
+          type: array
+          occurrence_min: 1
+          occurrence_max: 5
+          values:
+            type: object
+            values:
+              id:
+                type: integer
+                unique: true
+                to_str: true
+              position:
+                type: enum
+                values:
+                - 0
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+                - 6
+                - 7
+                - 8
+                - 9
+                - 10
+                - 11
+                - 12
+              visible:
+                type: enum
+                values:
+                - true
+                - false
+              family:
+                type: enum
+                values:
+                - single_choice
+                - multiply_choise
+              subtype:
+                type: enum
+                values:
+                - vertical
+                - horizontal
+              layout:
+                type: enum
+                values:
+                - bottom_spacing: 0
+                  col_width: null
+                  col_width_format: null
+                  left_spacing: 0
+                  num_chars: 50
+                  num_lines: 1
+                  position: new_row
+                  right_spacing: 0
+                  top_spacing: 0
+                  width: null
+                  width_format: null
+              sorting:
+                type: enum
+                values:
+                - null
+              required:
+                type: enum
+                values:
+                - null
+              validation:
+                type: enum
+                values:
+                - null
+              forced_ranking:
+                type: enum
+                values:
+                - false
+                - true
+              headings:
+                type: array
+                occurrence_min: 1
+                occurrence_max: 3
+                values:
+                  type: object
+                  values:
+                    heading:
+                      type: sample
+                      sample: products
+              href:
+                type: sample
+                sample: urls
+              answers:
+                type: object
+                values:
+                  choices:
+                    type: array
+                    occurrence_min: 1
+                    occurrence_max: 3
+                    values:
+                      type: object
+                      values:
+                        position:
+                          type: enum
+                          values:
+                          - 0
+                          - 1
+                          - 2
+                          - 3
+                          - 4
+                          - 5
+                          - 6
+                          - 7
+                          - 8
+                          - 9
+                          - 10
+                          - 11
+                          - 12
+                        visible:
+                          type: enum
+                          values:
+                          - true
+                          - false
+                        text:
+                          type: sample
+                          sample: products
+                        quiz_options:
+                          type: enum
+                          values:
+                          - score: 0
+                        id:
+                          type: integer
+                          unique: true
+                          to_str: true
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '400013568'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+quiz_options:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    feedback:
+      ranges: []
+      ranges_type: disabled
+    is_quiz_mode: true
+    show_results_type: results_and_answers
+  faker:
+    type: object
+    values:
+      feedback:
+        type: object
+        values:
+          ranges:
+            type: array
+            occurrence_min: 0
+            occurrence_max: 0
+            values:
+              type: integer
+              unique: true
+              to_str: false
+          ranges_type:
+            type: enum
+            values:
+            - disabled
+            - enabled
+      is_quiz_mode:
+        type: enum
+        values:
+        - true
+        - false
+      show_results_type:
+        type: enum
+        values:
+        - results_and_answers

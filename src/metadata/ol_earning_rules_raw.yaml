@@ -1,0 +1,176 @@
+active:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+alltimeactive:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+description:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: words
+earningruleid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+eventname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - liqui_new_user_registered
+    - liqui_new_user_not_registered
+hasphoto:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+lastexecutedrule:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 'TRUE'
+    - 'FALSE'
+levels:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - []
+    - - 00000000-0000-0000-0000-000000000001
+    - - 00000000-0000-0000-0000-000000000002
+      - 00000000-0000-0000-0000-000000000003
+    - - 00000000-0000-0000-0000-000000000004
+      - 00000000-0000-0000-0000-000000000005
+      - 00000000-0000-0000-0000-000000000006
+name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - LIQUI - New Registered
+pointsamount:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+pos:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - []
+    - - 00000000-0000-0000-0000-000000000001
+    - - 00000000-0000-0000-0000-000000000002
+      - 00000000-0000-0000-0000-000000000003
+    - - 00000000-0000-0000-0000-000000000004
+      - 00000000-0000-0000-0000-000000000005
+      - 00000000-0000-0000-0000-000000000006
+segments:
+  json_type: array
+  td_type: varchar
+  mandatory: true
+  pydantic_type: List
+
+  example:
+  - someText
+  faker:
+    type: enum
+    values:
+    - []
+    - - 00000000-0000-0000-0000-000000000001
+    - - 00000000-0000-0000-0000-000000000002
+      - 00000000-0000-0000-0000-000000000003
+    - - 00000000-0000-0000-0000-000000000004
+      - 00000000-0000-0000-0000-000000000005
+      - 00000000-0000-0000-0000-000000000006
+storecode:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - DEFAULT
+type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - custom_event

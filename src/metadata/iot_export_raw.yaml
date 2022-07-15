@@ -1,0 +1,158 @@
+enrichments:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    someKey: someValue
+  faker:
+    type: enum
+    values:
+    - null
+    - Tenant: 00000000-0000-0000-0000-000000000001
+      UserId: 00000000-0000-0000-0000-000000000002
+    - Tenant: 00000000-0000-0000-0000-000000000003
+      UserId: 00000000-0000-0000-0000-000000000004
+properties:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List[Dict]
+  example:
+    someKey: someValue
+  faker:
+    type: enum
+    values:
+    - null
+    - - name: UserId
+        value: 00000000-0000-0000-0000-000000000005
+      - name: Tenant
+        value: 00000000-0000-0000-0000-000000000006
+enqueuedtime:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '2021-04-20T12:39:00.07Z'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S.%fZ'
+schema:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Schema1
+    - Schema2
+    - Schema3
+deviceid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+messagetype:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - sms
+    - email
+    - call
+messagesource:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - telemetry
+applicationid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+td_c360_operation:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - '1'
+    - '2'
+    - '3'
+td_c360_operation_time:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: enum
+    values:
+    - 1628752810826
+    - 1628752810727
+    - 1628752813327
+    - 1628752934521
+messageproperties:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    someKey: someValue
+  faker:
+    type: enum
+    values:
+    - null
+    - iothub-creation-time-utc: '2021-01-11T12:21:00.0000000Z'
+    - iothub-creation-time-utc: '2022-02-22T12:21:00.0000000Z'
+telemetry:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    someKey: someValue
+  faker:
+    type: enum
+    values:
+    - null
+    - Location:
+        lat: 52.2296756
+        lon: 21.0122287
+templateid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - dtmi:modelDefinition:jzmonuxec:rwggvssvj1
+    - dtmi:modelDefinition:jzmonuxec:rwggvssvj2
+    - dtmi:modelDefinition:jzmonuxec:rwggvssvj3

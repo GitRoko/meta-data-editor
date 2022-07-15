@@ -1,0 +1,614 @@
+td_url:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - /page_one.html
+    - /page_two.html
+    - /page_three.html
+    - /page_four.html
+td_browser_version:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 1.0.1
+    - 1.0.2
+    - 1.0.3
+    - 1.0.4
+td_os:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Android0
+    - Android1
+    - Android3
+    - Windows3.11
+color:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Scarlet Red Crystal
+    - Scarlet Green Crystal
+    - Scarlet Blue Crystal
+strength:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 2 mg/ml
+    - 4 mg/ml
+    - 8 mg/ml
+    - 12 mg/ml
+td_ip:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: ip
+productbrand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - cash
+    - card
+    - bitcoin
+td_browser:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Chrome Mobile
+    - Netscape Navigator
+    - Mozilla Firefox
+    - Edge
+td_version:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 1.0.1
+    - 1.0.2
+    - 1.0.3
+    - 1.0.4
+productname:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: products
+td_language:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - en-us
+    - en-en
+    - it-ch
+    - de-ch
+productcategory:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - bundles/compact/mix-mentolo
+    - bundles/compact/24-pod-mix
+    - sigarette-elettroniche/compact/crystal-kit
+td_os_version:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - v1
+    - v2
+    - v3
+td_platform:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Linux arm64
+    - Linux armv7l
+    - Linux armv8l
+    - Linux armv9l
+pagetype:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - home page
+    - educational page
+    - test page
+badgetype:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - New
+    - Coming
+    - Bundle
+td_screen:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 640x480
+    - 800x600
+    - 1920x1080
+    - 3840x2160
+td_client_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: uuid
+event:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - checkoutLogin
+    - checkoutBillingAddress
+td_viewport:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 412x722
+    - 445x567
+    - 347x752
+    - 478x326
+td_charset:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - utf-8
+    - iso-8859-1
+    - us-ascii
+    - utf-16
+td_description:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Browse between modern and cheap e-cigarettes.
+    - Design and delicious aromas to savor with quality.
+    - Discover the vape with Logic.
+productid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+td_referrer:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: urls
+productposition:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+list:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - product list > bundles > compact > mix-mentolo
+    - product list > bundles > compact > 24-pod-mix
+    - product list > sigarette-elettroniche > compact > crystal-kit
+td_title:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Vapes For All
+    - Logic Vapes Italia
+    - Negozio sigaretta elettronica
+td_color:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 24-bit
+    - 16-bit
+    - 8-bit
+    - 4-bit
+flavor:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Tabacco
+    - Mentholo
+    - Rose
+td_user_agent:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Mozilla/5.0 (Linux; Android 9; SM-G973F)
+    - AppleWebKit/537.36 (KHTML, like Gecko)
+    - Chrome/83.0.4103.106
+    - Mobile Safari/537.36
+td_path:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - /page_one.html
+    - /page_two.html
+    - /page_three.html
+    - /page_four.html
+productquantity:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '1'
+    - '1'
+    - '2'
+    - '3'
+td_host:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - test.test.jtiweb.co.uk
+badgepromo:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+currencycode:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - USD
+    - EUR
+productprice:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '100.00'
+  faker:
+    type: enum
+    values:
+    - '85.500'
+    - '100.00'
+    - '120.00'
+    - '140.00'
+accounttype:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Ploom
+    - Test
+userid:
+  json_type: string
+  td_type: bigint
+  mandatory: false
+  pydantic_type: StrictStr
+  example: 111
+  faker:
+    type: code
+retailername:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: sample
+    sample: products
+sitelocation:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - footer
+    - account one
+    - user account
+socialaction:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - Like
+socialnetwork:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Facebook
+    - Instagram
+    - Pinterest
+    - Twitter
+kpi_description:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - null
+    - AddToCart
+    - RemoveFromCart
+kpi_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+containerversion:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - 1.0.1
+    - 1.0.2
+    - 1.0.3
+    - 1.0.4
+load_event_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: 111
+  faker:
+    type: integer
+    unique: false
+    to_str: false
+featuretype:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: enum
+    values:
+    - Type_1
+    - Type_2
+    - Type_3
+    - Type_4
+containerid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+clientid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+event_timestamp:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '2020-10-09T11:59:13.351+02:00'
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S.%f+02:00'
+session_id:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: 2020-10-09T11:52:39.787+02:00.94034373
+  faker:
+    type: date
+    format: '%Y-%m-%dT%H:%M:%S.%f+02:00'
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: code
+requestid:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: someText
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom

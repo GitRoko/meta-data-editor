@@ -1,0 +1,472 @@
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '69711'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+uuid:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 0310256b-0c0b-4616-87b1-a436523d9924
+  faker:
+    type: uuid
+email:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: andrea.paesetti@jti.com
+  faker:
+    type: sample
+    sample: emails
+login:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: andrea.paesetti@jti.com
+  faker:
+    type: sample
+    sample: emails
+firstname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Andrea
+  faker:
+    type: sample
+    sample: firstnames
+lastname:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Paesetti
+  faker:
+    type: sample
+    sample: lastnames
+consent:
+  json_type: number
+  td_type: bigint
+  mandatory: false
+  pydantic_type: StrictInt
+  example: 1
+  faker:
+    type: enum
+    values:
+    - null
+    - 1
+    - 2
+    - 3
+date_of_birth:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: 21.07.1982
+  faker:
+    type: date
+    format: '%d.%m.%Y'
+    min_year: 1960
+    max_year: 2000
+phone:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: +38099999999
+  faker:
+    type: phone
+is_email_confirmed:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '0'
+  faker:
+    type: enum
+    values:
+    - null
+    - '0'
+    - '1'
+is_phone_confirmed:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - null
+    - '0'
+    - '1'
+custom_attributes:
+  json_type: object
+  td_type: varchar
+  mandatory: false
+  pydantic_type: Dict
+  example:
+    activity_score: 10
+    loyalty_points: 5
+    unsubscribe_token: xxx
+  faker:
+    type: object
+  object:
+    preferredLanguage:
+      json_type: object
+      td_type: varchar
+      mandatory: false
+      pydantic_type: Dict
+      faker:
+        type: object
+      object:
+        language:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: someText
+          faker:
+            type: sample
+            sample: names
+    newsletterPreferences:
+      json_type: object
+      td_type: varchar
+      mandatory: false
+      pydantic_type: Dict
+      faker:
+        type: object
+      object:
+        email:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: andrea.paesetti@jti.com
+          faker:
+            type: sample
+            sample: emails
+        category:
+          json_type: object
+          td_type: varchar
+          mandatory: false
+          pydantic_type: Dict
+          faker:
+            type: object
+          object:
+            news:
+              json_type: boolean
+              mandatory: false
+              pydantic_type: StrictBool
+              example: false
+              faker:
+                type: enum
+                values:
+                - false
+                - true
+            updates:
+              json_type: boolean
+              mandatory: false
+              pydantic_type: StrictBool
+              example: false
+              faker:
+                type: enum
+                values:
+                - false
+                - true
+            promotions:
+              json_type: boolean
+              mandatory: false
+              pydantic_type: StrictBool
+              example: false
+              faker:
+                type: enum
+                values:
+                - false
+                - true
+        frequency:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: '111'
+          faker:
+            type: integer
+            unique: false
+            to_str: true
+        marketingEmailsEnabled:
+          json_type: boolean
+          mandatory: false
+          pydantic_type: StrictBool
+          example: false
+          faker:
+            type: enum
+            values:
+            - false
+            - true
+    textMessagePreferences:
+      json_type: object
+      td_type: varchar
+      mandatory: false
+      pydantic_type: Dict
+      faker:
+        type: object
+      object:
+        contact:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: someText
+          faker:
+            type: sample
+            sample: names
+        category:
+          json_type: object
+          td_type: varchar
+          mandatory: false
+          pydantic_type: Dict
+          faker:
+            type: object
+          object:
+            news:
+              json_type: boolean
+              mandatory: false
+              pydantic_type: StrictBool
+              example: false
+              faker:
+                type: enum
+                values:
+                - false
+                - true
+            alert:
+              json_type: boolean
+              mandatory: false
+              pydantic_type: StrictBool
+              example: false
+              faker:
+                type: enum
+                values:
+                - false
+                - true
+        frequency:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: '111'
+          faker:
+            type: integer
+            unique: false
+            to_str: true
+        marketingSmsEnabled:
+          json_type: boolean
+          mandatory: false
+          pydantic_type: StrictBool
+          example: false
+          faker:
+            type: enum
+            values:
+            - false
+            - true
+    postMailPreferences:
+      json_type: object
+      td_type: varchar
+      mandatory: false
+      pydantic_type: Dict
+      faker:
+        type: object
+      object:
+        category:
+          json_type: object
+          td_type: varchar
+          mandatory: false
+          pydantic_type: Dict
+          faker:
+            type: object
+          object:
+            news:
+              json_type: boolean
+              mandatory: false
+              pydantic_type: StrictBool
+              example: false
+              faker:
+                type: enum
+                values:
+                - false
+                - true
+            alert:
+              json_type: boolean
+              mandatory: false
+              pydantic_type: StrictBool
+              example: false
+              faker:
+                type: enum
+                values:
+                - false
+                - true
+        addresses:
+          json_type: array
+          td_type: varchar
+          mandatory: false
+          pydantic_type: List[Dict]
+          faker:
+            type: array
+            occurrence_min: 1
+            occurrence_max: 2
+        frequency:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: '111'
+          faker:
+            type: integer
+            unique: false
+            to_str: true
+        selectedAddressId:
+          json_type: string
+          mandatory: false
+          pydantic_type: StrictStr
+          example: someText
+          faker:
+            type: code
+            upper: true
+            length: 6
+    subscriber_uuid:
+      json_type: string
+      td_type: varchar
+      mandatory: true
+      pydantic_type: StrictStr
+      example: 0310256b-0c0b-4616-87b1-a436523d9924
+      faker:
+        type: uuid
+addresses:
+  json_type: array
+  td_type: varchar
+  mandatory: false
+  pydantic_type: List[Dict]
+  faker:
+    type: array
+    occurrence_min: 1
+    occurrence_max: 2
+    values:
+      type: object
+      values:
+        city:
+          type: sample
+          sample: cities
+        lastname:
+          type: sample
+          sample: lastnames
+        region_id:
+          type: integer
+          unique: false
+          to_str: false
+        postcode:
+          type: zip
+        firstname:
+          type: sample
+          sample: firstnames
+        customer_id:
+          type: integer
+          unique: false
+          to_str: false
+        country_id:
+          type: integer
+          unique: false
+          to_str: false
+        region:
+          type: object
+          values:
+            region:
+              type: sample
+              sample: cities
+            region_id:
+              type: integer
+              unique: false
+              to_str: true
+            region_code:
+              type: code
+              upper: true
+              length: 2
+        id:
+          type: integer
+          unique: true
+          to_str: false
+        street:
+          type: array
+          occurrence_min: 1
+          occurrence_max: 2
+          values:
+            type: sample
+            sample: addresses
+        default_shipping:
+          type: enum
+          values:
+          - true
+          - false
+        telephone:
+          type: phone
+        default_billing:
+          type: enum
+          values:
+          - true
+          - false
+created_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-04-28 13:25:08'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+updated_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-05-07 14:42:51'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+gender:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: M
+  faker:
+    type: enum
+    values:
+    - null
+    - M
+    - F
+    - U
+language:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: en
+  faker:
+    type: enum
+    values:
+    - null
+    - en
+    - it
+    - de
+is_age_verified:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '1'
+  faker:
+    type: enum
+    values:
+    - '0'
+    - '1'

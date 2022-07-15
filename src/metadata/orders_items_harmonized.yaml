@@ -1,0 +1,474 @@
+aams:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: B5851
+amount_refunded:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+applied_taxes_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: ''
+applied_taxes_base_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: ''
+applied_taxes_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+applied_taxes_percent:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+applied_taxes_title:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+applied_taxes_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+base_amount_refunded:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+base_discount_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+base_discount_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+base_original_price:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '7.5'
+base_price:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '4.78'
+base_price_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '5.83'
+base_row_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '57.34'
+base_row_total:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '57.34'
+base_row_total_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '69.96'
+base_tax_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '12.62'
+base_tax_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '12.62'
+bundle_options_option_qty:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+bundle_options_option_selections:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+contact_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+country:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: IT
+date_created:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1598941569'
+date_created_ts:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '44075.30983'
+date_updated:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1598942182'
+date_updated_ts:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '44075.31692'
+device_serial_number:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+discount_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+discount_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+discount_percent:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+free_shipping:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+harmonization_status:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: VALID
+id_applied_taxes_item:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+id_batch_harm:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+id_batch_raw:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+id_item:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '26404'
+id_legacy_system:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '3'
+id_option_bundle_options:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+id_order:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '6763'
+id_product:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '2262'
+id_profile:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 48a04880724f763d93a02ab9aa79c766
+id_profile_legacy:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ef2be11842d8b5ec5cd7ccac5b8d7233
+id_store:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '1'
+id_sub_item:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '26401'
+ids_applied_rule:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+is_accessory:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0'
+is_device:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '0'
+is_qty_decimal:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+is_refill:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1'
+is_virtual:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+legacy_system:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Magento Logic
+name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Logic Compact ricariche pod-Intense Tobaco-18
+no_discount:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+original_price:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '7.5'
+payment_method:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+preferred_stick_flavour_sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+price:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '4.78'
+price_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '5.83'
+product_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: simple
+profile_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+qty_canceled:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+qty_invoiced:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '12'
+qty_ordered:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '12'
+qty_refunded:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+qty_returned:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+qty_shipped:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '0'
+quote_item_id:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: '116662'
+row_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '57.34'
+row_total:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '57.34'
+row_total_incl_tax:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '69.96'
+row_weight:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '0'
+sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 20B5851250
+tax_amount:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '12.62'
+tax_invoiced:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '12.62'
+to_be_deleted:
+  json_type: number
+  td_type: bigint
+  mandatory: true
+  pydantic_type: StrictInt
+  example: ''
+weight:
+  json_type: number
+  td_type: double
+  mandatory: true
+  pydantic_type: StrictFloat
+  example: '2'
+product_category:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: ''
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom

@@ -26,8 +26,8 @@
       <!-- <v-divider></v-divider> -->
 
       <v-list flat>
-        <v-list-item-group color="primary">
-          <!-- <v-list-item @click="createFile">
+        <!-- <v-list-item-group color="primary">
+          <v-list-item @click="createFile">
             <v-list-item-icon>
               <v-icon>mdi-file-plus-outline</v-icon>
             </v-list-item-icon>
@@ -35,8 +35,8 @@
             <v-list-item-content>
               <v-list-item-title>New file</v-list-item-title>
             </v-list-item-content>
-          </v-list-item> -->
-        </v-list-item-group>
+          </v-list-item>
+        </v-list-item-group> -->
         <!-- <v-divider></v-divider> -->
 
         <v-list-item @click="openDirectory">
@@ -58,7 +58,7 @@
             <v-list-item-title>Save file</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <!-- <v-divider></v-divider>
+        <v-divider></v-divider>
         <v-list-item @click="deleteFile">
           <v-list-item-icon>
             <v-icon>mdi-file-remove-outline</v-icon>
@@ -67,7 +67,7 @@
           <v-list-item-content>
             <v-list-item-title>Delete file</v-list-item-title>
           </v-list-item-content>
-        </v-list-item> -->
+        </v-list-item>
         <v-divider></v-divider>
       </v-list>
 
@@ -166,42 +166,42 @@ export default {
       this.getActiveFileData();
       this.hasActiveFile = true;
     },
-    // async deleteFile() {
-    //   const directoryHandle = this.getCurrentFileDirHandler;
-    //   const file_name = this.getCurrentFileName;
+    async deleteFile() {
+      const directoryHandle = this.getCurrentFileDirHandler;
+      const file_name = this.getCurrentFileName;
 
-    //   await directoryHandle.removeEntry(file_name);
+      await directoryHandle.removeEntry(file_name);
 
-    //   const newAllFiles = [];
+      const newAllFiles = [];
 
-    //   await this.allFiles.forEach((item) => {
-    //     if (item.fileName !== file_name) {
-    //       newAllFiles.push(item);
-    //     }
-    //   });
-    //   // console.log(newAllFiles);
+      await this.allFiles.forEach((item) => {
+        if (item.fileName !== file_name) {
+          newAllFiles.push(item);
+        }
+      });
+      // console.log(newAllFiles);
 
-    //   this.updateFiles(newAllFiles);
-    //   this.hasActiveFile = false;
-    //   this.updateActiveFile(null);
-    //   this.updateActiveFileData(null);
-    //   this.updateTitle("");
-    //   // await this.openDirectory();
-    // },
-    // async createFile() {
-    //   const options = {
-    //     types: [
-    //       {
-    //         description: "Text Files",
-    //         accept: {
-    //           "text/plain": [".yaml"],
-    //         },
-    //       },
-    //     ],
-    //   };
-    //   const handle = await window.showSaveFilePicker(options);
-    //   return handle;
-    // },
+      this.updateFiles(newAllFiles);
+      this.hasActiveFile = false;
+      this.updateActiveFile(null);
+      this.updateActiveFileData(null);
+      this.updateTitle("");
+      // await this.openDirectory();
+    },
+    async createFile() {
+      const options = {
+        types: [
+          {
+            description: "Text Files",
+            accept: {
+              "text/plain": [".yaml"],
+            },
+          },
+        ],
+      };
+      const handle = await window.showSaveFilePicker(options);
+      return handle;
+    },
   },
 };
 </script>

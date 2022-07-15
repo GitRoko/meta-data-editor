@@ -1,0 +1,150 @@
+rep_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: R08
+  faker:
+    type: code
+producer_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '120754'
+  faker:
+    type: code
+sale_type_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: P
+  faker:
+    type: enum
+    values:
+    - P
+    - N
+product_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '16'
+  faker:
+    type: code
+product_sku:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '1000016000'
+  faker:
+    type: code
+product_description:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: OLD HOLBORN YELLOW 40GR*40GR
+  faker:
+    type: sample
+    sample: products
+goods_group:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: A4
+  faker:
+    type: enum
+    values:
+    - A1
+    - A3
+    - A5
+    - A7
+validity:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: A
+  faker:
+    type: enum
+    values:
+    - A
+    - B
+    - C
+    - D
+expiration_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 18/06/2023
+  faker:
+    type: date
+    format: '%d/%b/%Y'
+    min_year: 2022
+    max_year: 2023
+sector_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: F5
+  faker:
+    type: enum
+    values:
+    - F1
+    - F2
+    - F3
+    - F4
+group:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Group
+  faker:
+    type: enum
+    values:
+    - null
+    - Group_1
+    - Group_2
+    - Group_3
+country:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: '40'
+  faker:
+    type: enum
+    values:
+    - null
+    - IT
+    - CH
+    - DE
+validity_date:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: 18/06/2018
+  faker:
+    type: date
+    format: '%d/%b/%Y'
+    min_year: 2021
+    max_year: 2022
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+    - Winston

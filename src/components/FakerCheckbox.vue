@@ -5,7 +5,7 @@
     :label="labelName"
     color="primary"
     hide-details
-    class="field_name__checkbox  mt-0 ml-2"
+    class="field_name__checkbox px-0 mt-0 ml-2"
   ></v-checkbox>
 </template>
 
@@ -50,6 +50,14 @@ export default {
         } else {
           if (item.faker) {
             changeValue(item.faker);
+          }
+          if (item.array) {
+            changeValue(item.array);
+          }
+          if (item.object) {
+            item.object.forEach((item) => {
+              changeValue(item);
+            });
           }
         }
       };

@@ -1,0 +1,402 @@
+number:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CS0002523
+  faker:
+    type: code
+    upper: true
+    length: 40
+contact_type:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Email
+  faker:
+    type: enum
+    values:
+    - Email
+    - Web
+    - Chat
+    - Phone Inbound
+    - Phone Outbound
+u_point_of_contact:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: By Tobacconist
+  faker:
+    type: enum
+    values:
+    - Direct by Consumer
+    - By Tobacconist
+    - By Flagship Store
+    - By Embassador
+    - Other
+u_description_of_poc:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Test Description
+  faker:
+    type: sample
+    sample: words
+consumer:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: hello@uk.ploomcare.com
+  faker:
+    type: sample
+    sample: emails
+u_brand:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+    - Logic
+u_market:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: France
+  faker:
+    type: enum
+    values:
+    - France
+    - United Kingdom
+u_product_category:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Test Product Category 1
+  faker:
+    type: sample
+    sample: products
+product:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Test Product 1
+  faker:
+    type: sample
+    sample: products
+short_description:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Lorem ipsum dolor
+  faker:
+    type: sample
+    sample: words
+description:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  faker:
+    type: sample
+    sample: words
+priority:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 1 - Critical
+  faker:
+    type: enum
+    values:
+    - 1 - Critical
+    - 2 - High
+    - 3 - Moderate
+    - 4 - Low
+    - 5 - Planning
+assignment_group:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: FR Agent
+  faker:
+    type: enum
+    values:
+    - FR Agent 1
+    - FR Agent 2
+    - FR Agent 3
+assigned_to:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CC Agent
+  faker:
+    type: enum
+    values:
+    - CC Agent 1
+    - CC Agent 2
+    - CC Agent 3
+u_select_template:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Recycling
+  faker:
+    type: enum
+    values:
+    - Defective Product
+    - Defective Product (Shop)
+    - Defective Product (Site)
+    - Leaking Compact Capsule
+    - Lost Package
+    - New Product Request
+    - Personalized Offers Error
+    - Recycling
+    - Refund following Return Parcel
+    - Request for Health Problem
+    - Return and Refund
+    - Stevo's template
+    - Strange colored capsules
+    - Technical Error
+    - TestingTEMPLATE
+u_case_category:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Inquiry
+  faker:
+    type: enum
+    values:
+    - Comment
+    - Complaint
+    - Inquiry
+    - Other Contact
+    - Special Complaint
+u_case_sub_category:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Design
+  faker:
+    type: enum
+    values:
+    - Age Verification
+    - Availability
+    - Battery issue
+    - Company Related
+    - Delivery
+    - Design
+    - Faulty device
+    - Ingredients
+    - Not Company Related
+    - Order
+    - Other
+    - Price
+    - Product Quality
+    - Product Query
+    - Promotion
+    - RDS
+    - Special HRC
+    - Special Legal
+    - Special Safety
+    - Sustainability
+    - Taste
+    - User guidance
+    - Web Site Related
+u_case_detail:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Accesories
+  faker:
+    type: enum
+    values:
+    - Accesories
+    - Accessory Price
+    - Account query
+    - Activation Button
+    - Age Verification Status
+    - Any other query/issue not mentioned
+    - Authorities Involved
+    - Battery Durability
+    - Broken device
+    - Burn
+    - Burnt taste/smell
+    - Capsule/Stick/Refill composition
+    - Color
+    - Connectivity Heating Unit
+    - Damage to someone
+    - Damage to something
+    - Delayed delivery
+    - Delivery Costs
+    - Delivery did not arrive
+    - Device material
+    - Device not working (never worked)
+    - Device Price
+    - Device stopped working
+    - Discount Code
+    - Disposal of battery
+    - Does not charge anymore
+    - Does not charge anymore
+    - Doesn't heat up the sticks
+    - Draw Efforts
+    - Foreign Delivery (outside nation)
+    - Free Trial
+    - Functionality cover
+    - ID Valid?
+    - In-store availability
+    - Items missing
+    - Items received?
+    - Job Request
+    - Leakage
+    - LED indication
+    - LED indication
+    - Legislation
+    - Mispack
+    - Nearest Tobacco Shop
+    - New Supplier Proposal
+    - Online availability
+    - Order placing
+    - Other
+    - Other
+    - Packaging (Discreet bag)
+    - Packaging material
+    - Pain to a part of the body
+    - Poison
+    - Positive/Negative
+    - Prize
+    - Recycling Disposal Scheme (RDS)
+    - Refill/Capsule/Stick Price
+    - Replacement Info
+    - Return Info
+    - Shape
+    - Somebody else order
+    - Spam
+    - Sponsorship Request
+    - Stick filters
+    - Stick polywrap
+    - Stick Stuck
+    - Sue
+    - Tobacco stick unheaven heat distribution
+    - Vapor Generation
+    - Web Site Issue (payment/checkout/cart/price)
+    - Web Site Query
+    - What is my tracking number?
+    - Where is my order?
+    - Wrong address (billing/shipping)
+parent:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CC Agent
+  faker:
+    type: enum
+    values:
+    - CC Agent 1
+    - CC Agent 2
+    - CC Agent 3
+    - CC Agent 4
+work_notes:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Test work done
+  faker:
+    type: sample
+    sample: words
+resolved_by:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CC Manager
+  faker:
+    type: sample
+    sample: firstnames
+closed_by:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: CC Agent
+  faker:
+    type: sample
+    sample: firstnames
+resolution_code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Voided/Canceled
+  faker:
+    type: enum
+    values:
+    - Duplicate Issue
+    - Inconclusive - Cannot reproduce
+    - Inconclusive - No workaround
+    - Inconclusive - Out of scope
+    - Solved by Customer
+    - Solved by Customer using auto-responder
+    - Solved - Fixed by closing related PRB
+    - Solved - Fixed by Support/Guidance provided
+    - Solved - Workaround provided based on op
+    - Voided/Canceled
+cause:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Test Cause 1
+  faker:
+    type: enum
+    values:
+    - Test Cause 1
+    - Test Cause 2
+    - Test Cause 2
+close_notes:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Test Resolution Notes 1
+  faker:
+    type: sample
+    sample: words
+resolved_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 2022-05-31 15:14:32
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
+closed_at:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: 2022-05-31 15:15:22
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'

@@ -1,0 +1,71 @@
+brand:
+  json_type: string
+  td_type: varchar
+  mandatory: false
+  pydantic_type: StrictStr
+  example: Ploom
+  faker:
+    type: enum
+    values:
+    - Ploom
+code:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: S10C090972 01A
+  faker:
+    type: code
+    length: 14
+    upper: true
+customer_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '457'
+  faker:
+    type: foreign
+    dataset: cas_consumers_raw
+    field: uuid
+id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '202'
+  faker:
+    type: integer
+    unique: true
+    to_str: true
+product_id:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '80'
+  faker:
+    type: integer
+    unique: false
+    to_str: true
+product_name:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: Ploom Device
+  faker:
+    type: enum
+    values:
+    - Ploom Steel Silver
+    - Ploom Soft Champagne
+    - Ploom Matte Black
+registration_date:
+  json_type: string
+  td_type: varchar
+  mandatory: true
+  pydantic_type: StrictStr
+  example: '2020-02-02 20:20:20'
+  faker:
+    type: date
+    format: '%Y-%m-%d %H:%M:%S'
