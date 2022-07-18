@@ -23,16 +23,16 @@ export const typeRules = {
   },
 };
 
-export function getSelectItems(mainValue, nameValue) {
-  switch (mainValue) {
-    case "string":
-      console.log(typeRules[nameValue][mainValue]);
-      return typeRules[nameValue][mainValue];
+// export function getSelectItems(mainValue, nameValue) {
+//   switch (mainValue) {
+//     case "string":
+//       console.log(typeRules[nameValue][mainValue]);
+//       return typeRules[nameValue][mainValue];
 
-    default:
-      return;
-  }
-}
+//     default:
+//       return;
+//   }
+// }
 
 export const fakerDefaultValue = {
   "array": {
@@ -85,3 +85,4 @@ export const fakerDefaultValue = {
     max_year: 2022,
   },
 };
+
