@@ -9,7 +9,7 @@
         <v-row dense>
           <!-- <v-col v-if="item.hasOwnProperty(field_name)" cols="4" dense> -->
           <v-col v-if="item.field_name !== undefined" cols="4" dense>
-            <TextFieldTable
+            <TextField
               v-if="item.field_name"
               :rowId="item.rowId"
               :textFieldLabel="'Field'"
@@ -18,7 +18,7 @@
             />
           </v-col>
           <v-col v-if="item.json_type !== undefined" cols="3" dense>
-            <SelectTypeTable
+            <JsonTypeSelect
               :path="path"
               :rowId="item.rowId"
               :incomingValue="item.json_type"
@@ -30,7 +30,7 @@
             align-self="center"
             dense
           >
-            <CheckboxTable
+            <CheckboxField
               :rowId="item.rowId"
               :labelName="'Required'"
               :fieldTitle="'mandatory'"
@@ -81,7 +81,7 @@
       <v-container class="py-0">
         <v-row dense class="py-0">
           <v-col v-if="item.td_type !== undefined" cols="2" dense align-self="center">
-            <DependentSelectTable
+            <DependentSelect
               :rowId="item.rowId"
               :jsonType="item.json_type"
               :fieldTitle="'td_type'"
@@ -90,7 +90,7 @@
             />
           </v-col>
           <v-col v-if="item.pydantic_type !== undefined" cols="3" dense >
-            <DependentSelectTable
+            <DependentSelect
               :rowId="item.rowId"
               :jsonType="item.json_type"
               :fieldTitle="'pydantic_type'"
@@ -99,7 +99,7 @@
             />
           </v-col>
           <v-col v-if="item.example !== undefined" cols="3" dense>
-            <ExempleTextField
+            <ExampleTextField
               :jsonType="item.json_type"
               :rowId="item.rowId"
               :textFieldLabel="'Example'"
@@ -108,7 +108,7 @@
             />
           </v-col>
           <v-col v-if="item.description !== undefined" cols="3" dense>
-            <TextFieldTable
+            <TextField
               :rowId="item.rowId"
               :textFieldLabel="'Description'"
               :field="'description'"
@@ -121,7 +121,7 @@
             align-self="center"
             dense
           >
-            <CheckboxTable
+            <CheckboxField
               :rowId="item.rowId"
               :labelName="'PII'"
               :fieldTitle="'pii'"
@@ -210,12 +210,12 @@
 </template>
 
 <script>
-import TextFieldTable from "./TextFieldTable.vue";
-import ExempleTextField from "./ExempleTextField.vue";
-import SelectTypeTable from "./SelectTypeTable.vue";
-import CheckboxTable from "./CheckboxTable.vue";
-import DependentSelectTable from "./DependentSelectTable.vue";
-import NestedToggler from "./NestedToggler.vue";
+import TextField from "./FieldInputs/TextField.vue";
+import ExampleTextField from "./FieldInputs/ExampleTextField.vue";
+import JsonTypeSelect from "./FieldInputs/JsonTypeSelect.vue";
+import CheckboxField from "./FieldInputs/CheckboxField.vue";
+import DependentSelect from "./FieldInputs/DependentSelect.vue";
+import NestedToggler from "./FieldInputs/NestedToggler.vue";
 import FakerItem from "./FakerItem.vue";
 
 import AddItemMenu from "./AddItemMenu.vue";
@@ -225,14 +225,15 @@ import { mapMutations, mapGetters } from "vuex";
 export default {
   name: "FieldListItem",
   components: {
-    TextFieldTable,
-    SelectTypeTable,
-    CheckboxTable,
-    DependentSelectTable,
-    ExempleTextField,
+    JsonTypeSelect,
+    CheckboxField,
+    DependentSelect,
+    ExampleTextField,
     NestedToggler,
     AddItemMenu,
     FakerItem,
+    TextField,
+
   },
   props: {
     parentTypeArray: Boolean,

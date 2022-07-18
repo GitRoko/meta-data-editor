@@ -11,7 +11,7 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { typeRules, fakerDefaultValue } from "../features/rules";
+import { typeRules, fakerDefaultValue } from "../../features/rules";
 
 
 export default {

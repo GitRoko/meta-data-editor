@@ -14,7 +14,7 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "TextFieldTable",
+  name: "TextField",
   props: {
     incomingValue: String,
     textFieldLabel: String,

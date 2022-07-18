@@ -34,7 +34,7 @@
 import { mapGetters, mapMutations } from "vuex";
 import { v4 as uuidv4 } from "uuid";
 import EnumTextField from "./EnumTextField.vue";
-import { getExample } from "../features/helperFunctions.js";
+import { getExample } from "../../features/helperFunctions.js";
 
 
 export default {

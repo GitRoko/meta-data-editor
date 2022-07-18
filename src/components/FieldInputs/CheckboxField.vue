@@ -13,7 +13,7 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "CheckboxTable",
+  name: "CheckboxField",
   props: {
     incomingValue: Boolean,
     fieldTitle: String,

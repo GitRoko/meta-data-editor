@@ -11,10 +11,10 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { typeRules } from "../features/rules";
+import { typeRules } from "../../features/rules";
 
 export default {
-  name: "DependentSelectTable",
+  name: "DependentSelect",
   props: {
     incomingItemValue: String,
     selectLabel: String,
@@ -72,11 +72,14 @@ export default {
     },
     incomingItemValue(newVal) {
       if (newVal === "" && this.items.length === 1) {
-        this.selectValue = this.items[0];
+        // this.selectValue = this.items[0];
+        this.changeSelectValue(this.items[0]);
       } else if (newVal === "" && this.items.length > 1) {
         this.selectValue = "";
       } else {
-        this.selectValue = newVal;
+        // this.selectValue = newVal;
+      this.changeSelectValue(newVal);
+
       }
       // this.selectValue = newVal;
       this.$forceUpdate();
@@ -95,9 +98,9 @@ export default {
           if (item.array) {
             changeValue(item.array);
           }
-          if (item.faker) {
-            changeValue(item.faker);
-          }
+          // if (item.faker) {
+          //   changeValue(item.faker);
+          // }
           if (item.object) {
             item.object.forEach((item) => {
               changeValue(item);

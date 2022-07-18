@@ -177,14 +177,14 @@
 <script>
 // import { mapGetters, mapMutations } from "vuex";
 // import { typeRules } from "../features/rules";
-import FakerSelectType from "./FakerSelectType.vue";
-import FakerCheckbox from "./FakerCheckbox.vue";
-import FakerEnumList from "./FakerEnumList.vue";
-import FakerForeignFilesSelect from "./FakerForeignFilesSelect.vue";
-import FakerForeignFieldSelectedFile from "./FakerForeignFieldSelectedFile.vue";
-import FakerTextField from "./FakerTextField.vue";
-import FakerNumberTextField from "./FakerNumberTextField.vue";
-import FakerSampleSelect from "./FakerSampleSelect.vue";
+import FakerSelectType from "./FakerInputs/FakerSelectType.vue";
+import FakerCheckbox from "./FakerInputs/FakerCheckbox.vue";
+import FakerEnumList from "./FakerInputs/FakerEnumList.vue";
+import FakerForeignFilesSelect from "./FakerInputs/FakerForeignFilesSelect.vue";
+import FakerForeignFieldSelectedFile from "./FakerInputs/FakerForeignFieldSelectedFile.vue";
+import FakerTextField from "./FakerInputs/FakerTextField.vue";
+import FakerNumberTextField from "./FakerInputs/FakerNumberTextField.vue";
+import FakerSampleSelect from "./FakerInputs/FakerSampleSelect.vue";
 
 export default {
   name: "FakerItem",

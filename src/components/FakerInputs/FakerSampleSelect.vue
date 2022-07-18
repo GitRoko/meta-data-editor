@@ -11,7 +11,7 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { typeRules } from "../features/rules";
+import { typeRules } from "../../features/rules";
 
 
 export default {

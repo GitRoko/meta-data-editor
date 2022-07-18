@@ -13,13 +13,13 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { getExample } from "../features/helperFunctions.js";
+import { getExample } from "../../features/helperFunctions.js";
 // import { v4 as uuidv4 } from "uuid";
 // import { fakerDefaultValue } from "../features/rules";
-import { fakerDefaultValue, typeRules } from "../features/rules";
+import { fakerDefaultValue, typeRules } from "../../features/rules";
 
 export default {
-  name: "SelectTypeTable",
+  name: "JsonTypeSelect",
   props: {
     incomingValue: String,
     rowId: String,
@@ -54,6 +54,7 @@ export default {
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.json_type = newValue;
+          item.example = getExample(newValue);
           //  const getNewFaker = (type, id) => {
           //   const currentTypeFaker = typeRules.faker[type];
           //   const newFaker = { ...fakerDefaultValue[currentTypeFaker[0]], rowId: id};

@@ -4,7 +4,7 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import { v4 as uuidv4 } from "uuid";
-import { fakerDefaultValue, typeRules } from "../features/rules";
+import { fakerDefaultValue, typeRules } from "../../features/rules";
 
 
 export default {

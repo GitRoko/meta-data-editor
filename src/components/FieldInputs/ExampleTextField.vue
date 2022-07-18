@@ -12,7 +12,7 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "ExempleTextField",
+  name: "ExampleTextField",
   props: {
     incomingValue: [String, Number, Boolean, Array, Object],
     textFieldLabel: String,
