@@ -2,7 +2,6 @@
   <v-select
     @click.native.stop
     v-model="selectValue"
-
     :items="items"
     label="Type"
     outlined
@@ -34,6 +33,11 @@ export default {
   created() {
     this.selectValue = this.incomingValue;
   },
+  computed: {
+    item() {
+      return this.$store.getters.getCurrentItem(this.path);
+    },
+  },
   watch: {
     selectValue(newValue, oldValue) {
       this.changeSelectValue(newValue, oldValue);
@@ -47,77 +51,51 @@ export default {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
 
-    // changeSelectValue(newValue) {
     changeSelectValue(newValue, oldValue) {
-      const data = this.getPreparedDataTable();
+      // const item = this.$store.getters.getCurrentItem(this.path)
 
-      const changeValue = (item) => {
-        if (item.rowId === this.rowId) {
-          item.json_type = newValue;
-          item.example = getExample(newValue);
-          //  const getNewFaker = (type, id) => {
-          //   const currentTypeFaker = typeRules.faker[type];
-          //   const newFaker = { ...fakerDefaultValue[currentTypeFaker[0]], rowId: id};
-          //   return  {...newFaker};
-          // }
-          if (
-            newValue !== oldValue
-          ) {
-            let newKeys =  Object.keys(fakerDefaultValue[typeRules.faker[newValue][0]]);
-            let keys = Object.keys(item.faker);
-            keys.forEach((key) => {
-              if (key !== "rowId" && key !== "type") {
-                delete item.faker[key];
-              }
-            });
-            newKeys.forEach((key) => {
-              item.faker[key] = fakerDefaultValue[typeRules.faker[newValue][0]][key];
-            });
+      if (newValue !== oldValue) {
+        this.item.json_type = newValue;
+        this.item.example = getExample(newValue);
+        let newKeys = Object.keys(
+          fakerDefaultValue[typeRules.faker[newValue][0]]
+        );
+        let keys = Object.keys(this.item.faker);
+        keys.forEach((key) => {
+          if (key !== "rowId" && key !== "type") {
+            delete this.item.faker[key];
           }
+        });
 
-          if (item.json_type === "array" || item.json_type === "object") {
-            item.nested = false;
+        newKeys.forEach((key) => {
+          this.item.faker[key] =
+            fakerDefaultValue[typeRules.faker[newValue][0]][key];
+        });
+      }
+       if (this.item.json_type === "array" || this.item.json_type === "object") {
+            this.item.nested = false;
 
-            if (item.array) {
-              item.example = ["Some string"];
-              delete item.array;
+            if (this.item.array) {
+              this.item.example = ["Some string"];
+              delete this.item.array;
             }
-            if (item.object) {
-              item.example = { id: 123 };
-              delete item.object;
+            if (this.item.object) {
+              this.item.example = { id: 123 };
+              delete this.item.object;
             }
           } else {
-            delete item.nested;
+            delete this.item.nested;
 
-            if (item.array) {
-              item.example = `${getExample(item.json_type)}`;
-              delete item.array;
+            if (this.item.array) {
+              this.item.example = `${getExample(this.item.json_type)}`;
+              delete this.item.array;
             }
-            if (item.object) {
-              item.example = `${getExample(item.json_type)}`;
-              delete item.object;
+            if (this.item.object) {
+              this.item.example = `${getExample(this.item.json_type)}`;
+              delete this.item.object;
             }
           }
-        } else {
-          if (item.array) {
-            changeValue(item.array);
-          }
-          if (item.object) {
-            item.object.forEach((item) => {
-              changeValue(item);
-            });
-          }
-        }
-      };
-
-      const newData = data.map((item) => {
-        changeValue(item);
-
-        return item;
-      });
-
-      this.updatePreparedDataTable(newData);
-      this.$forceUpdate();
+       
     },
   },
 };

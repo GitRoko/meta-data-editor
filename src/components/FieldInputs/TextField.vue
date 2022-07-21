@@ -18,8 +18,9 @@ export default {
   props: {
     incomingValue: String,
     textFieldLabel: String,
-    field: String,
+    fieldName: String,
     rowId: String,
+    path: String,
   },
   data() {
     return {
@@ -36,9 +37,9 @@ export default {
     this.label = this.textFieldLabel;
   },
   watch: {
-    textValue(newValue) {
-      this.changeTextField(newValue);
-    },
+    // textValue(newValue) {
+    //   this.changeTextField(newValue);
+    // },
     incomingValue(newV) {
       this.textValue = newV;
     },
@@ -47,32 +48,12 @@ export default {
   methods: {
     ...mapGetters(["getPreparedDataTable"]),
     ...mapMutations(["updatePreparedDataTable"]),
+
     changeTextField(newValue) {
-      const data = this.getPreparedDataTable();
-
-      const changeValue = (item) => {
-        if (item.rowId === this.rowId) {
-          item[this.field] = newValue;
-        } else {
-          if (item.array) {
-            changeValue(item.array);
-          }
-          if (item.object) {
-            item.object.forEach(item => {
-              changeValue(item);
-            })
-          }
-        }
-      }
-
-      const newData = data.map((item) => {
-        changeValue(item);
-
-        return item;
-      });
-
-      this.updatePreparedDataTable(newData);
+      const item = this.$store.getters.getCurrentItem(this.path)
+      item[this.fieldName] = newValue;
     },
+
   },
 };
 </script>

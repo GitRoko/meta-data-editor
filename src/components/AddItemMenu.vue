@@ -1,9 +1,6 @@
 <template>
   <v-speed-dial v-model="fab" :direction="direction" :transition="transition">
     <template v-slot:activator>
-      <!-- <v-btn v-model="fab" small color="white" fab>
-        <v-icon v-if="fab" color="grey darken-1"> mdi-close </v-icon>
-        <v-icon v-else color="grey darken-1"> mdi-plus-minus </v-icon> -->
       <v-btn v-model="fab" small color="blue darken-2" dark fab class="buttonSize">
         <v-icon v-if="fab"> mdi-close </v-icon>
         <v-icon v-else> mdi-plus-minus </v-icon>
