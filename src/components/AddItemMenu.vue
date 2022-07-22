@@ -50,9 +50,6 @@ export default {
   right: 0;
   transform: translate(-90%, 30%);
 }
-.buttonSize {
-  
-}
 .v-btn--fab.v-size--small {
 width: 25px;
   height: 25px;

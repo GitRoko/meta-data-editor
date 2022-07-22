@@ -62,7 +62,7 @@
               @click.native.stop
               :rowId="item.rowId"
               :path="path"
-              @removeItem="deleteItem(item.rowId, path)"
+              @removeItem="deleteCurrentItem(item.rowId, path)"
               @addItemBefore="openDialogAddItem(item.rowId, 'before')"
               @addItemAfter="openDialogAddItem(item.rowId, 'after')"
             />
@@ -164,7 +164,7 @@
     <template>
       <AddItemDialog
         :dialogShow="dialog"
-        @addNewItem="addNew"
+        @addNewItem="addNewFieldItem"
         @clearInputs="closeDialog"
       />
     </template>
@@ -182,10 +182,10 @@ import FakerItem from "./FakerItem.vue";
 
 import AddItemMenu from "./AddItemMenu.vue";
 import AddItemDialog from "./AddItemDialog.vue";
-import { v4 as uuidv4 } from "uuid";
-import { mapMutations, mapGetters } from "vuex";
-import { fakerDefaultValue, typeRules } from "../features/rules";
-import { getExample } from "../features/helperFunctions.js";
+// import { v4 as uuidv4 } from "uuid";
+import { mapActions } from "vuex";
+// import { fakerDefaultValue, typeRules } from "../features/rules";
+// import { getNewField, getNewNestedField } from "../features/helperFunctions.js";
 
 export default {
   name: "FieldListItem",
@@ -235,8 +235,9 @@ export default {
   },
   watch: {},
   methods: {
-    ...mapMutations(["updatePreparedDataTable"]),
-    ...mapGetters(["getPreparedDataTable", "getCurrentItem"]),
+    // ...mapMutations(["updatePreparedDataTable"]),
+    // ...mapGetters(["getPreparedDataTable", "getCurrentItem"]),
+    ...mapActions(["deleteItem", "addNewField"]),
 
     openDialogAddItem(id, beforeAfter) {
       this.idActiveItem = id;
@@ -244,76 +245,9 @@ export default {
       this.dialog = true;
     },
 
-    addNew(args) {
-      // eslint-disable-next-line no-debugger
-      // debugger;
-      const { fieldName, fieldType } = args;
-      const itemPathArray = this.path.split(":");
-
-      let index = 0;
-      let data = [];
-      let newItem = {};
-
-      if (itemPathArray.length === 1) {
-        data = this.$store.state.currentFileData.preparedDataTable;
-        newItem = this.getNewItem(fieldName, fieldType);
-        index = data.findIndex((item) => item.rowId === this.idActiveItem);
-
-        if (index === 0 && this.appendPlace === "before") {
-          return data.splice(0, 0, newItem);
-        } else if (this.appendPlace === "before") {
-          return data.splice(index, 0, newItem);
-        } else if (this.appendPlace === "after") {
-          return data.splice(index + 1, 0, newItem);
-        }
-
-        this.updatePreparedDataTable(data);
-      }
-
-      if (itemPathArray.length > 1) {
-        // eslint-disable-next-line no-debugger
-        // debugger;
-
-        const data = this.getPreparedDataTable();
-        const parentPath = itemPathArray.slice(0, -1).join(":");
-        const parentItem = this.$store.getters.getCurrentItem(parentPath);
-        const parentId = parentItem.rowId;
-
-        const changeValue = (item) => {
-          if (item.rowId === parentId) {
-            index = item.object.findIndex(
-              (item) => item.rowId === this.idActiveItem
-            );
-
-            newItem = this.getNewItemObject(fieldName, fieldType);
-
-            if (index === 0 && this.appendPlace === "before") {
-              item.object.splice(0, 0, newItem);
-            } else if (this.appendPlace === "before") {
-              item.object.splice(index, 0, newItem);
-            } else if (this.appendPlace === "after") {
-              item.object.splice(index + 1, 0, newItem);
-            }
-          } else {
-            if (item.array) {
-              changeValue(item.array);
-            }
-            if (item.object) {
-              item.object.forEach((item) => {
-                changeValue(item);
-              });
-            }
-          }
-        };
-
-        const newData = data.map((item) => {
-          changeValue(item);
-
-          return item;
-        });
-
-        this.updatePreparedDataTable(newData);
-      }
+    addNewFieldItem(args) {
+      const arg = { ...args, path: this.path, appendPlace: this.appendPlace, idActiveItem: this.idActiveItem };
+      this.addNewField( arg );
     },
 
     closeDialog() {
@@ -321,89 +255,9 @@ export default {
       this.idActiveItem = "";
       this.dialog = false;
     },
-
-    deleteItem(id, itemPath) {
-      // eslint-disable-next-line no-debugger
-      // debugger;
-      let newItems = [];
-      const itemPathArray = itemPath.split(":");
-      if (itemPathArray.length === 1) {
-        newItems = this.getPreparedDataTable().filter(
-          (item) => item.rowId !== id
-        );
-      }
-      if (itemPathArray.length > 1) {
-        const changeItem = (item) => {
-          if (item.rowId === id) {
-            // console.log("item = ", item);
-          } else {
-            if (item.array) {
-              changeItem(item.array);
-            }
-
-            if (item.object) {
-              let isHaveCurrentItem = item.object.find(
-                (item) => item.rowId === id
-              );
-
-              if (isHaveCurrentItem) {
-                item.object = item.object.filter((item) => item.rowId !== id);
-
-                if (item.object.length === 0) {
-                  delete item.object;
-                  item.nested = false;
-                  item.example = getExample(item.json_type);
-                }
-              } else {
-                item.object.forEach((item) => {
-                  changeItem(item);
-                });
-              }
-            }
-          }
-        };
-
-        newItems = this.getPreparedDataTable().map((item) => {
-          changeItem(item);
-
-          return item;
-        });
-      }
-
-      this.updatePreparedDataTable(newItems);
-    },
-
-    getNewItem(text, select) {
-      const newFaker = fakerDefaultValue[typeRules.faker[select][0]];
-      newFaker.rowId = uuidv4();
-
-      return {
-        rowId: uuidv4(),
-        field_name: text,
-        json_type: select,
-        mandatory: false,
-        td_type: "",
-        pydantic_type: "",
-        example: getExample(select),
-        faker: { ...newFaker },
-        description: "",
-        pii: false,
-      };
-    },
-
-    getNewItemObject(text, select) {
-      const newFaker = fakerDefaultValue[typeRules.faker[select][0]];
-      newFaker.rowId = uuidv4();
-
-      return {
-        field_name: text,
-        json_type: select,
-        mandatory: false,
-        pydantic_type: "",
-        example: getExample(select),
-        faker: { ...newFaker },
-        rowId: uuidv4(),
-      };
+  
+    deleteCurrentItem(itemId = this.item.rowId, itemPath = this.path) {
+      this.deleteItem({itemId, itemPath});
     },
 
     hoverItemPanel(item) {

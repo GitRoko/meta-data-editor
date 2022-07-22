@@ -4,6 +4,9 @@ import YAML from "yaml";
 import { v4 as uuidv4 } from "uuid";
 import { Document } from "yaml";
 
+import { getExample, getNewField, getNewNestedField } from "../../features/helperFunctions.js";
+
+
 export default {
   actions: {
     async getActiveFileData({ state, commit }) {
@@ -214,6 +217,136 @@ export default {
 
       return fields;
     },
+
+    addNewField({ state, commit, getters }, args) {
+      // eslint-disable-next-line no-debugger
+      // debugger;
+      console.log('addNewField = ', args);
+      const { fieldName, fieldType, path, appendPlace, idActiveItem } = args;
+      const itemPathArray = path.split(":");
+
+      let index = 0;
+      let data = [];
+      let newItem = {};
+
+      if (itemPathArray.length === 1) {
+        data = state.preparedDataTable;
+        newItem = getNewField(fieldName, fieldType);
+        index = data.findIndex((item) => item.rowId === idActiveItem);
+
+        if (index === 0 && appendPlace === "before") {
+          data.splice(0, 0, newItem);
+        } else if (appendPlace === "before") {
+          data.splice(index, 0, newItem);
+        } else if (appendPlace === "after") {
+          data.splice(index + 1, 0, newItem);
+        }
+
+        // this.updatePreparedDataTable(data);
+        commit("updatePreparedDataTable", data);
+
+      }
+
+      if (itemPathArray.length > 1) {
+        // eslint-disable-next-line no-debugger
+        // debugger;
+
+        const data = state.preparedDataTable;
+        const parentPath = itemPathArray.slice(0, -1).join(":");
+        const parentItem = getters.getCurrentItem(parentPath);
+        const parentId = parentItem.rowId;
+
+        const changeValue = (item) => {
+          if (item.rowId === parentId) {
+            index = item.object.findIndex(
+              (item) => item.rowId === idActiveItem
+            );
+
+            newItem = getNewNestedField(fieldName, fieldType);
+
+            if (index === 0 && appendPlace === "before") {
+              item.object.splice(0, 0, newItem);
+            } else if (appendPlace === "before") {
+              item.object.splice(index, 0, newItem);
+            } else if (appendPlace === "after") {
+              item.object.splice(index + 1, 0, newItem);
+            }
+          } else {
+            if (item.array) {
+              changeValue(item.array);
+            }
+            if (item.object) {
+              item.object.forEach((item) => {
+                changeValue(item);
+              });
+            }
+          }
+        };
+
+        const newData = data.map((item) => {
+          changeValue(item);
+
+          return item;
+        });
+
+        // this.updatePreparedDataTable(newData);
+        commit("updatePreparedDataTable", newData);
+
+      }
+    },
+
+    deleteItem({ state, commit }, args) {
+      // eslint-disable-next-line no-debugger
+      // debugger;
+      const {itemId, itemPath} = args;
+      console.log('deleteItem = ',args, itemId, itemPath);
+      let newItems = [];
+      const itemPathArray = itemPath.split(":");
+      if (itemPathArray.length === 1) {
+        newItems = state.preparedDataTable.filter(
+          (item) => item.rowId !== itemId
+        );
+      }
+      if (itemPathArray.length > 1) {
+        const changeItem = (item) => {
+          if (item.rowId === itemId) {
+            // console.log("item = ", item);
+          } else {
+            if (item.array) {
+              changeItem(item.array);
+            }
+
+            if (item.object) {
+              let isHaveCurrentItem = item.object.find(
+                (item) => item.rowId === itemId
+              );
+
+              if (isHaveCurrentItem) {
+                item.object = item.object.filter((item) => item.rowId !== itemId);
+
+                if (item.object.length === 0) {
+                  delete item.object;
+                  item.nested = false;
+                  item.example = getExample(item.json_type);
+                }
+              } else {
+                item.object.forEach((item) => {
+                  changeItem(item);
+                });
+              }
+            }
+          }
+        };
+
+        newItems = state.preparedDataTable.map((item) => {
+          changeItem(item);
+
+          return item;
+        });
+      }
+
+      commit("updatePreparedDataTable", newItems);
+    },
   },
 
   mutations: {
@@ -290,6 +423,7 @@ export default {
 
       return currentRow;
     },
+
     getCurrentFakerItem: (state) => (id) => {
       // eslint-disable-next-line no-debugger
       // debugger;
