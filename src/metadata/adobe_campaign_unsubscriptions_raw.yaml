@@ -1,3 +1,5 @@
+# #
+
 consumer_id:
   json_type: string
   td_type: varchar
@@ -9,14 +11,40 @@ consumer_id:
     upper: false
     length: 32
 email:
-  json_type: string
+  json_type: array
   td_type: varchar
   mandatory: true
-  pydantic_type: StrictStr
-  example: someText
+  pydantic_type: Dict
   faker:
-    type: sample
-    sample: emails
+    type: array
+    occurrence_min: 0
+    occurrence_max: 1
+  array:
+    json_type: object
+    mandatory: false
+    pydantic_type: StrictStr
+    faker:
+      type: object
+    object:
+      id:
+        json_type: number
+        mandatory: true
+        pydantic_type: StrictInt
+        example: 123
+        faker:
+          type: integer
+          unique: false
+          to_str: false
+      qwe:
+        json_type: string
+        mandatory: false
+        pydantic_type: StrictStr
+        example: Some string
+        faker:
+          type: sample
+          sample: ""
+        description: ""
+        pii: false
 unsubscription_date:
   json_type: string
   td_type: varchar
@@ -25,4 +53,4 @@ unsubscription_date:
   example: 02/02/2020 20:20:20
   faker:
     type: date
-    format: '%d/%m/%Y %H:%M:%S'
+    format: "%d/%m/%Y %H:%M:%S"

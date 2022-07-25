@@ -9,5 +9,6 @@ export default new Vuex.Store({
   modules: {
     files,
     currentFileData,
-  }
+  },
+  strict: false, //Не используйте строгий режим в production!!!!!!!!
 });

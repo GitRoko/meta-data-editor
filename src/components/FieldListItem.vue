@@ -182,10 +182,7 @@ import FakerItem from "./FakerItem.vue";
 
 import AddItemMenu from "./AddItemMenu.vue";
 import AddItemDialog from "./AddItemDialog.vue";
-// import { v4 as uuidv4 } from "uuid";
 import { mapActions } from "vuex";
-// import { fakerDefaultValue, typeRules } from "../features/rules";
-// import { getNewField, getNewNestedField } from "../features/helperFunctions.js";
 
 export default {
   name: "FieldListItem",
@@ -215,17 +212,17 @@ export default {
       dialog: false,
       idActiveItem: "",
       appendPlace: "",
+      itemField: this.$store.getters.getCurrentItem(this.path),
     };
   },
   computed: {
-    // ...mapGetters(["getCurrentItem"]),
-    item() {
+    item: function () {
       return this.$store.getters.getCurrentItem(this.path);
     },
-    itemArray() {
+    itemArray: function () {
       return this.$store.getters.getCurrentItem(this.path).array || undefined;
     },
-    itemObject() {
+    itemObject: function () {
       return this.$store.getters.getCurrentItem(this.path).object || undefined;
     },
     bgColor() {
@@ -235,8 +232,6 @@ export default {
   },
   watch: {},
   methods: {
-    // ...mapMutations(["updatePreparedDataTable"]),
-    // ...mapGetters(["getPreparedDataTable", "getCurrentItem"]),
     ...mapActions(["deleteItem", "addNewField"]),
 
     openDialogAddItem(id, beforeAfter) {

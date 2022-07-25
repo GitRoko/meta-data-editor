@@ -1,4 +1,3 @@
-// import { readFile } from "@/features/useFileSistemAPI";
 import { readFile, writeFile } from "@/features/useFileSistemAPI";
 import YAML from "yaml";
 import { v4 as uuidv4 } from "uuid";
@@ -242,7 +241,6 @@ export default {
           data.splice(index + 1, 0, newItem);
         }
 
-        // this.updatePreparedDataTable(data);
         commit("updatePreparedDataTable", data);
 
       }
@@ -347,9 +345,25 @@ export default {
 
       commit("updatePreparedDataTable", newItems);
     },
+
+    // changeItemFieldName({ getters, commit }, data) {
+    //   const { fieldName, path, newValue } = data;
+    //   // const item = getters.getCurrentItem(path);
+    //   const rootFieldItem = getters.getRootFieldItem(path);
+    //   // item[fieldName] = newValue;
+    //   console.log(fieldName, path, newValue, rootFieldItem);
+    //   // const preparedData = state.preparedDataTable;
+    //   const objectLink = "[1].array.object[1].field_name";
+    //   commit("updateItemFieldName", {newValue, objectLink});
+    // }
   },
 
   mutations: {
+    // updateItemFieldName(state, data) {
+    //   console.log('data = ', data);
+    //   state.preparedDataTable['[1].array.object[1].field_name'] = data.newValue;
+    //   console.log(state.preparedDataTable[1].array.object[1].field_name);
+    // },
     updateActiveFile(state, files) {
       state.currentFile = files;
     },
@@ -368,6 +382,7 @@ export default {
     updateChangedDataTable(state, data) {
       state.changedDataTable = data;
     },
+    
   },
 
   state: {
@@ -380,6 +395,16 @@ export default {
   },
 
   getters: {
+    getRootFieldItem: (state) => (path) => {
+      const itemPathArray = path.split(":");
+      const item = state.preparedDataTable.find(
+        (item) => item.rowId === itemPathArray[0]
+      );
+      return item;
+    },
+    getIndexRootFieldItem: (state) => (id) => {
+      return state.preparedDataTable.findIndex((item) => item.rowId === id);
+    },
     getCurrentFileData(state) {
       return state.currentFileData;
     },
