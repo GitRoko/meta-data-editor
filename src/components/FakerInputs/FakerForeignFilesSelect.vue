@@ -32,9 +32,10 @@ export default {
   },
   created() {
     // this.items = 
-    this.selectValue = this.options.includes(this.incomingItemValue)
-      ? this.incomingItemValue
-      : '';
+    this.selectValue = this.incomingItemValue;
+    // this.selectValue = this.options.includes(this.incomingItemValue)
+    //   ? this.incomingItemValue
+    //   : '';
 
     this.selectLabel = this.selectName;
   },

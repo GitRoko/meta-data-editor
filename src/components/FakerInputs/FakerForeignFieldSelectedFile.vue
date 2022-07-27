@@ -31,10 +31,10 @@ export default {
   },
   created() {
     // this.items = this.getFields(this.selectedFile);
-    // this.selectValue = this.incomingItemValue;
-    this.selectValue = this.options.includes(this.incomingItemValue)
-      ? this.incomingItemValue
-      : '';
+    this.selectValue = this.incomingItemValue;
+    // this.selectValue = this.options.includes(this.incomingItemValue)
+    //   ? this.incomingItemValue
+    //   : '';
 
   },
   computed: {

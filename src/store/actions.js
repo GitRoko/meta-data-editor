@@ -62,16 +62,16 @@ const actions = {
     };
 
     for (const file of state.files) {
-      foreignDataOptions.datasetOptions.push(file.fileName);
+      foreignDataOptions.datasetOptions.push(file.fileName.split(".")[0]);
 
       await getFileFields(file).then((fields) => {
         foreignDataOptions.fieldOptions = {
           ...foreignDataOptions.fieldOptions,
-          [file.fileName]: fields,
+          [file.fileName.split(".")[0]]: fields,
         };
       });
     }
-    
+
     await commit("updateForeignData", foreignDataOptions);
   },
 
