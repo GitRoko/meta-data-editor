@@ -2,7 +2,7 @@
   <v-select
     :value="selectValue"
     @input="changeSelectValue"
-    :items="items"
+    :items="options"
     :label="selectLabel"
     outlined
     dense
@@ -21,34 +21,32 @@ export default {
     incomingItemValue: String,
     selectName: String,
     rowId: String,
-    jsonType: String,
-    fieldName: String,
+    options: Array
   },
   data() {
     return {
-      items: [],
+      // items: [],
       selectValue: "",
       selectLabel: "",
     };
   },
   created() {
-    this.items = this.getItems();
-    this.selectValue = this.items.includes(this.incomingItemValue)
+    // this.items = 
+    this.selectValue = this.options.includes(this.incomingItemValue)
       ? this.incomingItemValue
       : '';
 
     this.selectLabel = this.selectName;
   },
   computed: {
-    
-    // items() {
-    //   const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
-    //   const data = this.$store.getters.allFiles;
-    //   const list = data.map(item => item.fileName.split('.')[0]);
-    //   // console.log(list);
+    // ...mapGetters(["getForeignData", "getCurrentFile"]),
 
-    //   return list.filter(item => item !== currentfile);
-    // }
+    // items() {
+    //   const foreignDatasetOptions = this.getForeignData.datasetOptions
+    //     .filter(fileName => fileName !== this.getCurrentFile.fileName);
+
+    //   return foreignDatasetOptions;
+    // },
   },
   watch: {
     selectValue(newValue, oldValue) {
@@ -87,14 +85,6 @@ export default {
 
       this.updatePreparedDataTable(newData);
     },
-    getItems() {
-      const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
-      const data = this.$store.getters.allFiles;
-      const list = data.map(item => item.fileName.split('.')[0]);
-      // console.log(list);
-
-      return list.filter(item => item !== currentfile);
-    }
   },
 };
 </script>

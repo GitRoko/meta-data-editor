@@ -34,12 +34,12 @@ brand:
   mandatory: true
   pydantic_type: StrictStr
   example: Ploom
-updated_date:
-  json_type: string
-  td_type: varchar
-  mandatory: true
-  pydantic_type: StrictStr
-  example: '2020-04-24 12:52:26'
+# updated_date:
+#   json_type: string
+#   td_type: varchar
+#   mandatory: true
+#   pydantic_type: StrictStr
+#   example: '2020-04-24 12:52:26'
 updated_date:
   json_type: string
   td_type: varchar

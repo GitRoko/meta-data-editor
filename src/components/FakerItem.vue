@@ -90,24 +90,25 @@
          
         </v-row>
       </v-col>
-      <v-col v-if="item.type === 'foreign'" dense align-self="center">
+      <v-col v-if="itemFaker.type === 'foreign'" dense align-self="center">
         <v-row>
           <v-col cols="5" dense class="ml-2" align-self="center">
             <FakerForeignFilesSelect
-              :incomingItemValue="item.dataset"
-              :rowId="item.rowId"
+              :incomingItemValue="itemFaker.dataset"
+              :rowId="itemFaker.rowId"
               :selectName="'Dataset'"
-
+              :options="dataSetOptions"
              />
           </v-col>
 
           <v-col  cols="4" dense class="ml-2" align-self="center">
             <FakerForeignFieldSelectedFile
-              v-if="item.dataset.length !== 0"
-              :incomingItemValue="item.field"
-              :selectedFile="item.dataset"
-              :rowId="item.rowId"
+              v-if="itemFaker.dataset.length !== 0"
+              :incomingItemValue="itemFaker.field"
+              :selectedFile="itemFaker.dataset"
+              :rowId="itemFaker.rowId"
               :selectLabel="'Dataset field'"
+              :options="fieldsOptions"
              />
           </v-col>
         </v-row>
@@ -175,7 +176,7 @@
 </template>
 
 <script>
-// import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 // import { typeRules } from "../features/rules";
 import FakerSelectType from "./FakerInputs/FakerSelectType.vue";
 import FakerCheckbox from "./FakerInputs/FakerCheckbox.vue";
@@ -214,14 +215,26 @@ export default {
   watch: {},
 
   computed: {
-    // fakerPath() {
-    //   return this.path + ':' + this.item.rowId;
-    // },
+    ...mapGetters(["getForeignData", "getCurrentFile"]),
     itemFaker() {
       const item = this.$store.getters.getCurrentItem(this.path)
       console.log(this.path, item);
       return item;
-    }
+    },
+    dataSetOptions() {
+      return this.getForeignData.datasetOptions
+        .filter(fileName => fileName !== this.getCurrentFile.fileName);
+    },
+    fieldsOptions() {
+      if (this.itemFaker.dataset !== '') {
+        return this.getForeignData.fieldOptions[this.itemFaker.dataset];
+      } else {
+        return [];
+      }
+    },
+
+    
+
   },
   methods: {},
 };

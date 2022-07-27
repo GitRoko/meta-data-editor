@@ -1,3 +1,5 @@
+import YAML from "yaml";
+
 export async function readFile(handle = false) {
 
   let fileHandle;
@@ -56,3 +58,11 @@ export async function readDirectory() {
   return dataDirectory.sort(byField("fileName"));
 }
 
+export async function getFileFields( handle) {
+  const file = await handle.fileHandle.getFile();
+  const contents = await file.text();
+  const fileData = await YAML.parse(contents);
+  const fields = Object.keys(fileData);
+  // console.log("fields = ", fields);
+  return fields;
+}

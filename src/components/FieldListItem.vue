@@ -45,7 +45,7 @@
           </v-col>
           <v-col
             v-if="item.nested !== undefined"
-            cols="1"
+            cols="2"
             align-self="center"
             class="text-center"
             dense
