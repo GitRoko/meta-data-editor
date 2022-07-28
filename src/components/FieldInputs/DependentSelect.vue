@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     // jsonType() {
-    //   const table = this.$store.state.currentFileData.preparedDataTable;
+    //   const table = this.$store.state.currentFileData.preparedData;
     //   if (table) {
     //     return table.find(item => item.rowId === this.rowId).json_type;
     //     //  return table[this.rowId].json_type;
@@ -86,11 +86,11 @@ export default {
     },
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
 
     changeSelectValue(newValue) {
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item[this.fieldTitle] = newValue;
@@ -112,7 +112,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
     },
   },
 };

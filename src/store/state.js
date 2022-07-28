@@ -4,7 +4,7 @@ const state = {
     currentFile: null,
     title: "",
     dataJson: null,
-    preparedDataTable: null,
+    preparedData: null,
     changedDataTable: null,
     foreignData: null,
 };

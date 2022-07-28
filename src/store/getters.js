@@ -4,13 +4,13 @@ const getters = {
   },
   getRootFieldItem: (state) => (path) => {
     const itemPathArray = path.split(":");
-    const item = state.preparedDataTable.find(
+    const item = state.preparedData.find(
       (item) => item.rowId === itemPathArray[0]
     );
     return item;
   },
   getIndexRootFieldItem: (state) => (id) => {
-    return state.preparedDataTable.findIndex((item) => item.rowId === id);
+    return state.preparedData.findIndex((item) => item.rowId === id);
   },
   getCurrentFileData(state) {
     return state.currentFileData;
@@ -35,10 +35,10 @@ const getters = {
     // debugger;
     const ids = id.split(":");
     if (ids.length === 1) {
-      return state.preparedDataTable.find((row) => row.rowId === id);
+      return state.preparedData.find((row) => row.rowId === id);
     }
     let currentRow = {};
-    let rows = state.preparedDataTable;
+    let rows = state.preparedData;
     ids.forEach((idIds) => {
       currentRow = rows.find((row) => row.rowId === idIds);
 
@@ -60,10 +60,10 @@ const getters = {
     // debugger;
     const ids = id.split(":");
     if (ids.length === 1) {
-      return state.preparedDataTable.find((row) => row.rowId === id);
+      return state.preparedData.find((row) => row.rowId === id);
     }
     let currentRow = {};
-    let rows = state.preparedDataTable;
+    let rows = state.preparedData;
     ids.forEach((idIds) => {
       currentRow = rows.find((row) => row.rowId === idIds);
 
@@ -86,8 +86,8 @@ const getters = {
   getDataJson(state) {
     return state.dataJson;
   },
-  getPreparedDataTable(state) {
-    return state.preparedDataTable;
+  getPreparedData(state) {
+    return state.preparedData;
   },
   getChangedDataTable(state) {
     return state.changedDataTable;

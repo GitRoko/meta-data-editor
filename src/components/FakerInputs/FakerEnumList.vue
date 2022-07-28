@@ -57,7 +57,7 @@ export default {
     };
   },
   created() {
-      this.allData = this.$store.getters.getPreparedDataTable;
+      this.allData = this.$store.getters.getPreparedData;
       this.currentField = this.$store.getters.getCurrentItem(this.path);
       this.values = this.currentField.values || [];
   },
@@ -70,8 +70,8 @@ export default {
     // },
   },
   methods: {
-      ...mapGetters(["getPreparedDataTable"]),
-      ...mapMutations(["updatePreparedDataTable"]),
+      ...mapGetters(["getPreparedData"]),
+      ...mapMutations(["updatePreparedData"]),
       updateData(newValue) {
         
         const changeValue = (item) => {
@@ -95,7 +95,7 @@ export default {
           changeValue(item);
           return item;
         });
-        this.updatePreparedDataTable(newData);
+        this.updatePreparedData(newData);
       },
       removeitem(index) {
         this.values.splice(index, 1)

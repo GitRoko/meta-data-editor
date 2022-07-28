@@ -14,8 +14,8 @@ const mutations = {
   updateDataJson(state, data) {
     state.dataJson = data;
   },
-  updatePreparedDataTable(state, data) {
-    state.preparedDataTable = data;
+  updatePreparedData(state, data) {
+    state.preparedData = data;
   },
   updateChangedDataTable(state, data) {
     state.changedDataTable = data;

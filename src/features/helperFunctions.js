@@ -1,6 +1,5 @@
 import { fakerDefaultValue, typeRules } from "./rules.js";
 import { v4 as uuidv4 } from "uuid";
-// import { uuid } from 'uuidv4';
 
 export const getExample = (value) => {
   switch (value) {
@@ -21,7 +20,7 @@ export const getExample = (value) => {
   }
 };
 
-export const getNewField = (fieldName, fieldType) => {
+export const getNewRootField = (fieldName, fieldType) => {
   const newFaker = fakerDefaultValue[typeRules.faker[fieldType][0]];
   newFaker.rowId = uuidv4();
 
@@ -55,7 +54,6 @@ export const getNewNestedField = (fieldName, fieldType) => {
   };
 };
 
-// prepareData = (json) => [ ..., {jsonFields}]
 export const prepareData = (object) => {
   const objectFields = Object.keys(object);
 

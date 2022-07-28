@@ -48,8 +48,8 @@ export default {
     },
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
 
     changeSelectValue(newValue, oldValue) {
       // const item = this.$store.getters.getCurrentItem(this.path)

@@ -46,8 +46,8 @@ export default {
   },
   computed: {},
   methods: {
-    // ...mapGetters(["getPreparedDataTable"]),
-    // ...mapMutations(["updatePreparedDataTable"]),
+    // ...mapGetters(["getPreparedData"]),
+    // ...mapMutations(["updatePreparedData"]),
     // ...mapActions(["changeItemFieldName"]),
 
     // changeTextField(newValue) {
@@ -60,10 +60,10 @@ export default {
     //   //   rowId: this.rowId
     //   // })
     // },
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
     changeTextField(newValue) {
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
@@ -88,7 +88,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
     },
 
   },

@@ -5,7 +5,7 @@
         <v-col cols="12">
           <h2>
             <v-text-field
-              v-if="getPreparedDataTable"
+              v-if="getPreparedData"
               class="field_name__textField mt-7"
               :value="textTitle || title"
               @input="updateTextTitle"
@@ -15,12 +15,12 @@
             ></v-text-field>
           </h2>
           <ExpansionPanelsData
-            v-if="getPreparedDataTable"
-            :initialData="getPreparedDataTable"
+            v-if="getPreparedData"
+            :initialData="getPreparedData"
           />
           <!-- <DataTable
-            v-if="getPreparedDataTable"
-            :initialData="getPreparedDataTable"
+            v-if="getPreparedData"
+            :initialData="getPreparedData"
           /> -->
         </v-col>
       </v-sheet>
@@ -48,7 +48,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getPreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
     ...mapState({
       textTitle: (state) => state.title,
     }),

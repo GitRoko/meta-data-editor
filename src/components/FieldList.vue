@@ -19,7 +19,7 @@ export default {
     initialData: Array,
   },
   created() {
-    this.itemsData = this.$store.getters.getPreparedDataTable;
+    this.itemsData = this.$store.getters.getPreparedData;
   },
   data() {
     return {

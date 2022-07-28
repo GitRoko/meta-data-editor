@@ -62,8 +62,8 @@ export default {
     // },
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
     // ...mapActions(["getFileFields"]),
 
     // getFields(fileName) {
@@ -77,7 +77,7 @@ export default {
     // },
 
     changeSelectValue(newValue) {
-        const data = this.getPreparedDataTable();
+        const data = this.getPreparedData();
         const changeValue = (item) => {
           if (item.rowId === this.rowId) {
             item.field = newValue;
@@ -99,7 +99,7 @@ export default {
           changeValue(item);
           return item;
         });
-        this.updatePreparedDataTable(newData);
+        this.updatePreparedData(newData);
     },
   },
 };

@@ -44,10 +44,10 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
     changeTextField(newValue) {
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
       let preparedValue;
       console.log('newValue ', newValue);
       try {
@@ -82,7 +82,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
       this.$forceUpdate();
     },
   },

@@ -9,17 +9,17 @@ import YAML from "yaml";
 import { Document } from "yaml";
 import {
   getExample,
-  getNewField,
+  getNewRootField,
   getNewNestedField,
   prepareData,
 } from "../features/helperFunctions.js";
 
 const actions = {
-  // read Directory
-  async openDirectory(context) {
+
+  async openDirectory({ commit }) {
     const response = await readDirectory();
     // commit to state.files => [ {fileName, fileHandle, dirHandle}, ...]
-    context.commit("updateFiles", response);
+    await commit("updateFiles", response);
   },
 
   setTitle({ commit }, response) {
@@ -50,7 +50,7 @@ const actions = {
     const jsonFileData = YAML.parse(response);
 
     await commit("updateDataJson", jsonFileData); // for my help
-    await commit("updatePreparedDataTable", prepareData(jsonFileData));
+    await commit("updatePreparedData", prepareData(jsonFileData));
 
     await dispatch("setFakerForeignData");
   },
@@ -85,9 +85,6 @@ const actions = {
           let newItem = {};
 
           itemKeys.forEach((key) => {
-            // if (helperField.includes(key)) {
-            //   delete item[key];
-            // }
             if (key === "faker") {
               newItem.faker = parseItem(item.faker);
             } else if (key === "array") {
@@ -109,33 +106,12 @@ const actions = {
           return { ...newItem };
         };
 
-        const data = state.preparedDataTable;
+        const data = state.preparedData;
         let newData = {};
 
         data.forEach((item) => {
           newData[item.field_name] = parseItem(item);
         });
-
-        // newKeys.forEach((item) => {
-        //   // console.log("item = ", item);
-        //   const getItem = state.preparedDataTable.find(
-        //     (arrayItem) => arrayItem.field_name === item
-        //   );
-        //   // console.log("getItem = ", getItem);
-        //   newData = {
-        //     ...newData,
-        //     [item]: {
-        //       json_type: getItem.json_type,
-        //       mandatory: getItem.mandatory,
-        //       td_type: getItem.td_type,
-        //       pydantic_type: getItem.pydantic_type,
-        //       example: getItem.example,
-        //       description: getItem.description,
-        //       pii: getItem.pii,
-        //       faker: { ...getItem.faker },
-        //     },
-        //   };
-        // });
 
         return newData;
       };
@@ -150,18 +126,7 @@ const actions = {
     }
   },
 
-  // async getFileFields(_, handle) {
-  //   const file = await handle.fileHandle.getFile();
-  //   const contents = await file.text();
-  //   const fileData = YAML.parse(contents);
-  //   const fields = Object.keys(fileData);
-
-  //   return fields;
-  // },
-
   addNewField({ state, commit, getters }, args) {
-    // eslint-disable-next-line no-debugger
-    // debugger;
     console.log("addNewField = ", args);
     const { fieldName, fieldType, path, appendPlace, idActiveItem } = args;
     const itemPathArray = path.split(":");
@@ -171,8 +136,8 @@ const actions = {
     let newItem = {};
 
     if (itemPathArray.length === 1) {
-      data = state.preparedDataTable;
-      newItem = getNewField(fieldName, fieldType);
+      data = state.preparedData;
+      newItem = getNewRootField(fieldName, fieldType);
       index = data.findIndex((item) => item.rowId === idActiveItem);
 
       if (index === 0 && appendPlace === "before") {
@@ -183,14 +148,11 @@ const actions = {
         data.splice(index + 1, 0, newItem);
       }
 
-      commit("updatePreparedDataTable", data);
+      commit("updatePreparedData", data);
     }
 
     if (itemPathArray.length > 1) {
-      // eslint-disable-next-line no-debugger
-      // debugger;
-
-      const data = state.preparedDataTable;
+      const data = state.preparedData;
       const parentPath = itemPathArray.slice(0, -1).join(":");
       const parentItem = getters.getCurrentItem(parentPath);
       const parentId = parentItem.rowId;
@@ -198,7 +160,6 @@ const actions = {
       const changeValue = (item) => {
         if (item.rowId === parentId) {
           index = item.object.findIndex((item) => item.rowId === idActiveItem);
-
           newItem = getNewNestedField(fieldName, fieldType);
 
           if (index === 0 && appendPlace === "before") {
@@ -226,20 +187,16 @@ const actions = {
         return item;
       });
 
-      // this.updatePreparedDataTable(newData);
-      commit("updatePreparedDataTable", newData);
+      commit("updatePreparedData", newData);
     }
   },
 
-  deleteItem({ state, commit }, args) {
-    // eslint-disable-next-line no-debugger
-    // debugger;
+  deleteField({ state, commit }, args) {
     const { itemId, itemPath } = args;
-    console.log("deleteItem = ", args, itemId, itemPath);
     let newItems = [];
     const itemPathArray = itemPath.split(":");
     if (itemPathArray.length === 1) {
-      newItems = state.preparedDataTable.filter(
+      newItems = state.preparedData.filter(
         (item) => item.rowId !== itemId
       );
     }
@@ -274,14 +231,14 @@ const actions = {
         }
       };
 
-      newItems = state.preparedDataTable.map((item) => {
+      newItems = state.preparedData.map((item) => {
         changeItem(item);
 
         return item;
       });
     }
 
-    commit("updatePreparedDataTable", newItems);
+    commit("updatePreparedData", newItems);
   },
 
   async deleteFile({ getters, commit }) {

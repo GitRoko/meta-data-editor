@@ -114,7 +114,7 @@
 
 <script>
 import ContentData from "./components/ContentData.vue";
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -156,13 +156,7 @@ export default {
       this.$vuetify.goTo(0);
     },
 
-    ...mapActions(["openDirectory", "readCurrentFile", "saveFile", "deleteFile", "createFile", "setCurrentFile"]),
-    ...mapMutations([
-      "updateCurrentFile",
-      "updateFiles",
-      "updateCurrentFileData",
-      "updateTitle",
-    ]),
+    ...mapActions(["openDirectory", "saveFile", "deleteFile", "createFile", "setCurrentFile"]),
   },
 };
 </script>

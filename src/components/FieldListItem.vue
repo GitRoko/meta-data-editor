@@ -232,7 +232,7 @@ export default {
   },
   watch: {},
   methods: {
-    ...mapActions(["deleteItem", "addNewField"]),
+    ...mapActions(["deleteField", "addNewField"]),
 
     openDialogAddItem(id, beforeAfter) {
       this.idActiveItem = id;
@@ -252,7 +252,7 @@ export default {
     },
   
     deleteCurrentItem(itemId = this.item.rowId, itemPath = this.path) {
-      this.deleteItem({itemId, itemPath});
+      this.deleteField({itemId, itemPath});
     },
 
     hoverItemPanel(item) {

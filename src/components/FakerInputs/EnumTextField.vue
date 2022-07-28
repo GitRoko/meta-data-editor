@@ -50,11 +50,11 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
     // changeTextField(newValue) {
     //   // console.log("newValue = ", newValue);
-    //   const data = this.getPreparedDataTable();
+    //   const data = this.getPreparedData();
     //   // console.log("data = ", data);
     //   let preparedValue;
     //     // eslint-disable-next-line no-debugger
@@ -90,11 +90,11 @@ export default {
     //     return item;
     //   });
 
-    //   this.updatePreparedDataTable(newData);
+    //   this.updatePreparedData(newData);
     //   // this.$forceUpdate();
     // },
     changeTextField(newValue) {
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
       let preparedValue;
       console.log('newValue ', newValue);
       try {
@@ -133,7 +133,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
       this.$forceUpdate();
     },
   },
