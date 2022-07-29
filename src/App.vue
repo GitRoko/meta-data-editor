@@ -49,7 +49,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <!-- <v-list-item @click="saveFile">
+        <v-list-item @click="saveFile">
           <v-list-item-icon>
             <v-icon>mdi-file-code-outline</v-icon>
           </v-list-item-icon>
@@ -57,7 +57,7 @@
           <v-list-item-content>
             <v-list-item-title>Save file</v-list-item-title>
           </v-list-item-content>
-        </v-list-item> -->
+        </v-list-item>
         <v-divider></v-divider>
         <!-- <v-list-item @click="deleteFile">
           <v-list-item-icon>

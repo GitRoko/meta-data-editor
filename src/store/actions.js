@@ -76,7 +76,7 @@ const actions = {
   },
 
   async saveFile({ state }) {
-    if (state.getCurrentFileData !== "") {
+    if (state.preparedData !== "") {
       const newCurrentData = () => {
         const helperField = ["field_name", "nested", "rowId"];
 
@@ -87,9 +87,9 @@ const actions = {
           itemKeys.forEach((key) => {
             if (key === "faker") {
               newItem.faker = parseItem(item.faker);
-            } else if (key === "array") {
+            } else if (key === "array" && item.array !== undefined) {
               newItem.array = parseItem(item.array);
-            } else if (key === "object") {
+            } else if (key === "object" && item.object !== undefined) {
               // // eslint-disable-next-line no-debugger
               // debugger;
               item.object.forEach((item) => {
@@ -98,7 +98,8 @@ const actions = {
                   [item.field_name]: parseItem(item),
                 };
               });
-            } else if (!helperField.includes(key)) {
+            } else if (!helperField.includes(key)
+            && item[key] !== undefined) {
               newItem = { ...newItem, [key]: item[key] };
             }
           });

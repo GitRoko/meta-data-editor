@@ -1,7 +1,7 @@
 <template>
   <v-select
     :value="selectValue"
-    @input="changeSelectValue"
+    @change="changeSelectValue"
     :items="options"
     :label="selectLabel"
     outlined
@@ -12,42 +12,28 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-// import { typeRules } from "../features/rules";
-
 
 export default {
   name: "FakerForeignFilesSelect",
   props: {
     incomingItemValue: String,
-    selectName: String,
+    selectLabel: String,
     rowId: String,
     options: Array
   },
   data() {
     return {
-      // items: [],
       selectValue: "",
-      selectLabel: "",
     };
   },
   created() {
-    // this.items = 
     this.selectValue = this.incomingItemValue;
     // this.selectValue = this.options.includes(this.incomingItemValue)
     //   ? this.incomingItemValue
     //   : '';
 
-    this.selectLabel = this.selectName;
   },
   computed: {
-    // ...mapGetters(["getForeignData", "getCurrentFile"]),
-
-    // items() {
-    //   const foreignDatasetOptions = this.getForeignData.datasetOptions
-    //     .filter(fileName => fileName !== this.getCurrentFile.fileName);
-
-    //   return foreignDatasetOptions;
-    // },
   },
   watch: {
     selectValue(newValue, oldValue) {

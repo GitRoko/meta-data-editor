@@ -35,6 +35,9 @@ export const getNewRootField = (fieldName, fieldType) => {
     faker: { ...newFaker },
     description: "",
     pii: false,
+    array: undefined,
+    object: undefined,
+    nested: fieldType === "array" || fieldType === "array" ? false : undefined,
   };
 };
 export const getNewNestedField = (fieldName, fieldType) => {
@@ -51,6 +54,9 @@ export const getNewNestedField = (fieldName, fieldType) => {
     faker: { ...newFaker },
     description: "",
     pii: false,
+    array: undefined,
+    object: undefined,
+    nested: fieldType === "array" || fieldType === "array" ? false : undefined,
   };
 };
 
@@ -73,11 +79,15 @@ export const prepareData = (object) => {
       !objectFields.hasOwnProperty("array")
     ) {
       objectFields.nested = false;
+      objectFields.array = undefined;
+      objectFields.object = undefined;
+
     }
 
     // eslint-disable-next-line no-prototype-builtins
     if (objectFields.hasOwnProperty("faker")) {
-      addHelperFields(objectFields.faker);
+      // addHelperFields(objectFields.faker);
+      objectFields.faker.rowId = uuidv4()
     }
 
     if (
@@ -95,6 +105,17 @@ export const prepareData = (object) => {
       !objectFields.hasOwnProperty("object")
     ) {
       objectFields.nested = false;
+      objectFields.object = undefined;
+      objectFields.array = undefined;
+
+
+    }
+
+    if (objectFields.json_type !== "object" 
+        && objectFields.json_type !== "array") {
+      objectFields.array = undefined;
+      objectFields.object = undefined;
+      objectFields.nested = undefined;
     }
 
     objectFields.rowId = uuidv4();

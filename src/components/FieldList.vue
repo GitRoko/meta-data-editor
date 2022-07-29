@@ -2,7 +2,12 @@
   <v-expansion-panels 
     v-if="itemsData"
    focusable v-model="panel" multiple>
-    <FieldListItem v-for="item in itemsData" :key="item.rowId" :path="item.rowId" />
+    <FieldListItem 
+      v-for="item in itemsData" 
+      :key="item.rowId" 
+      :path="item.rowId"
+      :fieldsItem="item"
+    />
     
   </v-expansion-panels>
 </template>

@@ -2,7 +2,7 @@
   <v-select
     :value="selectValue"
     @input="changeSelectValue"
-    :items="options"
+    :items="fieldsOptions"
     :label="selectLabel"
     outlined
     dense
@@ -12,7 +12,6 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-// import { typeRules } from "../features/rules";
 
 export default {
   name: "FakerForeignFieldSelectedFile",
@@ -25,56 +24,35 @@ export default {
   },
   data() {
     return {
-      // items: [],
       selectValue: "",
     };
   },
   created() {
-    // this.items = this.getFields(this.selectedFile);
     this.selectValue = this.incomingItemValue;
     // this.selectValue = this.options.includes(this.incomingItemValue)
     //   ? this.incomingItemValue
     //   : '';
 
   },
-  computed: {
-    // itemsForFields() {
-    //   if (this.items) {
-    //     const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
-    //   const data = this.$store.getters.allFiles;
-    //   const list = data.map(item => item.fileName.split('.')[0]);
-    //   // console.log(list);
+  computed: { 
+    ...mapGetters(["getForeignData"]),
 
-    //   return list.filter(item => item !== currentfile);
-    //   }
-    //   return [];
-    // }
-    
+    fieldsOptions() {
+      if (this.selectedFile !== '') {
+        return this.getForeignData.fieldOptions[this.selectedFile];
+      } else {
+        return [];
+      }
+    },
   },
   watch: {
     selectValue(newValue, oldValue) {
       this.changeSelectValue(newValue, oldValue);
     },
-    // selectedFile(newValue) {
-    //   this.getFields(newValue);
-    //   this.selectValue = "";
-    //   this.changeSelectValue("");
-    // },
   },
   methods: {
     ...mapGetters(["getPreparedData"]),
     ...mapMutations(["updatePreparedData"]),
-    // ...mapActions(["getFileFields"]),
-
-    // getFields(fileName) {
-    //   const currentfile = fileName + ".yaml";
-
-    //   const fileHandleItem = this.$store.getters.allFiles.find(
-    //     (item) => item.fileName === currentfile
-    //   );
-
-    //   this.getFileFields(fileHandleItem).then((data) => (this.items = data));
-    // },
 
     changeSelectValue(newValue) {
         const data = this.getPreparedData();

@@ -1,6 +1,5 @@
 const state = {
     files: null,
-    // currentFileData: null, // together or separaite
     currentFile: null,
     title: "",
     dataJson: null,

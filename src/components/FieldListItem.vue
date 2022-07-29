@@ -131,6 +131,7 @@
       </v-container>
       <template v-if="item.faker">
         <FakerItem
+          v-if="item.faker !== undefined"
           :item="item.faker"
           :rowId="item.rowId"
           :path="path + ':' + item.faker.rowId"
@@ -199,6 +200,7 @@ export default {
   },
   props: {
     parentTypeArray: Boolean,
+    fieldsItem: Object,
     path: {
       type: String,
       default: "",
@@ -212,7 +214,7 @@ export default {
       dialog: false,
       idActiveItem: "",
       appendPlace: "",
-      itemField: this.$store.getters.getCurrentItem(this.path),
+      // itemField: this.$store.getters.getCurrentItem(this.path),
     };
   },
   computed: {
@@ -220,10 +222,10 @@ export default {
       return this.$store.getters.getCurrentItem(this.path);
     },
     itemArray: function () {
-      return this.$store.getters.getCurrentItem(this.path).array || undefined;
+      return this.$store.getters.getCurrentItem(this.path).array;
     },
     itemObject: function () {
-      return this.$store.getters.getCurrentItem(this.path).object || undefined;
+      return this.$store.getters.getCurrentItem(this.path).object;
     },
     bgColor() {
       // return `red lighten-5`;

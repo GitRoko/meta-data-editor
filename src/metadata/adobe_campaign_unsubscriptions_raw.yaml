@@ -12,39 +12,13 @@ consumer_id:
     length: 32
 email:
   json_type: array
-  td_type: varchar
+  td_type: string
   mandatory: true
-  pydantic_type: Dict
+  pydantic_type: List
   faker:
     type: array
     occurrence_min: 0
     occurrence_max: 1
-  array:
-    json_type: object
-    mandatory: false
-    pydantic_type: StrictStr
-    faker:
-      type: object
-    object:
-      id:
-        json_type: number
-        mandatory: true
-        pydantic_type: StrictInt
-        example: 123
-        faker:
-          type: integer
-          unique: false
-          to_str: false
-      qwe:
-        json_type: string
-        mandatory: false
-        pydantic_type: StrictStr
-        example: Some string
-        faker:
-          type: sample
-          sample: ""
-        description: ""
-        pii: false
 unsubscription_date:
   json_type: string
   td_type: varchar

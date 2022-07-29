@@ -57,6 +57,7 @@ export default {
       if (newValue !== oldValue) {
         this.item.json_type = newValue;
         this.item.example = getExample(newValue);
+        
         let newKeys = Object.keys(
           fakerDefaultValue[typeRules.faker[newValue][0]]
         );
@@ -77,22 +78,22 @@ export default {
 
             if (this.item.array) {
               this.item.example = ["Some string"];
-              delete this.item.array;
+              this.item.array = undefined;
             }
             if (this.item.object) {
               this.item.example = { id: 123 };
-              delete this.item.object;
+              this.item.object = undefined;
             }
           } else {
-            delete this.item.nested;
+            this.item.nested = undefined;
 
             if (this.item.array) {
               this.item.example = `${getExample(this.item.json_type)}`;
-              delete this.item.array;
+              this.item.array = undefined;
             }
             if (this.item.object) {
               this.item.example = `${getExample(this.item.json_type)}`;
-              delete this.item.object;
+              this.item.object = undefined;
             }
           }
        
