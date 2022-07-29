@@ -1,5 +1,10 @@
 <template>
-  <v-expansion-panel class="my-2 rounded-lg" :class="bgColor" :style="bgColor">
+  <v-expansion-panel
+    v-if="item"
+    class="my-2 rounded-lg"
+    :class="bgColor"
+    :style="bgColor"
+  >
     <v-expansion-panel-header
       class="my-0 py-0 rounded-lg"
       @mouseover="hoverItemPanel(item)"
@@ -7,18 +12,18 @@
     >
       <v-container class="py-0">
         <v-row dense>
-          <!-- <v-col v-if="item.hasOwnProperty(field_name)" cols="4" dense> -->
           <v-col v-if="item.field_name !== undefined" cols="4" dense>
-            <TextFieldTable
+            <TextField
               v-if="item.field_name"
               :rowId="item.rowId"
               :textFieldLabel="'Field'"
-              :field="'field_name'"
+              :fieldName="'field_name'"
               :incomingValue="item.field_name"
+              :path="path"
             />
           </v-col>
           <v-col v-if="item.json_type !== undefined" cols="3" dense>
-            <SelectTypeTable
+            <JsonTypeSelect
               :path="path"
               :rowId="item.rowId"
               :incomingValue="item.json_type"
@@ -30,7 +35,7 @@
             align-self="center"
             dense
           >
-            <CheckboxTable
+            <CheckboxField
               :rowId="item.rowId"
               :labelName="'Required'"
               :fieldTitle="'mandatory'"
@@ -40,7 +45,7 @@
           </v-col>
           <v-col
             v-if="item.nested !== undefined"
-            cols="1"
+            cols="2"
             align-self="center"
             class="text-center"
             dense
@@ -51,26 +56,15 @@
               :path="path"
             />
           </v-col>
-          <!-- <v-col cols="1" align-self="center" class="text-center" dense>
-             <AddItemMenu
-              v-if="!parentTypeArray"
-              @click.native.stop
-              :rowId="item.rowId"
-              :path="path"
-              @removeItem="deleteItem(item.rowId, path)"
-              @addItemBefore="openDialogAddItem(item.rowId, 'before', path)"
-              @addItemAfter="openDialogAddItem(item.rowId, 'after', path)"
-            />
-          </v-col> -->
           <v-col cols="1" align-self="center" class="text-center" dense>
             <AddItemMenu
               v-if="hoveredItemPanel && !parentTypeArray"
               @click.native.stop
               :rowId="item.rowId"
               :path="path"
-              @removeItem="deleteItem(item.rowId, path)"
-              @addItemBefore="openDialogAddItem(item.rowId, 'before', path)"
-              @addItemAfter="openDialogAddItem(item.rowId, 'after', path)"
+              @removeItem="deleteCurrentItem(item.rowId, path)"
+              @addItemBefore="openDialogAddItem(item.rowId, 'before')"
+              @addItemAfter="openDialogAddItem(item.rowId, 'after')"
             />
           </v-col>
         </v-row>
@@ -80,8 +74,13 @@
     <v-expansion-panel-content class="py-0">
       <v-container class="py-0">
         <v-row dense class="py-0">
-          <v-col v-if="item.td_type !== undefined" cols="2" dense align-self="center">
-            <DependentSelectTable
+          <v-col
+            v-if="item.td_type !== undefined"
+            cols="2"
+            dense
+            align-self="center"
+          >
+            <DependentSelect
               :rowId="item.rowId"
               :jsonType="item.json_type"
               :fieldTitle="'td_type'"
@@ -89,8 +88,8 @@
               :incomingItemValue="item.td_type"
             />
           </v-col>
-          <v-col v-if="item.pydantic_type !== undefined" cols="3" dense >
-            <DependentSelectTable
+          <v-col v-if="item.pydantic_type !== undefined" cols="3" dense>
+            <DependentSelect
               :rowId="item.rowId"
               :jsonType="item.json_type"
               :fieldTitle="'pydantic_type'"
@@ -99,7 +98,7 @@
             />
           </v-col>
           <v-col v-if="item.example !== undefined" cols="3" dense>
-            <ExempleTextField
+            <ExampleTextField
               :jsonType="item.json_type"
               :rowId="item.rowId"
               :textFieldLabel="'Example'"
@@ -108,7 +107,7 @@
             />
           </v-col>
           <v-col v-if="item.description !== undefined" cols="3" dense>
-            <TextFieldTable
+            <TextField
               :rowId="item.rowId"
               :textFieldLabel="'Description'"
               :field="'description'"
@@ -121,7 +120,7 @@
             align-self="center"
             dense
           >
-            <CheckboxTable
+            <CheckboxField
               :rowId="item.rowId"
               :labelName="'PII'"
               :fieldTitle="'pii'"
@@ -131,19 +130,21 @@
         </v-row>
       </v-container>
       <template v-if="item.faker">
-        <FakerItem 
-        :item="item.faker"
-        :rowId="item.rowId"
-        :path="path + ':' + item.faker.rowId"
-        :jsonType="item.json_type" />
+        <FakerItem
+          v-if="item.faker !== undefined"
+          :item="item.faker"
+          :rowId="item.rowId"
+          :path="path + ':' + item.faker.rowId"
+          :jsonType="item.json_type"
+        />
       </template>
     </v-expansion-panel-content>
     <template>
       <div v-if="item.array !== undefined" class="ml-6">
         <v-expansion-panels focusable v-model="panel" multiple>
           <FieldListItem
-            :item="item.array"
-            :path="path + ':' + item.array.rowId"
+            :item="itemArray"
+            :path="path + ':' + itemArray.rowId"
             :parentTypeArray="true"
           />
         </v-expansion-panels>
@@ -153,89 +154,53 @@
       <div v-if="item.object !== undefined" class="ml-6">
         <v-expansion-panels focusable v-model="panel" multiple>
           <FieldListItem
-            v-for="itemObject in item.object"
-            :key="itemObject.rowId"
-            :item="itemObject"
-            :path="path + ':' + itemObject.rowId"
+            v-for="item in itemObject"
+            :key="item.rowId"
+            :item="item"
+            :path="path + ':' + item.rowId"
           />
         </v-expansion-panels>
       </div>
     </template>
     <template>
-      <v-dialog v-model="dialog" max-width="500">
-        <v-card>
-          <v-card-title class="text-h5">Add new field</v-card-title>
-          <v-card-text>
-            <v-container>
-              <v-row dense>
-                <v-col cols="6">
-                  <v-text-field
-                    label="Field_name"
-                    v-model="dialogText"
-                    outlined
-                    dense
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="6">
-                  <v-select
-                    v-model="selectValue"
-                    :items="dialogItems"
-                    label="Type"
-                    outlined
-                    dense
-                  ></v-select>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="clearDialogInputs()">
-              Cansel
-            </v-btn>
-            <v-btn
-              color="blue darken-1"
-              text
-              @click="addNew(), clearDialogInputs()"
-            >
-              Accept
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <AddItemDialog
+        :dialogShow="dialog"
+        @addNewItem="addNewFieldItem"
+        @clearInputs="closeDialog"
+      />
     </template>
   </v-expansion-panel>
 </template>
 
 <script>
-import TextFieldTable from "./TextFieldTable.vue";
-import ExempleTextField from "./ExempleTextField.vue";
-import SelectTypeTable from "./SelectTypeTable.vue";
-import CheckboxTable from "./CheckboxTable.vue";
-import DependentSelectTable from "./DependentSelectTable.vue";
-import NestedToggler from "./NestedToggler.vue";
+import TextField from "./FieldInputs/TextField.vue";
+import ExampleTextField from "./FieldInputs/ExampleTextField.vue";
+import JsonTypeSelect from "./FieldInputs/JsonTypeSelect.vue";
+import CheckboxField from "./FieldInputs/CheckboxField.vue";
+import DependentSelect from "./FieldInputs/DependentSelect.vue";
+import NestedToggler from "./FieldInputs/NestedToggler.vue";
 import FakerItem from "./FakerItem.vue";
 
 import AddItemMenu from "./AddItemMenu.vue";
-import { v4 as uuidv4 } from "uuid";
-import { mapMutations, mapGetters } from "vuex";
+import AddItemDialog from "./AddItemDialog.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "FieldListItem",
   components: {
-    TextFieldTable,
-    SelectTypeTable,
-    CheckboxTable,
-    DependentSelectTable,
-    ExempleTextField,
+    JsonTypeSelect,
+    AddItemDialog,
+    CheckboxField,
+    DependentSelect,
+    ExampleTextField,
     NestedToggler,
     AddItemMenu,
     FakerItem,
+    TextField,
   },
   props: {
     parentTypeArray: Boolean,
+    fieldsItem: Object,
     path: {
       type: String,
       default: "",
@@ -245,205 +210,53 @@ export default {
   data() {
     return {
       panel: [],
-      // color: 'red lighten-1',
       hoveredItemPanel: false,
-      componentKey: 0,
       dialog: false,
       idActiveItem: "",
       appendPlace: "",
-      dialogText: "",
-      dialogPath: "",
-      selectValue: "",
-      dialogItems: ["string", "number", "array", "object", "boolean"],
+      // itemField: this.$store.getters.getCurrentItem(this.path),
     };
   },
   computed: {
-    ...mapGetters(["getPreparedDataTable", "getCurrentItem"]),
-    item() {
+    item: function () {
       return this.$store.getters.getCurrentItem(this.path);
+    },
+    itemArray: function () {
+      return this.$store.getters.getCurrentItem(this.path).array;
+    },
+    itemObject: function () {
+      return this.$store.getters.getCurrentItem(this.path).object;
     },
     bgColor() {
       // return `red lighten-5`;
       return `backgound-color:hsla(0, 100%, 40%, 0.2)`;
     },
-    
   },
   watch: {},
   methods: {
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapActions(["deleteField", "addNewField"]),
 
-    // ...mapGetters(["getCurrentItem"]),
-    openDialogAddItem(id, beforeAfter, itemPath) {
+    openDialogAddItem(id, beforeAfter) {
       this.idActiveItem = id;
       this.appendPlace = beforeAfter;
-      this.dialogPath = itemPath;
       this.dialog = true;
     },
-    addNew() {
-      // eslint-disable-next-line no-debugger
-      // debugger;
-      console.log();
-      const itemPathArray = this.dialogPath.split(":");
 
-      let index = 0;
-      let data = [];
-      let newItem = {};
-      // let newItems = [];
-
-      if (itemPathArray.length === 1) {
-        data = this.$store.state.currentFileData.preparedDataTable;
-        newItem = this.getNewItem(this.dialogText, this.selectValue);
-        index = data.findIndex((item) => item.rowId === this.idActiveItem);
-      }
-
-      if (itemPathArray.length > 1) {
-        const changeItem = (item) => {
-          if (item.rowId === this.idActiveItem) {
-            console.log("item = ", item);
-          } else {
-            if (item.array) {
-              changeItem(item.array);
-            }
-
-            if (item.object) {
-              index = item.object.findIndex(
-                (item) => item.rowId === this.idActiveItem
-              );
-
-              if (index < 0) {
-                item.object.forEach((item) => {
-                  changeItem(item);
-                });
-              } else {
-                newItem = this.getNewItemObject(
-                  this.dialogText,
-                  this.selectValue
-                );
-
-                if (index === 0 && this.appendPlace === "before") {
-                  return item.object.splice(0, 0, newItem);
-                }
-
-                if (this.appendPlace === "before") {
-                  return item.object.splice(index, 0, newItem);
-                }
-
-                if (this.appendPlace === "after") {
-                  return item.object.splice(index + 1, 0, newItem);
-                }
-              }
-            }
-          }
-        };
-
-        data = this.$store.state.currentFileData.preparedDataTable.map(
-          (item) => {
-            changeItem(item);
-
-            return item;
-          }
-        );
-      }
-
-      if (index === 0 && this.appendPlace === "before") {
-        return data.splice(0, 0, newItem);
-      }
-
-      if (this.appendPlace === "before") {
-        return data.splice(index, 0, newItem);
-      }
-
-      if (this.appendPlace === "after") {
-        return data.splice(index + 1, 0, newItem);
-      }
-
-      this.updatePreparedDataTable(data);
+    addNewFieldItem(args) {
+      const arg = { ...args, path: this.path, appendPlace: this.appendPlace, idActiveItem: this.idActiveItem };
+      this.addNewField( arg );
     },
 
-    clearDialogInputs() {
+    closeDialog() {
       this.appendPlace = "";
-      this.dialogText = "";
-      this.selectValue = "";
       this.idActiveItem = "";
-      this.dialogPath = "";
-
       this.dialog = false;
     },
-
-    deleteItem(id, itemPath) {
-      // eslint-disable-next-line no-debugger
-      // debugger;
-      let newItems = [];
-      const itemPathArray = itemPath.split(":");
-      if (itemPathArray.length === 1) {
-        newItems = this.getPreparedDataTable.filter(
-          (item) => item.rowId !== id
-        );
-      }
-      if (itemPathArray.length > 1) {
-        const changeItem = (item) => {
-          if (item.rowId === id) {
-            console.log("item = ", item);
-          } else {
-            if (item.array) {
-              changeItem(item.array);
-            }
-
-            if (item.object) {
-              let isHaveCurrentItem = item.object.find(
-                (item) => item.rowId === id
-              );
-
-              if (isHaveCurrentItem) {
-                item.object = item.object.filter((item) => item.rowId !== id);
-
-                if (item.object.length === 0) {
-                  delete item.object;
-                  item.nested = false;
-                }
-              } else {
-                item.object.forEach((item) => {
-                  changeItem(item);
-                });
-              }
-            }
-          }
-        };
-
-        newItems = this.getPreparedDataTable.map((item) => {
-          changeItem(item);
-
-          return item;
-        });
-      }
-
-      this.updatePreparedDataTable(newItems);
+  
+    deleteCurrentItem(itemId = this.item.rowId, itemPath = this.path) {
+      this.deleteField({itemId, itemPath});
     },
 
-    getNewItem(text, select) {
-      return {
-        rowId: uuidv4(),
-        field_name: text,
-        json_type: select,
-        mandatory: false,
-        td_type: "",
-        pydantic_type: "",
-        example: "",
-        faker: {},
-        description: "",
-        pii: false,
-      };
-    },
-    getNewItemObject(text, select) {
-      return {
-        field_name: text,
-        json_type: select,
-        mandatory: true,
-        pydantic_type: "false",
-        example: "",
-        rowId: uuidv4(),
-      };
-    },
     hoverItemPanel(item) {
       this.hoveredItemPanel = item;
     },

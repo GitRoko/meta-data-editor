@@ -2,7 +2,7 @@
   <v-select
     :value="selectValue"
     @input="changeSelectValue"
-    :items="items"
+    :items="fieldsOptions"
     :label="selectLabel"
     outlined
     dense
@@ -11,8 +11,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from "vuex";
-// import { typeRules } from "../features/rules";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "FakerForeignFieldSelectedFile",
@@ -21,59 +20,42 @@ export default {
     rowId: String,
     selectedFile: String,
     selectLabel: String,
+    options: Array
   },
   data() {
     return {
-      items: [],
       selectValue: "",
     };
   },
   created() {
-    this.items = this.getFields(this.selectedFile);
     this.selectValue = this.incomingItemValue;
+    // this.selectValue = this.options.includes(this.incomingItemValue)
+    //   ? this.incomingItemValue
+    //   : '';
 
   },
-  computed: {
-    // itemsForFields() {
-    //   if (this.items) {
-    //     const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
-    //   const data = this.$store.getters.allFiles;
-    //   const list = data.map(item => item.fileName.split('.')[0]);
-    //   // console.log(list);
+  computed: { 
+    ...mapGetters(["getForeignData"]),
 
-    //   return list.filter(item => item !== currentfile);
-    //   }
-    //   return [];
-    // }
-    
+    fieldsOptions() {
+      if (this.selectedFile !== '') {
+        return this.getForeignData.fieldOptions[this.selectedFile];
+      } else {
+        return [];
+      }
+    },
   },
   watch: {
     selectValue(newValue, oldValue) {
       this.changeSelectValue(newValue, oldValue);
     },
-    selectedFile(newValue) {
-      this.getFields(newValue);
-      this.selectValue = "";
-      this.changeSelectValue("");
-    },
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
-    ...mapActions(["getFileFields"]),
-
-    getFields(fileName) {
-      const currentfile = fileName + ".yaml";
-
-      const fileHandleItem = this.$store.getters.allFiles.find(
-        (item) => item.fileName === currentfile
-      );
-
-      this.getFileFields(fileHandleItem).then((data) => (this.items = data));
-    },
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
 
     changeSelectValue(newValue) {
-        const data = this.getPreparedDataTable();
+        const data = this.getPreparedData();
         const changeValue = (item) => {
           if (item.rowId === this.rowId) {
             item.field = newValue;
@@ -95,7 +77,7 @@ export default {
           changeValue(item);
           return item;
         });
-        this.updatePreparedDataTable(newData);
+        this.updatePreparedData(newData);
     },
   },
 };

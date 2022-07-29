@@ -1,6 +1,6 @@
 
 // eslint-disable-next-line no-unused-vars
-const getContainingObject = (list, path) => {
+export const getContainingObject = (list, path) => {
   let itemPathArray = path.split(":");
   if (itemPathArray.length === 1) {
     return null;
@@ -27,14 +27,14 @@ const getContainingObject = (list, path) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const findObject = (list, path) => {
-  const parent = getContainingObject(list, path);
-  if (parent.json_type === 'array') {
+ export const findObject = (list, path) => {
+  let parent = getContainingObject(list, path);
+  if (parent?.json_type === 'array') {
     return parent.array;
   }
 
-  const id = path.split(':')[-1];
-  if (parent.object === 'object') {
+  let id = path.split(':')[-1] || path;
+  if (parent?.object === 'object') {
     return parent.object.find(item => item.rowId === id);
   }
 

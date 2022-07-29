@@ -59,7 +59,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item @click="deleteFile">
+        <!-- <v-list-item @click="deleteFile">
           <v-list-item-icon>
             <v-icon>mdi-file-remove-outline</v-icon>
           </v-list-item-icon>
@@ -67,20 +67,24 @@
           <v-list-item-content>
             <v-list-item-title>Delete file</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
+        </v-list-item> -->
         <v-divider></v-divider>
       </v-list>
 
       <v-list nav dense>
-        <v-list-item-group v-model="selectedItem" color="primary">
+        <v-list-item-group 
+        v-model="selectedFiles" 
+        color="primary"
+        v-if="files.length > 0"
+        >
           <v-list-item
-            v-for="(item, i) in allFiles"
+            v-for="(file, i) in files"
             :key="i"
-            @click="getActiveFile(item.fileName)"
+            @click="setCurrentFile(file.fileName)"
           >
             <v-list-item-content>
               <v-list-item-title
-                v-text="item.fileName.split('.')[0]"
+                v-text="file.fileName.split('.')[0]"
               ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -103,14 +107,14 @@
     </v-btn>
 
     <v-main class="grey lighten-5">
-      <ContentData v-if="hasActiveFile" :title="getTitle" />
+      <ContentData v-if="selectedFiles !== null" :title="getTitle" />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import ContentData from "./components/ContentData.vue";
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -121,21 +125,25 @@ export default {
   data: () => ({
     drawer: null,
     fab: false, //scrollTop
-    selectedItem: 0, //fileList selected
-    hasActiveFile: false,
+    selectedFiles: null, //fileList selected
+    files: [],
   }),
 
   computed: {
     ...mapGetters([
-      "allFiles",
+      "getFiles",
       "getCurrentFile",
-      "getCurrentFileData",
       "getTitle",
-      "getPreparedDataTable",
-      "getCurrentFileName",
-      "getCurrentFileHadler",
-      "getCurrentFileDirHandler",
     ]),
+  },
+
+  watch: {
+    getFiles: {
+      handler: function (newVal) {
+        this.files = newVal;
+      },
+      deep: true,
+    },
   },
 
   methods: {
@@ -148,60 +156,7 @@ export default {
       this.$vuetify.goTo(0);
     },
 
-    ...mapActions(["openDirectory", "getActiveFileData", "saveFile"]),
-    ...mapMutations([
-      "updateActiveFile",
-      "updateFiles",
-      "updateActiveFileData",
-      "updateTitle",
-    ]),
-
-    getActiveFile(fileName) {
-      // можно перенести в store?
-      const activeFile = this.allFiles.find(
-        (item) => item.fileName === fileName
-      );
-
-      this.updateActiveFile(activeFile);
-      this.getActiveFileData();
-      this.hasActiveFile = true;
-    },
-    async deleteFile() {
-      const directoryHandle = this.getCurrentFileDirHandler;
-      const file_name = this.getCurrentFileName;
-
-      await directoryHandle.removeEntry(file_name);
-
-      const newAllFiles = [];
-
-      await this.allFiles.forEach((item) => {
-        if (item.fileName !== file_name) {
-          newAllFiles.push(item);
-        }
-      });
-      // console.log(newAllFiles);
-
-      this.updateFiles(newAllFiles);
-      this.hasActiveFile = false;
-      this.updateActiveFile(null);
-      this.updateActiveFileData(null);
-      this.updateTitle("");
-      // await this.openDirectory();
-    },
-    async createFile() {
-      const options = {
-        types: [
-          {
-            description: "Text Files",
-            accept: {
-              "text/plain": [".yaml"],
-            },
-          },
-        ],
-      };
-      const handle = await window.showSaveFilePicker(options);
-      return handle;
-    },
+    ...mapActions(["openDirectory", "saveFile", "deleteFile", "createFile", "setCurrentFile"]),
   },
 };
 </script>

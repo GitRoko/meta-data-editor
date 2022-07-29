@@ -46,12 +46,12 @@ question_2:
   mandatory: true
   pydantic_type: StrictStr
   example: someText
-question_3:
-  json_type: string
-  td_type: varchar
-  mandatory: true
-  pydantic_type: StrictStr
-  example: someText
+# question_3:
+#   json_type: string
+#   td_type: varchar
+#   mandatory: true
+#   pydantic_type: StrictStr
+#   example: someText
 question_3:
   json_type: string
   td_type: varchar

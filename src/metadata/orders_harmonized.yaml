@@ -472,12 +472,12 @@ status_histories_status:
   mandatory: true
   pydantic_type: StrictStr
   example: processing
-payment_additional_info_key:
-  json_type: string
-  td_type: varchar
-  mandatory: true
-  pydantic_type: StrictStr
-  example: cc_id
+# payment_additional_info_key:
+#   json_type: string
+#   td_type: varchar
+#   mandatory: true
+#   pydantic_type: StrictStr
+#   example: cc_id
 payment_additional_info_value:
   json_type: string
   td_type: varchar
@@ -772,12 +772,12 @@ payment_additional_info_key:
   mandatory: true
   pydantic_type: StrictStr
   example: ''
-payment_additional_info_value:
-  json_type: string
-  td_type: varchar
-  mandatory: true
-  pydantic_type: StrictStr
-  example: ''
+# payment_additional_info_value:
+#   json_type: string
+#   td_type: varchar
+#   mandatory: true
+#   pydantic_type: StrictStr
+#   example: ''
 date_created_ts:
   json_type: string
   td_type: varchar

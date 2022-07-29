@@ -11,10 +11,10 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { typeRules } from "../features/rules";
+import { typeRules } from "../../features/rules";
 
 export default {
-  name: "DependentSelectTable",
+  name: "DependentSelect",
   props: {
     incomingItemValue: String,
     selectLabel: String,
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     // jsonType() {
-    //   const table = this.$store.state.currentFileData.preparedDataTable;
+    //   const table = this.$store.state.currentFileData.preparedData;
     //   if (table) {
     //     return table.find(item => item.rowId === this.rowId).json_type;
     //     //  return table[this.rowId].json_type;
@@ -72,31 +72,31 @@ export default {
     },
     incomingItemValue(newVal) {
       if (newVal === "" && this.items.length === 1) {
-        this.selectValue = this.items[0];
+        // this.selectValue = this.items[0];
+        this.changeSelectValue(this.items[0]);
       } else if (newVal === "" && this.items.length > 1) {
         this.selectValue = "";
       } else {
-        this.selectValue = newVal;
+        // this.selectValue = newVal;
+      this.changeSelectValue(newVal);
+
       }
       // this.selectValue = newVal;
       this.$forceUpdate();
     },
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
 
     changeSelectValue(newValue) {
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item[this.fieldTitle] = newValue;
         } else {
           if (item.array) {
             changeValue(item.array);
-          }
-          if (item.faker) {
-            changeValue(item.faker);
           }
           if (item.object) {
             item.object.forEach((item) => {
@@ -112,7 +112,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
     },
   },
 };

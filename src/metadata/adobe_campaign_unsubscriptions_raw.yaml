@@ -1,3 +1,5 @@
+# Abcdefg dsada
+
 consumer_id:
   json_type: string
   td_type: varchar
@@ -9,14 +11,14 @@ consumer_id:
     upper: false
     length: 32
 email:
-  json_type: string
-  td_type: varchar
+  json_type: array
+  td_type: string
   mandatory: true
-  pydantic_type: StrictStr
-  example: someText
+  pydantic_type: List
   faker:
-    type: sample
-    sample: emails
+    type: array
+    occurrence_min: 0
+    occurrence_max: 1
 unsubscription_date:
   json_type: string
   td_type: varchar
@@ -25,4 +27,4 @@ unsubscription_date:
   example: 02/02/2020 20:20:20
   faker:
     type: date
-    format: '%d/%m/%Y %H:%M:%S'
+    format: "%d/%m/%Y %H:%M:%S"

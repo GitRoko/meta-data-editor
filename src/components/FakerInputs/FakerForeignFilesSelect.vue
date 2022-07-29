@@ -1,8 +1,8 @@
 <template>
   <v-select
     :value="selectValue"
-    @input="changeSelectValue"
-    :items="items"
+    @change="changeSelectValue"
+    :items="options"
     :label="selectLabel"
     outlined
     dense
@@ -12,43 +12,28 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-// import { typeRules } from "../features/rules";
-
 
 export default {
   name: "FakerForeignFilesSelect",
   props: {
     incomingItemValue: String,
-    selectName: String,
+    selectLabel: String,
     rowId: String,
-    jsonType: String,
-    fieldName: String,
+    options: Array
   },
   data() {
     return {
-      items: [],
       selectValue: "",
-      selectLabel: "",
     };
   },
   created() {
-    this.items = this.getItems();
-    this.selectValue = this.items.includes(this.incomingItemValue)
-      ? this.incomingItemValue
-      : '';
+    this.selectValue = this.incomingItemValue;
+    // this.selectValue = this.options.includes(this.incomingItemValue)
+    //   ? this.incomingItemValue
+    //   : '';
 
-    this.selectLabel = this.selectName;
   },
   computed: {
-    
-    // items() {
-    //   const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
-    //   const data = this.$store.getters.allFiles;
-    //   const list = data.map(item => item.fileName.split('.')[0]);
-    //   // console.log(list);
-
-    //   return list.filter(item => item !== currentfile);
-    // }
   },
   watch: {
     selectValue(newValue, oldValue) {
@@ -56,11 +41,11 @@ export default {
     },
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
 
     changeSelectValue(newValue) {
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.dataset = newValue;
@@ -85,16 +70,8 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
     },
-    getItems() {
-      const currentfile = this.$store.getters.getCurrentFile.fileName.split('.')[0];
-      const data = this.$store.getters.allFiles;
-      const list = data.map(item => item.fileName.split('.')[0]);
-      // console.log(list);
-
-      return list.filter(item => item !== currentfile);
-    }
   },
 };
 </script>

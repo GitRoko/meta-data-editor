@@ -1,10 +1,12 @@
 <template>
   <v-text-field
+    @click.native.stop
     class="field_name__textField mt-7"
-    v-model="textValue"
+    v-model.number="textValue"
     :label="label"
     outlined
     dense
+    type="number"
   ></v-text-field>
 </template>
 
@@ -12,59 +14,51 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "ExempleTextField",
+  name: "FakerNumberTextField",
   props: {
-    incomingValue: [String, Number, Boolean, Array, Object],
+    incomingValue: Number,
     textFieldLabel: String,
     field: String,
     rowId: String,
-    jsonType: String,
+    dependedFieldValue: Number,
+
   },
   data() {
     return {
-      textValue: "",
+      textValue: 0,
       label: "",
-    };
+    }
   },
   created() {
     this.textValue =
-      typeof this.incomingValue === "string"
+      typeof this.incomingValue === "number"
         ? this.incomingValue
-        : JSON.stringify(this.incomingValue);
+        : JSON.parse(this.incomingValue);
 
     this.label = this.textFieldLabel;
   },
   watch: {
-    textValue(newValue, oldValue) {
-      this.changeTextField(newValue, oldValue);
+    textValue(newValue) {
+      this.changeTextField(newValue);
     },
     incomingValue(newV) {
-      this.textValue = typeof newV === "string" ? newV : JSON.stringify(newV);
+      this.textValue = newV;
     },
   },
   computed: {},
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
     changeTextField(newValue) {
-      const data = this.getPreparedDataTable();
-      let preparedValue;
-      console.log('newValue ', newValue);
-      try {
-        JSON.parse(newValue);
-        preparedValue = JSON.parse(newValue);
-      } catch {
-        preparedValue = newValue;
-      }
+      const data = this.getPreparedData();
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
-          if (this.jsonType !== "string") {
-            item[this.field] = preparedValue;
-          } else {
-            item[this.field] = newValue;
-          }
+          item[this.field] = JSON.parse(newValue);
         } else {
+                   if (item.faker) {
+            changeValue(item.faker);
+          }
           if (item.array) {
             changeValue(item.array);
           }
@@ -74,7 +68,7 @@ export default {
             });
           }
         }
-      };
+      }
 
       const newData = data.map((item) => {
         changeValue(item);
@@ -82,8 +76,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
-      this.$forceUpdate();
+      this.updatePreparedData(newData);
     },
   },
 };

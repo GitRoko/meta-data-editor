@@ -11,11 +11,11 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { typeRules } from "../features/rules";
+import { typeRules, fakerDefaultValue } from "../../features/rules";
 
 
 export default {
-  name: "FakerSampleSelect",
+  name: "FakerSelectType",
   props: {
     incomingItemValue: String,
     selectName: String,
@@ -23,7 +23,6 @@ export default {
     rowId: String,
     jsonType: String,
     fieldName: String,
-    path: String,
   },
   data() {
     return {
@@ -40,7 +39,7 @@ export default {
   computed: {
 
     items() {
-      return typeRules.faker.sample;
+      return typeRules[this.fieldTitle][this.jsonType];
     }
   },
   watch: {
@@ -57,24 +56,36 @@ export default {
     }
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
 
-    changeSelectValue(newValue) {
-      const data = this.getPreparedDataTable();
+    changeSelectValue(newValue, oldValue) {
+      const data = this.getPreparedData();
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
-          item.sample = newValue;
-          console.log(item);
+          if (newValue !== oldValue && oldValue !== '') {
+           
+          let newKeys = Object.keys(fakerDefaultValue[newValue]);
+          let keys = Object.keys(item);
+          keys.forEach(key => {
+            if (key !== 'rowId' && key !== 'type') {
+              delete item[key]
+            }
+          });
+             newKeys.forEach(key => {
+              item[key] = fakerDefaultValue[newValue][key]            
+            });
+          } 
          
         } else {
           if (item.faker) {
             changeValue(item.faker);
-          } 
+          }
           if (item.array) {
             changeValue(item.array);
-          } 
+          }
+          
           if (item.object) {
             item.object.forEach((item) => {
               changeValue(item);
@@ -90,7 +101,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
     },
   },
 };

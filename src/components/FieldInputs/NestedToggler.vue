@@ -3,9 +3,12 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { v4 as uuidv4 } from "uuid";
-import { fakerDefaultValue, typeRules } from "../features/rules";
-
+// import { v4 as uuidv4 } from "uuid";
+// import { fakerDefaultValue, typeRules } from "../../features/rules";
+import {
+  getExample,
+  getNewNestedField,
+} from "../../features/helperFunctions.js";
 
 export default {
   name: "NestedToggler",
@@ -34,42 +37,24 @@ export default {
     },
   },
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
     changeNested(newValue) {
       // console.log("newValue", newValue);
 
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
           item.nested = newValue;
-          // eslint-disable-next-line no-debugger
-          // debugger;
-          const getNewFaker = (type) => {
-            const currentTypeFaker = typeRules.faker[type];
-            const newFaker = { ...fakerDefaultValue[currentTypeFaker[0]]};
-            return  {...newFaker, rowId: uuidv4()};
-          }
-
-
+          
           if (
             newValue === true &&
             item.json_type === "array" &&
             item.array === undefined
           ) {
-            
-            
-            item.array = {
-              json_type: "string",
-              mandatory: false,
-              pydantic_type: "StrictStr",
-              example: "Some string",
-              rowId: uuidv4(),
-            };
-            item.array.faker = getNewFaker(item.array.json_type);
-
-            delete item.example;
+            item.array = getNewNestedField("someField", "string");
+            item.example = undefined;
           }
 
           if (
@@ -77,40 +62,32 @@ export default {
             item.json_type === "object" &&
             item.object === undefined
           ) {
-            item.object = [
-              {
-                field_name: "id",
-                json_type: "number",
-                mandatory: true,
-                pydantic_type: "StrictInt",
-                example: 123,
-                rowId: uuidv4(),
-              },
-            ];
-
-            item.object[0].faker = getNewFaker(item.object[0].json_type);
-
-            delete item.example;
-           
+            item.object = [getNewNestedField("someField", "string")];
+            item.example = undefined;
           }
-          if (newValue === false && item.json_type === "array" && item.array) {
-            delete item.array;
-            item.example = ["Some string"];
-           
+
+          if (
+            newValue === false &&
+            item.json_type === "array" &&
+            item.array !== undefined
+          ) {
+            item.array = undefined;
+            item.example = getExample("array");
           }
+
           if (
             newValue === false &&
             item.json_type === "object" &&
-            item.object
+            item.object !== undefined
           ) {
-            delete item.object;
-            item.example = { id: 123, name: "abc" };
-           
+            item.object = undefined;
+            item.example = getExample("object");
           }
         } else {
           if (item.array) {
             changeValue(item.array);
           }
+          
           if (item.object) {
             item.object.forEach((item) => {
               changeValue(item);
@@ -124,7 +101,7 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
       this.$forceUpdate();
     },
   },

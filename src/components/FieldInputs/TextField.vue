@@ -14,12 +14,13 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "TextFieldTable",
+  name: "TextField",
   props: {
     incomingValue: String,
     textFieldLabel: String,
-    field: String,
+    fieldName: String,
     rowId: String,
+    path: String,
   },
   data() {
     return {
@@ -36,34 +37,50 @@ export default {
     this.label = this.textFieldLabel;
   },
   watch: {
-    textValue(newValue) {
-      this.changeTextField(newValue);
-    },
+    // textValue(newValue) {
+    //   this.changeTextField(newValue);
+    // },
     incomingValue(newV) {
       this.textValue = newV;
     },
   },
   computed: {},
   methods: {
-    ...mapGetters(["getPreparedDataTable"]),
-    ...mapMutations(["updatePreparedDataTable"]),
+    // ...mapGetters(["getPreparedData"]),
+    // ...mapMutations(["updatePreparedData"]),
+    // ...mapActions(["changeItemFieldName"]),
+
+    // changeTextField(newValue) {
+    //   // const item = this.$store.getters.getCurrentItem(this.path)
+    //   // item[this.fieldName] = newValue;
+    //   // this.changeItemFieldName({
+    //   //   path: this.path,
+    //   //   fieldName: this.fieldName,
+    //   //   newValue: newValue,
+    //   //   rowId: this.rowId
+    //   // })
+    // },
+    ...mapGetters(["getPreparedData"]),
+    ...mapMutations(["updatePreparedData"]),
     changeTextField(newValue) {
-      const data = this.getPreparedDataTable();
+      const data = this.getPreparedData();
 
       const changeValue = (item) => {
         if (item.rowId === this.rowId) {
-          item[this.field] = newValue;
+          item[this.fieldName] = newValue;
         } else {
           if (item.array) {
             changeValue(item.array);
           }
           if (item.object) {
+            // eslint-disable-next-line no-debugger
+            // debugger;
             item.object.forEach(item => {
               changeValue(item);
             })
           }
         }
-      }
+      };
 
       const newData = data.map((item) => {
         changeValue(item);
@@ -71,8 +88,9 @@ export default {
         return item;
       });
 
-      this.updatePreparedDataTable(newData);
+      this.updatePreparedData(newData);
     },
+
   },
 };
 </script>
